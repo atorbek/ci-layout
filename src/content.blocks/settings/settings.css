@@ -1,16 +1,10 @@
-.informer {
+.settings {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    max-width: 210px;
     height: 100%;
-
-    &_border_all {
-        border: 3px solid var(--color-bg-border);
-    }
-
-    &_view_default {
-        background-color: var(--color-bg-default);
-    }
+    margin: 0 auto;
 
     &__content {
         display: flex;
@@ -39,6 +33,17 @@
             &_xxl {
                 padding: var(--space-xxl);
             }
+        }
+
+        &_icon {
+            width: 124px;
+            height: 124px;
+            background-size: 124px;
+            margin-bottom: 30px;
+        }
+
+        &_text {
+            margin-bottom: 26px;
         }
     }
 

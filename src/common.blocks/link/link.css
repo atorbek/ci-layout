@@ -1,0 +1,11 @@
+.link {
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--text-color-link);
+
+    &_theme {
+        &_normal:hover {
+            color: var(--text-color-link-hover);
+        }
+    }
+}

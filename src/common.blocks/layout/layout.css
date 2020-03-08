@@ -1,4 +1,8 @@
 .layout {
+    display: flex;
+    align-items: center;
+
+
     &__container {
         width: 100%;
         background-color: var(--color-bg-default);
@@ -8,8 +12,8 @@
         }
 
         &_size {
-            &_s {
-                max-width: var(--screen-s);
+            &_xs {
+                max-width: var(--screen-xs);
             }
 
             &_m {

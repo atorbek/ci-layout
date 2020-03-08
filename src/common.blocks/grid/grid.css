@@ -43,6 +43,10 @@
 
         @media screen and (min-width: 1024px) {
             &_m-col {
+                &_1 {
+                    grid-column: span 1;
+                }
+
                 &_2 {
                     grid-column: span 2;
                 }
@@ -59,8 +63,32 @@
                     grid-column: span 5;
                 }
 
+                &_6 {
+                    grid-column: span 6;
+                }
+
+                &_7 {
+                    grid-column: span 7;
+                }
+
                 &_8 {
                     grid-column: span 8;
+                }
+
+                &_9 {
+                    grid-column: span 9;
+                }
+
+                &_10 {
+                    grid-column: span 10;
+                }
+
+                &_11 {
+                    grid-column: span 11;
+                }
+
+                &_12 {
+                    grid-column: span 12;
                 }
             }
         }
