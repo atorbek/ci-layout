@@ -6,6 +6,7 @@
 @import "common.blocks/layout/layout.css";
 @import "common.blocks/grid/grid.css";
 
+@import "common.blocks/form/form.css";
 @import "common.blocks/list/list.css";
 
 @import 'common.blocks/text/text.css';

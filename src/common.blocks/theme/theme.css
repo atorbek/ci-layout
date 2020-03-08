@@ -58,6 +58,7 @@ $size-line-height-xxxxl: 36px;
 $size-line-height-xxxxxl: 38px;
 
 /* Отступы */
+$space-xxxxxs: 6px;
 $space-xxxxs: 7px;
 $space-xxxs: 8px;
 $space-xxs: 10px;
@@ -66,8 +67,12 @@ $space-s: 12px;
 $space-m: 13px;
 $space-l: 15px;
 $space-xl: 16px;
-$space-xxl: 20px;
-$space-xxxl: 100px;
+$space-xxl: 18px;
+$space-xxxl: 20px;
+$space-xxxxl: 22px;
+$space-xxxxxl: 24px;
+$space-xxxxxxl: 100px;
+
 
 $screen-m: 824px;
 $screen-xs: 320px;
@@ -132,6 +137,7 @@ $screen-xs: 320px;
 
     &_space {
         &_default {
+            --space-xxxxxs: $space-xxxxxs;
             --space-xxxxs: $space-xxxxs;
             --space-xxxs: $space-xxxs;
             --space-xxs: $space-xxs;
@@ -142,6 +148,9 @@ $screen-xs: 320px;
             --space-xl: $space-xl;
             --space-xxl: $space-xxl;
             --space-xxxl: $space-xxxl;
+            --space-xxxxl: $space-xxxxl;
+            --space-xxxxxl: $space-xxxxxl;
+            --space-xxxxxxl: $space-xxxxxxl;
         }
     }
 
@@ -156,7 +165,7 @@ $screen-xs: 320px;
                 --gap: $space-xl;
             }
 
-            --gap: $space-xxxl;
+            --gap: $space-xxxxxl;
 
             --col-gap-full: var(--gap);
             --col-gap-half: calc(var(--gap) * 0.5);

@@ -1,5 +1,5 @@
 .footer {
-    padding: var(--space-xxs) var(--space-xl);
+    padding: var(--space-xxxs) var(--space-xl);
     background: var(--color-bg-footer);
 
     &__content {

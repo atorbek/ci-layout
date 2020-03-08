@@ -9,5 +9,55 @@
 </head>
 <body>
 
+<div class="page theme theme_color_project-default theme_font_ys-text theme_size_default theme_space_default theme_gap_small">
+    <div class="header">
+        <div class="header__content">
+            <h1 class="header__title text text_size_xxxl text_view_secondary text_line-height_xl">School CI server</h1>
+        </div>
+    </div>
+
+    <div class="layout">
+        <div class="layout__container layout__container_size_m layout__container_align_center">
+            <div class="form">
+                <div class="form__item form__item_indent-b_xxxxl form__item_indent-t_xxxs">
+                    <h2 class="form__item_header text text_size_l text_line-height_xs text_type_h2">Settings</h2>
+                    <div class="form__item_description text text_size_m text_line-height_xxs text_view_secondary">Configure repository connection and synshronization settings.</div>
+                </div>
+                <div class="form__item form__item_indent-b_xxl">
+                    <div class="form__item_label text text_size_m text_line-height_xxs text_type_span">GitHub repository *</div>
+                    <input type="search" placeholder="user-name/repo-name" class="form__item_input" required>
+                </div>
+                <div class="form__item form__item_indent-b_xxl">
+                    <div class="form__item_label text text_size_m text_line-height_xxs text_type_span">Build command</div>
+                    <input type="search" placeholder="npm ci && npm run build" class="form__item_input">
+                </div>
+                <div class="form__item form__item_indent-b_xxl">
+                    <div class="form__item_label text text_size_m text_line-height_xxs text_type_span">Main branch</div>
+                    <input type="search" placeholder="master" class="form__item_input">
+                </div>
+                <div class="form__item form__item_indent-b_xxxxxl">
+                    <div class="form__item_label text text_size_m text_line-height_xxs text_type_span">Synchronize every</div>
+                    <input type="text" placeholder="10" class="form__item_input form__item_number">
+                    <div class="form__item_label text text_size_m text_line-height_xxs text_type_span text_view_ghost">minutes</div>
+                </div>
+                <div class="form__item form__item_button form__item_indent-b_xxxxxl">
+                    <div class="button button_size_xxxxl button_view_action button_form_round">Save</div>
+                    <div class="button button_size_xxxxl button_view_control button_form_round">Cancel</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer__content">
+            <div class="list">
+                <a href="" class="list__item link link_theme_normal text text_line-height_xxxs text_size_m">Support</a>
+                <a href="" class="list__item list__item_indent-l_s link link_theme_normal text text_line-height_xxxs text_size_m">Learning</a>
+            </div>
+            <div class="text text_line-height_xxs text_size_m text_view_secondary">© 2020 Your Name</div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

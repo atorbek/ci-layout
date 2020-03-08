@@ -26,17 +26,13 @@
                 padding-top: var(--space-xxxxl);
                 padding-bottom: var(--space-xxxxl);
             }
-
-            &_xxxxxl {
-                padding-top: var(--space-xxxxxl);
-                padding-bottom: var(--space-xxxxxl);
-            }
         }
 
         &_indent-b {
-            &_xxl {
-               margin-bottom: var(--space-xxl);
+            &_xxxl {
+               margin-bottom: var(--space-xxxl);
             }
+
 
             &_xxxxl {
                 margin-bottom: var(--space-xxxxl);

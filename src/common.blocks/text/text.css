@@ -87,23 +87,19 @@
         }
     }
 
-    /*&_type {
-        &_h1 {
-            margin: 18px 0 24px;
-        }
-
+    &_type {
         &_h2 {
-            margin: 45px 0 21px;
-        }
-
-        &_h3 {
-            margin: 42px 0 0;
+            margin:  0 0 8px 0;
         }
 
         &_p {
             margin: 15px 0 21px;
         }
-    }*/
+
+        &_span {
+            margin: 0 0 6px 0;
+        }
+    }
 
     &_view {
         &_primary {

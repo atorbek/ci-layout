@@ -30,8 +30,8 @@
                 padding: var(--space-xl);
             }
 
-            &_xxl {
-                padding: var(--space-xxl);
+            &_xxxl {
+                padding: var(--space-xxxl);
             }
         }
 
@@ -61,16 +61,6 @@
 
             &_between {
                 justify-content: space-between;
-            }
-        }
-
-        &_space-a {
-            &_xl {
-                padding: var(--space-xl);
-            }
-
-            &_xxl {
-                padding: var(--space-xxl);
             }
         }
     }
