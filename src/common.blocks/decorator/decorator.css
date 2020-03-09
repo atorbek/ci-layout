@@ -6,6 +6,14 @@
     }
 
     &_indent-b {
+        &_s {
+            margin-bottom: var(--space-s);
+        }
+
+        &_l {
+            margin-bottom: var(--space-l);
+        }
+
         &_xl {
             margin-bottom: var(--space-xl);
         }
@@ -26,6 +34,12 @@
 
         &_s {
             margin-right: var(--space-s);
+        }
+    }
+
+    &_space {
+        &_s {
+            padding: var(--space-s);
         }
     }
 

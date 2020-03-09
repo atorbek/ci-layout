@@ -1,8 +1,10 @@
 /** Цвета блоков **/
 /* Цвет дефолта */
 $color-bg-default: #ffffff;
-/* Цвет фона подвала */
+/* Цвет подвала */
 $color-bg-footer: #f0f2f3;
+/* Цвет лога */
+$color-bg-log: #f0f2f3;
 /* Цвет фона действия */
 $color-bg-action: #ffcc00;
 /* Цвет фона контрола */
@@ -98,6 +100,7 @@ $screen-xs: 320px;
         &_project-default {
             --color-bg-default: $color-bg-default;
             --color-bg-footer: $color-bg-footer;
+            --color-bg-log: $color-bg-log;
             --color-bg-action: $color-bg-action;
             --color-bg-control: $color-bg-control;
             --color-bg-border: $color-bg-border;

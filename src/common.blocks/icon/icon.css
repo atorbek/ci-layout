@@ -72,6 +72,12 @@
             height: 16px;
             margin-right: 5px;
         }
+
+        &_rebuild {
+            background-image: url("/src/icons/rebuild.svg");
+            background-size: 12px;
+        }
+
     }
 
     &_view_brand {
