@@ -1,3 +1,4 @@
+/* Базовые константы */
 /** Цвета блоков **/
 /* Цвет дефолта */
 $color-bg-default: #ffffff;
@@ -80,7 +81,6 @@ $space-xxxl: 40px;
 $space-xxxxl: 48px;
 $space-xxxxxl: 72px;
 $space-xxxxxxl: 96px;
-
 
 /* Экраны */
 $screen-m: 824px;
