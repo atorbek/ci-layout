@@ -7,6 +7,8 @@
    justify-content: space-between;
    align-items: flex-start;
 
+   cursor: pointer;
+
    @media screen and (max-width: 320px) {
       flex-direction: column;
    }
@@ -51,6 +53,10 @@
          font-size: var(--size-text-xl);
       }
    }
+}
+
+.build-history:hover {
+   box-shadow: 0 2px 8px rgba(67, 68, 69, 0.3), 0 0 1px rgba(67, 68, 69, 0.3);;
 }
 
 .build-history-button {
