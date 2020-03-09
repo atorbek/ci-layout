@@ -1,0 +1,29 @@
+.commit {
+    display: flex;
+
+    @media screen and (max-width: 320px) {
+        flex-direction: column;
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+
+        @media screen and (max-width: 320px) {
+            margin-right: 0;
+            margin-bottom: 8px;
+        }
+    }
+
+    &__author {
+        display: flex;
+        align-items: center;
+
+        @media screen and (max-width: 320px) {
+            margin-bottom: 8px;
+        }
+    }
+
+
+}

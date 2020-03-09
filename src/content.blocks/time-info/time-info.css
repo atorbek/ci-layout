@@ -1,0 +1,25 @@
+.time-info {
+
+    &__date-time {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        @media screen and (max-width: 320px) {
+            margin-bottom: 0;
+            margin-right: 5px;
+        }
+    }
+
+    &__duration-time {
+        display: flex;
+        align-items: center;
+    }
+
+    @media screen and (max-width: 320px) {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
+    }
+
+}

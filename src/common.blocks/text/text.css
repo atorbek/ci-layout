@@ -110,12 +110,24 @@
             color: var(--text-color-secondary);
         }
 
+        &_secondary2 {
+            color: var(--text-color-secondary2);
+        }
+
         &_ghost {
             color: var(--text-color-ghost);
         }
 
+        &_success {
+            color: var(--text-color-success);
+        }
+
         &_alert {
             color: var(--text-color-alert);
+        }
+
+        &_warning {
+            color: var(--text-color-warning);
         }
 
         &_link {

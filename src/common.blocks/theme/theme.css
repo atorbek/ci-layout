@@ -25,8 +25,15 @@ $text-color-primary: #000000;
 $text-color-secondary: #7f8285;
 /* Цвет дополнительного */
 $text-color-ghost: #434445;
+/* 2-й второстепенный цвет */
+$text-color-secondary2: #595959;
+
+/* Цвет успеха */
+$text-color-success: #00b341;
 /* Цвет ошибки */
 $text-color-alert: #ff3333;
+/* Цвет нестабильности */
+$text-color-warning: #ff9a00;
 
 /** Цвета ссылок **/
 /* Цвет основной ссылки */
@@ -101,8 +108,11 @@ $screen-xs: 320px;
 
             --text-color-primary: $text-color-primary;
             --text-color-secondary: $text-color-secondary;
+            --text-color-secondary2: $text-color-secondary2;
             --text-color-ghost: $text-color-ghost;
+            --text-color-success: $text-color-success;
             --text-color-alert: $text-color-alert;
+            --text-color-warning: $text-color-warning;
 
             --text-color-link: $text-color-link;
             --text-color-link-hover: $text-color-link-hover;
