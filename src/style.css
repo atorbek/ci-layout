@@ -5,6 +5,7 @@
 @import 'common.blocks/page/page.css';
 @import "common.blocks/layout/layout.css";
 @import "common.blocks/grid/grid.css";
+@import "common.blocks/decorator/decorator.css";
 
 @import "common.blocks/form/form.css";
 @import "common.blocks/list/list.css";
@@ -17,3 +18,4 @@
 @import 'content.blocks/header/header.css';
 @import 'content.blocks/footer/footer.css';
 @import 'content.blocks/settings/settings.css';
+@import 'content.blocks/form-settings/form-settings.css';

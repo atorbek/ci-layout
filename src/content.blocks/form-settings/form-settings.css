@@ -1,0 +1,50 @@
+.form-settings {
+    max-width: 474px;
+
+    &__space_r {
+        margin-right: var(--space-xs);
+    }
+
+    &_indent-b {
+        &_l {
+            margin-bottom: 22px;
+        }
+
+    }
+
+    &__input {
+        height: 36px;
+        padding: 11px 13px 10px;
+        font-size: var(--size-text-m);
+        border-radius: 2px;
+        border: 2px solid var(--color-bg-border);
+
+        &_number {
+            width: 48px;
+        }
+    }
+
+    &__input:focus {
+        border: 2px solid var(--color-border-focused);
+        outline: none;
+    }
+
+    &__buttons {
+        @media screen and (max-width: 320px) {
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
+
+    &__button {
+
+        @media screen and (max-width: 320px) {
+            margin-right: 0;
+            margin-bottom: var(--space-s);
+        }
+
+        margin-right: var(--space-xs);
+    }
+
+
+}

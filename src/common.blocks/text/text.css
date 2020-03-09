@@ -114,6 +114,10 @@
             color: var(--text-color-ghost);
         }
 
+        &_alert {
+            color: var(--text-color-alert);
+        }
+
         &_link {
             color: var(--text-color-link);
         }

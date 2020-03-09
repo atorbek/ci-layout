@@ -7,6 +7,7 @@
 
     display: flex;
     align-items: center;
+    justify-content: center;
 
 
     &__icon {
@@ -41,7 +42,7 @@
     &_size {
         &_xl {
             @media screen and (max-width: 320px) {
-                padding-right: var(--space-xxxs);
+                padding-right: var(--space-xs);
             }
 
             font-size: var(--size-text-m);
@@ -53,7 +54,7 @@
         &_xxxxl {
             font-size: var(--size-text-m);
             line-height: var(--size-line-height-xxxxl);
-            padding: 0 var(--space-xxxl);
+            padding: 0 var(--space-xl);
         }
     }
 

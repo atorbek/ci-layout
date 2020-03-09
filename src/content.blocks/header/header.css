@@ -1,5 +1,10 @@
 .header {
-    padding: var(--space-xxs) var(--space-xl);
+    &_space-v {
+        &_l {
+            padding-top: calc(var(--space-l) * 0.5);
+            padding-bottom: calc(var(--space-l) * 0.5);
+        }
+    }
 
     &__title {
         @media screen and (max-width: 320px) {

@@ -14,22 +14,23 @@ $color-border-focused: #b3b3b3;
 /* Цвет успеха */
 $color-bg-success: #00b341;
 /* Цвет ошибки */
-$color-bg-error: #ff3333;
+$color-bg-alert: #ff3333;
 /* Цвет нестабильности */
-$color-bg-unstable: #ff9a00;
-
+$color-bg-warning: #ff9a00;
 
 /** Цвета текста **/
-/* Цвет основого текста */
+/* Цвет основого */
 $text-color-primary: #000000;
-/* Цвет второстепенного текста */
+/* Цвет второстепенного */
 $text-color-secondary: #7f8285;
-/* Цвет дополнительнго текста */
+/* Цвет дополнительного */
 $text-color-ghost: #434445;
+/* Цвет ошибки */
+$text-color-alert: #ff3333;
 
 /** Цвета ссылок **/
 /* Цвет основной ссылки */
-$text-color-link: $text-color-secondary;
+$text-color-link: #7f8285;
 /* Цвет ховера ссылки */
 $text-color-link-hover: #e00000;
 
@@ -57,23 +58,22 @@ $size-line-height-xxxl: 34px;
 $size-line-height-xxxxl: 36px;
 $size-line-height-xxxxxl: 38px;
 
-/* Отступы */
-$space-xxxxxs: 6px;
-$space-xxxxs: 7px;
-$space-xxxs: 8px;
-$space-xxs: 10px;
-$space-xs: 11px;
+/*  Базовые отступы */
+$space-xxxs: 2px;
+$space-xxs: 4px;
+$space-xs: 8px;
 $space-s: 12px;
-$space-m: 13px;
-$space-l: 15px;
-$space-xl: 16px;
-$space-xxl: 18px;
-$space-xxxl: 20px;
-$space-xxxxl: 22px;
-$space-xxxxxl: 24px;
-$space-xxxxxxl: 100px;
+$space-m: 16px;
+$space-l: 20px;
+$space-xl: 24px;
+$space-xxl: 32px;
+$space-xxxl: 40px;
+$space-xxxxl: 48px;
+$space-xxxxxl: 72px;
+$space-xxxxxxl: 96px;
 
 
+/* Экраны */
 $screen-m: 824px;
 $screen-xs: 320px;
 
@@ -87,7 +87,6 @@ $screen-xs: 320px;
     --screen-m: $screen-m;
     --screen-xs: $screen-xs;
 
-
     &_color {
         &_project-default {
             --color-bg-default: $color-bg-default;
@@ -97,12 +96,13 @@ $screen-xs: 320px;
             --color-bg-border: $color-bg-border;
             --color-border-focused: $color-border-focused;
             --color-bg-success: $color-bg-success;
-            --color-bg-error: $color-bg-error;
-            --color-bg-unstable: $color-bg-unstable;
+            --color-bg-alert: $color-bg-alert;
+            --color-bg-warning: $color-bg-warning;
 
             --text-color-primary: $text-color-primary;
             --text-color-secondary: $text-color-secondary;
             --text-color-ghost: $text-color-ghost;
+            --text-color-alert: $text-color-alert;
 
             --text-color-link: $text-color-link;
             --text-color-link-hover: $text-color-link-hover;
@@ -137,9 +137,8 @@ $screen-xs: 320px;
 
     &_space {
         &_default {
-            --space-xxxxxs: $space-xxxxxs;
-            --space-xxxxs: $space-xxxxs;
             --space-xxxs: $space-xxxs;
+            --space-xxs: $space-xxs;
             --space-xxs: $space-xxs;
             --space-xs: $space-xs;
             --space-s: $space-s;
@@ -162,10 +161,10 @@ $screen-xs: 320px;
     &_gap {
         &_small {
             @media screen and (max-width: $screen-xs) {
-                --gap: $space-xl;
+                --gap: $space-xxxl;
             }
 
-            --gap: $space-xxxxxl;
+            --gap: $space-xxxxl;
 
             --col-gap-full: var(--gap);
             --col-gap-half: calc(var(--gap) * 0.5);

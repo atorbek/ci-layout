@@ -35,6 +35,20 @@
             }
         }
 
+        &_indent-b {
+            &_xxl {
+                margin-bottom: var(--space-xxl);
+            }
+
+            &_xxxxl {
+                margin-bottom: var(--space-xxxxl);
+            }
+
+            &_xxxxxl {
+                margin-bottom: var(--space-xxxxxl);
+            }
+        }
+
         &_icon {
             width: 124px;
             height: 124px;

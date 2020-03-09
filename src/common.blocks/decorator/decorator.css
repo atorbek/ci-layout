@@ -1,0 +1,30 @@
+.decorator {
+    &_indent-t {
+        &_xs {
+            margin-top: var(--space-xs);
+        }
+    }
+
+    &_indent-b {
+        &_xl {
+            margin-bottom: var(--space-xl);
+        }
+    }
+
+    &_indent-r {
+        &_xs {
+            margin-right: var(--space-xs);
+        }
+
+        &_s {
+            margin-right: var(--space-s);
+        }
+    }
+
+    &_space-h {
+        &_m {
+            padding-left: var(--space-m);
+            padding-right: var(--space-m);
+        }
+    }
+}
