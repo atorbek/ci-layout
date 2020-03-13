@@ -1,0 +1,9 @@
+{
+  "logs": {
+    "a0d8da1d-490a-43f4-9968-9a89be1a8a0b": "/home/alexander/Documents/projects/ci/tmp/a0d8da1d-490a-43f4-9968-9a89be1a8a0b.txt",
+    "93b08353-455b-44ef-b2cc-3512ba4e6816": "/home/alexander/Documents/projects/ci/tmp/93b08353-455b-44ef-b2cc-3512ba4e6816.txt"
+  },
+  "repos": [
+    "git@github.com:atorbek/ci-layout.git"
+  ]
+}
