@@ -2,7 +2,7 @@
   Promise._all = values =>
     new Promise((resolve, reject) => {
       let resolutions = [];
-      if (!Array.isArray(values)) {
+      if (!values[window.Symbol && Symbol.iterator] || !Array.isArray(values)) {
         reject("values isn't iterable object");
       }
 
@@ -28,7 +28,7 @@
   Promise._any = values =>
     new Promise((resolve, reject) => {
       let resolutions = [];
-      if (!Array.isArray(values)) {
+      if (!values[window.Symbol && Symbol.iterator] || !Array.isArray(values)) {
         reject("values isn't iterable object");
       }
 
@@ -54,7 +54,7 @@
   Promise._allSettled = promises =>
     // Вызвал свою реализацию метода Promise.all
     Promise._all(
-      promises.map(promise =>
+      [...promises].map(promise =>
         Promise.resolve(promise)
           .then(value => ({
             status: 'fulfilled',
@@ -72,7 +72,7 @@
 
     return this.then(
       value => constructor.resolve(cb()).then(() => value),
-      reason => constructor.resolve(cb()).then(() => reason)
+      reason => constructor.resolve(cb()).then(() => throw reason)
     );
   };
 })();

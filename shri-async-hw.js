@@ -46,12 +46,12 @@
       const cb = result => {
         resolve(result);
       };
-      f(...[...args, cb]);
+      f(...args, cb);
     });
   };
 
   const accumVectors = (v1, v2, cb) => {
-    _promisify(_wrap)(async () => {
+    (async () => {
       const getValueV1 = _promisify(v1.get);
       const getValueV2 = _promisify(v2.get);
       const v3 = new AsyncArray();
@@ -71,7 +71,7 @@
       }
 
       return v3;
-    }).then(r => cb(r));
+    })().then(r => cb(r));
   };
 
   window.Homework = {
