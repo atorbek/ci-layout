@@ -1,28 +1,21 @@
 {
+    "extends": ["plugin:react-app", "plugin:prettier/recommended"],
+
+    "plugins": [
+        "cypress",
+        "react-perf"
+    ],
     "env": {
-        "browser": true,
-        "es6": true,
-        "node": true
+        "cypress/globals": true
     },
-
-    "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "jsx": true,
-            "generators": false,
-            "objectLiteralDuplicateProperties": false
-        }
-    },
-
-    "globals": {
-        "$": false
-    },
-
-    "extends": ["plugin:prettier/recommended"],
     "rules": {
-        "indent": [2, 2],
-        "quotes": [2, "single"],
-        "semi": [2, "always"]
+        "max-statements": ["error", 8],
+        "max-depth": ["error", 4],
+        "max-params": ["error", 3],
+        "react/destructuring-assignment": ["error", "always"],
+        "react/no-array-index-key": "error",
+        "react/jsx-no-bind": "error",
+        "react-perf/jsx-no-new-object-as-prop": "error",
+        "react-perf/jsx-no-new-array-as-prop": "error"
     }
 }
