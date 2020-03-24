@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/build-history.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/settings.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/build-history.js":
-/*!******************************!*\
-  !*** ./src/build-history.js ***!
-  \******************************/
+/***/ "./src/settings.js":
+/*!*************************!*\
+  !*** ./src/settings.js ***!
+  \*************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -114,4 +114,4 @@ __webpack_require__.r(__webpack_exports__);
 /***/ })
 
 /******/ });
-//# sourceMappingURL=build-history.0510edfa90ae965ff1ec.js.map
+//# sourceMappingURL=settings.8b64b23c3599b64fa794.js.map
