@@ -5,28 +5,26 @@ const adapter = new FileSync('./cache.json');
 const low = require('lowdb');
 const db = low(adapter);
 
-const isRepo = name =>
+const isRepo = (name) =>
   db
     .get('repos')
     .value()
-    .some(n => n === name);
-const isLogExist = name => db.get('logs').value()[name] !== undefined;
+    .some((n) => n === name);
+const isLogExist = (name) => db.get('logs').value()[name] !== undefined;
 
-setLogPath = path => {
+setLogPath = (path) => {
   const { name } = parse(path);
 
   db.get('logs').value()[name] = path;
   db.write();
 };
 
-const saveRepo = name => {
-  db.get('repos')
-    .push(name)
-    .write();
+const saveRepo = (name) => {
+  db.get('repos').push(name).write();
 };
 
-const createLogFile = path => createWriteStream(path, { flags: 'w' });
-const readLogFile = path => createReadStream(path);
+const createLogFile = (path) => createWriteStream(path, { flags: 'w' });
+const readLogFile = (path) => createReadStream(path);
 
 module.exports = {
   isRepo,

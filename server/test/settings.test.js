@@ -5,7 +5,7 @@ const settings = require('../routes/api/settings');
 chai.use(chaiHttp);
 
 describe('Settings /GET', () => {
-  it('должен вернуть настройки', done => {
+  it('должен вернуть настройки', (done) => {
     chai
       .request(settings)
       .get('/settings')

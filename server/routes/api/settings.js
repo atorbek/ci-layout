@@ -23,7 +23,7 @@ router.post('/settings', async ({ body }, res) => {
     if (!isRepo(repoName)) {
       const clone = gitClone(process.env.WORKSPACES, repoName);
 
-      clone.on('close', code => {
+      clone.on('close', (code) => {
         if (code === 0) {
           saveRepo(repoName);
         }

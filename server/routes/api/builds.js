@@ -34,7 +34,7 @@ router.post('/builds/:commitHash', async (req, res) => {
     commitInfo(
       `${process.env.WORKSPACES}/${repoName}`,
       req.params.commitHash
-    ).stdout.on('data', async info => {
+    ).stdout.on('data', async (info) => {
       const [authorName, commitMessage, branchName] = info
         .toString()
         .split(' ');
