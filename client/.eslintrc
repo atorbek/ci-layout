@@ -1,13 +1,5 @@
 {
-    "extends": ["plugin:react-app", "plugin:prettier/recommended"],
-
-    "plugins": [
-        "cypress",
-        "react-perf"
-    ],
-    "env": {
-        "cypress/globals": true
-    },
+    "extends": ["plugin:react/recommended", "plugin:prettier/recommended"],
     "rules": {
         "max-statements": ["error", 8],
         "max-depth": ["error", 4],
