@@ -1,0 +1,71 @@
+.button {
+  font-family: YS Text;
+  font-style: normal;
+  font-weight: normal;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: max-content;
+}
+
+.button__icon {
+  width: 12px;
+  height: 12px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.button__text {
+  margin-left: 6px;
+}
+
+@media screen and (max-width: $screen-xs) {
+  .button__text {
+    display: none;
+  }
+}
+
+.button_view_action {
+  background-color: var(--color-bg-action);
+}
+
+.button_view_control {
+  background-color: var(--color-bg-control);
+}
+
+.button_form_round {
+  border-radius: 4px;
+}
+
+.button_size_xl {
+  font-size: var(--size-text-m);
+  line-height: var(--size-line-height-xl);
+  padding: 0 var(--space-m);
+}
+
+@media screen and (max-width: 320px) {
+  .button_size_xl {
+    padding-right: var(--space-xs);
+  }
+}
+
+.button_size_l {
+  font-size: var(--size-text-m);
+  line-height: var(--size-line-height-xl);
+  padding: 0 var(--space-m);
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.button_size_xxxxl {
+  font-size: var(--size-text-m);
+  line-height: var(--size-line-height-xxxxl);
+  padding: 0 var(--space-xl);
+}
+
+.button_width_full {
+  width: 100%;
+}
