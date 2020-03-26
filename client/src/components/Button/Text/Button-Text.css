@@ -1,0 +1,9 @@
+.button__text {
+  margin-left: 6px;
+}
+
+@media screen and (max-width: $screen-xs) {
+  .button__text {
+    display: none;
+  }
+}

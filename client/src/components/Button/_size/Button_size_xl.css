@@ -1,0 +1,11 @@
+.button_size_xl {
+  font-size: var(--size-text-m);
+  line-height: var(--size-line-height-xl);
+  padding: 0 var(--space-m);
+}
+
+@media screen and (max-width: 320px) {
+  .button_size_xl {
+    padding-right: var(--space-xs);
+  }
+}

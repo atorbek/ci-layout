@@ -1,0 +1,7 @@
+.header__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: var(--screen-m);
+  margin: 0 auto;
+}

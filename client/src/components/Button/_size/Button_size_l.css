@@ -1,0 +1,7 @@
+.button_size_l {
+  font-size: var(--size-text-m);
+  line-height: var(--size-line-height-xl);
+  padding: 0 var(--space-m);
+  padding-left: 8px;
+  padding-right: 8px;
+}

@@ -5,30 +5,3 @@
   padding-top: calc(var(--space-l) * 0.5);
   padding-bottom: calc(var(--space-l) * 0.5);
 }
-
-.header__title {
-  font-weight: 500;
-  letter-spacing: 0.25px;
-}
-
-@media screen and (max-width: 320px) {
-  .header__title {
-    font-size: var(--size-text-xxl);
-    line-height: var(--size-line-height-m);
-  }
-}
-
-.header__buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.header__content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  max-width: var(--screen-m);
-  margin: 0 auto;
-}

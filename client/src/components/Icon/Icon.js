@@ -3,9 +3,11 @@ import './Icon.css';
 import connect from 'react-redux/es/connect/connect';
 import Button from '../Button';
 
-const Icon = (props) => {
+const Icon = ({ mod, elem, children }) => {
   return (
-    <div className="icon button__icon icon_type_play icon_size_s icon_view_brand"></div>
+    <div className="icon button__icon icon_type_play icon_size_s icon_view_brand">
+      {children}
+    </div>
   );
 };
 
