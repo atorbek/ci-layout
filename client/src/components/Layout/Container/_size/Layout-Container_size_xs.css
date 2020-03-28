@@ -1,0 +1,3 @@
+.layout__container_size_xs {
+  max-width: var(--screen-xs);
+}

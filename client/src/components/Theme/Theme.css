@@ -1,3 +1,33 @@
+@font-face {
+  font-family: 'YS Text';
+  src: url('//yastatic.net/islands/_/PyVcRbwHetz0gOVWLonWH7Od8zM.woff2')
+      format('woff2'),
+    url('//yastatic.net/islands/_/bIx8jOfCEfR-mECoDUEZywDBuHA.woff')
+      format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'YS Text';
+  src: url('//yastatic.net/islands/_/7_GKBdKFbUPzKlghJRv55xgz0FQ.woff2')
+      format('woff2'),
+    url('//yastatic.net/islands/_/SmqPmIMEXrW4lOY8QrhTUVDbrro.woff')
+      format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'YS Text';
+  src: url('//yastatic.net/islands/_/6Roy0LCd05cK4nNCipgzheYcNVU.woff2')
+      format('woff2'),
+    url('//yastatic.net/islands/_/KtHQR1erf3spayoIM4M4ngg0e2E.woff')
+      format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
 :root {
   --white: #ffffff;
   --black: #000000;
@@ -47,6 +77,16 @@
   --space-xxxxxl: 72px;
   --space-xxxxxxl: 96px;
 
+  /* Размер текста */
+  --size-text-xxs: 8px;
+  --size-text-xs: 10px;
+  --size-text-s: 11px;
+  --size-text-m: 13px;
+  --size-text-l: 15px;
+  --size-text-xl: 16px;
+  --size-text-xxl: 18px;
+  --size-text-xxxl: 24px;
+
   /* Экраны */
   --screen-m: 824px;
   --screen-xs: 320px;
@@ -59,8 +99,6 @@
 }
 
 .theme {
-  --screen-m: var(--screen-m);
-  --screen-xs: var(--screen-xs);
 }
 
 .theme_color_project-default {
@@ -108,44 +146,9 @@
 }
 
 .theme_size_default {
-  /* Размер текста */
-  --size-text-xxs: 8px;
-  --size-text-xs: 10px;
-  --size-text-s: 11px;
-  --size-text-m: 13px;
-  --size-text-l: 15px;
-  --size-text-xl: 16px;
-  --size-text-xxl: 18px;
-  --size-text-xxxl: 24px;
-
-  --size-line-height-xxxxs: var(--size-line-height-xxxxs);
-  --size-line-height-xxxs: var(--size-line-height-xxxs);
-  --size-line-height-xxs: var(--size-line-height-xxs);
-  --size-line-height-xs: var(--size-line-height-xs);
-  --size-line-height-s: var(--size-line-height-s);
-  --size-line-height-m: var(--size-line-height-m);
-  --size-line-height-l: var(--size-line-height-l);
-  --size-line-height-xl: var(--size-line-height-xl);
-  --size-line-height-xxl: var(--size-line-height-xxl);
-  --size-line-height-xxxl: var(--size-line-height-xxxl);
-  --size-line-height-xxxxl: var(--size-line-height-xxxxl);
-  --size-line-height-xxxxxl: var(--size-line-height-xxxxxl);
 }
 
 .theme_space_default {
-  --space-xxxs: var(--space-xxxs);
-  --space-xxs: var(--space-xxs);
-  --space-xxs: var(--space-xxs);
-  --space-xs: var(--space-xs);
-  --space-s: var(--space-s);
-  --space-m: var(--space-m);
-  --space-l: var(--space-l);
-  --space-xl: var(--space-xl);
-  --space-xxl: var(--space-xxl);
-  --space-xxxl: var(--space-xxxl);
-  --space-xxxxl: var(--space-xxxxl);
-  --space-xxxxxl: var(--space-xxxxxl);
-  --space-xxxxxxl: var(--space-xxxxxxl);
 }
 
 .theme_font_ys-text {
@@ -165,7 +168,7 @@
   --row-gap-half: calc(var(--gap) * 0.5);
 }
 
-@media screen and (max-width: 824px) {
+@media screen and (max-width: 320px) {
   .theme_gap_small {
     --gap: var(--space-xxxl);
   }

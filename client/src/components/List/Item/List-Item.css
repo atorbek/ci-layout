@@ -1,0 +1,9 @@
+.list__item {
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--text-color-link);
+}
+
+.list__item:hover {
+  color: var(--text-color-link-hover);
+}

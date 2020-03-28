@@ -1,4 +1,7 @@
 .icon_type_stopwatch {
   background-image: url('stopwatch.svg');
-  background-size: 9px;
+  background-size: 14px;
+  width: 14px;
+  height: 16px;
+  margin-right: 5px;
 }

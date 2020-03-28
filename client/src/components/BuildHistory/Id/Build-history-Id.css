@@ -1,0 +1,9 @@
+.build-history__id {
+  margin-right: 4px;
+}
+
+@media screen and (max-width: 320px) {
+  .build-history__id {
+    font-size: var(--size-text-xl);
+  }
+}

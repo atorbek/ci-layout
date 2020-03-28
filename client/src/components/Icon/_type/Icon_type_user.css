@@ -1,4 +1,6 @@
 .icon_type_user {
   background-image: url('user.svg');
-  background-size: 9px;
+  background-size: 12px;
+  width: 12px;
+  height: 14px;
 }

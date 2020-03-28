@@ -1,34 +1,26 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import '../Theme/Theme.css';
 import Page from '../Page';
-import Header from '../Header';
-import Layout from '../Layout';
-import Footer from '../Footer';
-import HeaderTitle from '../Header/Title/Header-Title';
-import HeaderContent from '../Header/Content/Header-Content';
-import HeaderButtons from '../Header/Buttons/Header-Buttons';
-import Button from '../Button';
-import Icon from '../Icon';
-import ButtonText from '../Button/Text/Button-Text';
+import History from '../HistoryPage';
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Page>
-        <Header>
-          <HeaderContent>
-            <HeaderTitle>philip1967/my-awesome-repo</HeaderTitle>
-            <HeaderButtons>
-              <Button>
-                <Icon />
-                <ButtonText>Run build</ButtonText>
-              </Button>
-            </HeaderButtons>
-          </HeaderContent>
-        </Header>
-        <Layout />
-        <Footer />
-      </Page>
+      <Switch>
+        <Page
+          mix={[
+            'theme',
+            'theme_color_project-default',
+            'theme_font_ys-text',
+            'theme_size_default',
+            'theme_space_default',
+            'theme_gap_small'
+          ]}
+        >
+          <Route path="/" component={History} />
+        </Page>
+      </Switch>
     </BrowserRouter>
   );
 };

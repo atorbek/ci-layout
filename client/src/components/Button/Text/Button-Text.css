@@ -2,7 +2,7 @@
   margin-left: 6px;
 }
 
-@media screen and (max-width: $screen-xs) {
+@media screen and (max-width: 320px) {
   .button__text {
     display: none;
   }

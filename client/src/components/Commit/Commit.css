@@ -1,0 +1,9 @@
+.commit {
+  display: flex;
+}
+
+@media screen and (max-width: 320px) {
+  .commit {
+    flex-direction: column;
+  }
+}

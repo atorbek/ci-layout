@@ -1,0 +1,4 @@
+.build-history__msg {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

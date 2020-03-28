@@ -1,30 +1,11 @@
 import React from 'react';
 import './Footer.css';
+import './_space/Footer_spaceH_m.css';
+import { withNaming } from '@bem-react/classname';
+const cn = withNaming({ e: '__', m: '_', v: '_' });
 
-const Footer = (props) => {
-  return (
-    <div className="footer decorator decorator_space-h_m">
-      <div className="footer__content">
-        <div className="list decorator decorator_indent-t_xs">
-          <a
-            href=""
-            className="list__item link link_theme_normal text text_line-height_xxxs text_size_m decorator decorator_indent-r_xs "
-          >
-            Support
-          </a>
-          <a
-            href=""
-            className="list__item link link_theme_normal text text_line-height_xxxs text_size_m"
-          >
-            Learning
-          </a>
-        </div>
-        <div className="footer__content_copyright text text_line-height_xxs text_size_m text_view_secondary">
-          © 2020 Your Name
-        </div>
-      </div>
-    </div>
-  );
+const Footer = ({ spaceH, children, mix }) => {
+  return <div className={cn('footer')({ spaceH }, mix)}>{children}</div>;
 };
 
 export default Footer;

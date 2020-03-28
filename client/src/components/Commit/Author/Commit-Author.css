@@ -1,0 +1,10 @@
+.commit__author {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 320px) {
+  .commit__author {
+    margin-bottom: 8px;
+  }
+}

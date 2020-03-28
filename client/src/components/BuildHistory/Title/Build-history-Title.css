@@ -1,0 +1,10 @@
+.build-history__title {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+@media screen and (max-width: 320px) {
+  .build-history__title {
+    flex-direction: column;
+  }
+}

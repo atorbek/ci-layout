@@ -1,0 +1,12 @@
+.commit__info {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 320px) {
+  .commit__info {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+}

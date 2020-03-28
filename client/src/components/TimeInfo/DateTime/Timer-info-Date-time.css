@@ -1,0 +1,5 @@
+.time-info__date-time {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}

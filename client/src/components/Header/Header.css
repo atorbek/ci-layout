@@ -1,7 +1,2 @@
 .header {
 }
-
-.header_space-v_l {
-  padding-top: calc(var(--space-l) * 0.5);
-  padding-bottom: calc(var(--space-l) * 0.5);
-}

@@ -1,0 +1,11 @@
+.time-info {
+}
+
+@media screen and (max-width: 320px) {
+  .time-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    margin-right: 5px;
+  }
+}

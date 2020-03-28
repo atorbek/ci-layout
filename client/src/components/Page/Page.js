@@ -1,13 +1,10 @@
 import React from 'react';
-import '../Theme.css';
 import './Page.css';
+import { withNaming } from '@bem-react/classname';
+const cn = withNaming({ e: '__', m: '_', v: '_' });
 
-const Page = ({ children }) => {
-  return (
-    <div className="page theme theme_color_project-default theme_font_ys-text theme_size_default theme_space_default theme_gap_small">
-      {children}
-    </div>
-  );
+const Page = ({ mix, children }) => {
+  return <div className={cn('page')({}, mix)}>{children}</div>;
 };
 
 export default Page;

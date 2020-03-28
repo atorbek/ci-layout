@@ -1,4 +1,6 @@
 .icon_type_commit {
   background-image: url('commit.svg');
-  background-size: 9px;
+  background-size: 16px;
+  width: 16px;
+  height: 8px;
 }

@@ -1,3 +1,5 @@
+import ButtonText from './Text/Button-Text';
+import ButtonIcon from './Icon/Button-Icon';
 export { default } from './Button';
-export ButtonText from './Text/Button-Text';
-export ButtonIcon from './Icon/Button-Icon';
+
+export { ButtonText, ButtonIcon };
