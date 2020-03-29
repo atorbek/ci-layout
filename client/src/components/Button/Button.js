@@ -11,9 +11,23 @@ import './_indent-r/Button_indent-r_xs.css';
 import { withNaming } from '@bem-react/classname';
 const cn = withNaming({ e: '__', m: '_', v: '_' });
 
-const Button = ({ size, view, width, form, mix, indentR, children }) => {
+const Button = ({
+  size,
+  view,
+  width,
+  form,
+  type,
+  mix,
+  indentR,
+  children,
+  ...props
+}) => {
   return (
-    <button className={cn('button')({ size, view, width, indentR, form }, mix)}>
+    <button
+      type={type}
+      className={cn('button')({ size, view, width, indentR, form }, mix)}
+      {...props}
+    >
       {children}
     </button>
   );
