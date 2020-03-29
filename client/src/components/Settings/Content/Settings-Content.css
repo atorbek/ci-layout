@@ -1,0 +1,47 @@
+.settings__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings__content_distribute_default {
+  align-items: flex-start;
+}
+
+.settings__content_distribute_center {
+  align-items: center;
+}
+
+.settings__content_distribute_between {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.settings__content_spaceA_xl {
+  padding: var(--space-xl);
+}
+
+.settings__content_spaceA_xxxl {
+  padding: var(--space-xxxl);
+}
+
+.settings__content_indentB_xxl {
+  margin-bottom: var(--space-xxl);
+}
+
+.settings__content_indentB_xxxxl {
+  margin-bottom: var(--space-xxxxl);
+}
+
+.settings__content_indentB_xxxxxl {
+  margin-bottom: var(--space-xxxxxl);
+}
+.settings__content_icon {
+  width: 124px;
+  height: 124px;
+  background-size: 124px;
+  margin-bottom: 30px;
+}
+
+.settings__content_text {
+  margin-bottom: 26px;
+}

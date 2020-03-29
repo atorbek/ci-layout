@@ -18,15 +18,14 @@ import Button, { ButtonText } from '../Button';
 import Icon from '../Icon';
 import Layout from '../Layout';
 import LayoutContainer from '../Layout/Container/Layout-Container';
-import BuildHistory from '../BuildHistory';
 import List from '../List/List';
 import ListItem from '../List/Item/List-Item';
 import FooterContent from '../Footer/Content/FooterContent';
 import FooterCopyright from '../Footer/Copyright/FooterCopyright';
 import Footer from '../Footer';
 import FooterList from '../Footer/List/FooterList';
-
-const HistoryPage = () => {
+import FormSettings from '../FormSettings/Form-settings';
+const SettingsPage = () => {
   return (
     <>
       <Header spaceV="l" spaceH="m">
@@ -35,41 +34,17 @@ const HistoryPage = () => {
             mix={[
               'text',
               ' text_size_xxxl',
-              'text_view_primary',
+              'text_view_secondary',
               'text_line-height_xl'
             ]}
           >
-            philip1967/my-awesome-repo
+            School CI server
           </HeaderTitle>
-          <HeaderButtons>
-            <Button size="xl" view="control" form="round" indentR="xs">
-              <Icon type="play" size="s" view="brand" mix={['button__icon']} />
-              <ButtonText>Run build</ButtonText>
-            </Button>
-            <Button size="l" view="control" form="round">
-              <Icon type="gear" size="s" view="brand" mix={['button__icon']} />
-            </Button>
-          </HeaderButtons>
         </HeaderContent>
       </Header>
       <Layout verticalAlign="top" spaceH="m" direction="column">
         <LayoutContainer size="m" align="center">
-          <BuildHistory
-            id="#1368"
-            msg="add documentation for postgres scaler"
-            indentT="xs"
-          />
-          <BuildHistory
-            id="#1368"
-            msg="add documentation for postgres scaler"
-            indentT="xs"
-            indentB="xs"
-          />
-        </LayoutContainer>
-        <LayoutContainer size="m" align="center" indentB="l">
-          <Button size="xl" view="control" form="round">
-            Show more
-          </Button>
+          <FormSettings mix={['mix']} />
         </LayoutContainer>
       </Layout>
       <Footer spaceH="m">
@@ -111,4 +86,4 @@ const HistoryPage = () => {
 const mapStateToProps = (state) => ({});
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(HistoryPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsPage);

@@ -1,0 +1,12 @@
+.form-settings__input {
+  height: 36px;
+  padding: 11px 13px 10px;
+  font-size: var(--size-text-m);
+  border-radius: 2px;
+  border: 2px solid var(--color-bg-border);
+}
+
+.form-settings__input:focus {
+  border: 2px solid var(--color-border-focused);
+  outline: none;
+}

@@ -18,7 +18,6 @@ import Button, { ButtonText } from '../Button';
 import Icon from '../Icon';
 import Layout from '../Layout';
 import LayoutContainer from '../Layout/Container/Layout-Container';
-import BuildHistory from '../BuildHistory';
 import List from '../List/List';
 import ListItem from '../List/Item/List-Item';
 import FooterContent from '../Footer/Content/FooterContent';
@@ -31,6 +30,10 @@ import {
   handleSettings
 } from '../../modules/StartPage';
 import { Redirect } from 'react-router-dom';
+import Settings from '../Settings';
+import SettingsContent from '../Settings/Content/Settings-Content';
+import SettingsAction from '../Settings/Action/Settings-Action';
+import Text from '../Text';
 const StartPage = ({ handleSettings, isSettings, isLoad }) => {
   useEffect(() => {
     handleSettings();
@@ -56,9 +59,9 @@ const StartPage = ({ handleSettings, isSettings, isLoad }) => {
             <HeaderButtons>
               <Button size="xl" view="control" form="round" indentR="xs">
                 <Icon
-                  type="play"
+                  type="gear"
                   size="s"
-                  view="settings"
+                  view="brand"
                   mix={['button__icon']}
                 />
                 <ButtonText>Settings</ButtonText>
@@ -66,24 +69,31 @@ const StartPage = ({ handleSettings, isSettings, isLoad }) => {
             </HeaderButtons>
           </HeaderContent>
         </Header>
-        <Layout verticalAlign="top" spaceH="m">
+        <Layout verticalAlign="center" spaceH="m">
           <LayoutContainer size="m" align="center">
-            <BuildHistory
-              id="#1368"
-              msg="add documentation for postgres scaler"
-              indentT="xs"
-            />
-            <BuildHistory
-              id="#1368"
-              msg="add documentation for postgres scaler"
-              indentT="xs"
-              indentB="xs"
-            />
-          </LayoutContainer>
-          <LayoutContainer size="m" align="center" indentB="l">
-            <Button size="xl" view="control" form="round">
-              Show more
-            </Button>
+            <Settings>
+              <SettingsContent distribute="center">
+                <Icon
+                  type="settings"
+                  size="s"
+                  view="brand"
+                  mix={['settings__content_icon']}
+                />
+                <Text
+                  view="primary"
+                  size="m"
+                  align="center"
+                  mix={['settings__content_text']}
+                >
+                  Configure repository connection and synchronization settings
+                </Text>
+              </SettingsContent>
+              <SettingsAction distribute="center">
+                <Button size="xxxxl" view="action" form="round">
+                  Open settings
+                </Button>
+              </SettingsAction>
+            </Settings>
           </LayoutContainer>
         </Layout>
         <Footer spaceH="m">
@@ -114,7 +124,7 @@ const StartPage = ({ handleSettings, isSettings, isLoad }) => {
                 'text_indentR_xs'
               ]}
             >
-              2020 Your Name
+              © 2020 Your Name
             </FooterCopyright>
           </FooterContent>
         </Footer>

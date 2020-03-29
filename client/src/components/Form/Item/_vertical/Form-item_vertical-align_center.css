@@ -1,0 +1,4 @@
+.form__item_verticalAlign_center {
+  display: flex;
+  align-items: center;
+}

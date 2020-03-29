@@ -4,6 +4,8 @@ import '../Theme/Theme.css';
 import Page from '../Page';
 import History from '../HistoryPage';
 import Start from '../StartPage';
+import Settings from '../SettingsPage';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 const App = () => {
   return (
@@ -20,7 +22,8 @@ const App = () => {
           ]}
         >
           <Route path="/" component={Start} exact />
-          <Route path="/history" component={History} />
+          <Route path="/settings" component={Settings} exact />
+          <PrivateRoute path="/history" component={History} exact />
         </Page>
       </Switch>
     </BrowserRouter>

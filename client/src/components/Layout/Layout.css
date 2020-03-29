@@ -1,4 +1,11 @@
 .layout {
   display: flex;
+}
+
+.layout_direction_column {
   flex-direction: column;
+}
+
+.layout_direction_row {
+  flex-direction: row;
 }

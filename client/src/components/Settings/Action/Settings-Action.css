@@ -1,0 +1,15 @@
+.settings__action {
+  display: flex;
+}
+
+.settings__action_distribute_default {
+  justify-content: flex-start;
+}
+
+.settings__action_distribute_center {
+  justify-content: center;
+}
+
+.settings__action_distribute_between {
+  justify-content: space-between;
+}

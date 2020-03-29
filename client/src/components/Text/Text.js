@@ -37,6 +37,7 @@ import { withNaming } from '@bem-react/classname';
 const cn = withNaming({ e: '__', m: '_', v: '_' });
 
 const Text = ({
+  tag = 'div',
   align,
   lineHeight,
   size,
@@ -46,15 +47,15 @@ const Text = ({
   mix,
   children
 }) => {
-  return (
-    <div
-      className={cn('text')(
+  return React.createElement(
+    tag,
+    {
+      className: cn('text')(
         { align, lineHeight, size, type, view, indentR },
         mix
-      )}
-    >
-      {children}
-    </div>
+      )
+    },
+    children
   );
 };
 
