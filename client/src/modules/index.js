@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import { fork } from 'redux-saga/effects';
-import settingsSet, { sagas as SettingsSagas } from './SettingsPage';
+import settings, { sagas as StartSagas } from './StartPage';
 
 export default combineReducers({
-  settingsSet
+  settings
 });
 
 export function* rootSaga() {
-  yield fork(SettingsSagas);
+  yield fork(StartSagas);
 }

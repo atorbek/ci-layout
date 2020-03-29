@@ -4,9 +4,11 @@ import rootReducer, { rootSaga } from './modules';
 
 const createAppStore = () => {
   const sagaMiddleware = createSagaMiddleware();
+  const preloadedstate = { settings: { load: false } };
 
   const store = createStore(
     rootReducer,
+    preloadedstate,
     compose(
       applyMiddleware(sagaMiddleware),
       window.__REDUX_DEVTOOLS_EXTENSION__

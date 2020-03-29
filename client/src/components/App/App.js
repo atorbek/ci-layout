@@ -1,10 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import '../Theme/Theme.css';
 import Page from '../Page';
 import History from '../HistoryPage';
 import Start from '../StartPage';
-import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 const App = () => {
   return (
@@ -20,8 +19,8 @@ const App = () => {
             'theme_gap_small'
           ]}
         >
-          <PrivateRoute path="/" component={History} />
-          <Redirect to="/" />
+          <Route path="/" component={Start} exact />
+          <Route path="/history" component={History} />
         </Page>
       </Switch>
     </BrowserRouter>

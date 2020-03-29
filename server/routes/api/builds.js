@@ -83,8 +83,6 @@ router.get('/builds/:buildId/logs', async (req, res) => {
 
     const path = `${process.env.TMP}/${buildId}.txt`;
 
-    console.log(isLogExist(buildId));
-
     if (isLogExist(buildId)) {
       readLogFile(path).pipe(res);
     } else {
