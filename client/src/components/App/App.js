@@ -5,6 +5,7 @@ import Page from '../Page';
 import History from '../HistoryPage';
 import Start from '../StartPage';
 import Settings from '../SettingsPage';
+import Build from '../BuildPage';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
         >
           <Route path="/" component={Start} exact />
           <Route path="/settings" component={Settings} exact />
+          <Route path="/build/:id" component={Build} exact />
           <PrivateRoute path="/history" component={History} exact />
         </Page>
       </Switch>

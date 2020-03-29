@@ -2,6 +2,7 @@ import React from 'react';
 import './Build-history.css';
 import './_indent-t/Button_indent-t_xs.css';
 import './_indent-b/Button_indent-b_xs.css';
+import './_indent-b/Button_indent-b_s.css';
 import { withNaming } from '@bem-react/classname';
 import '../Text/Text.css';
 import '../Text/_size/Text_size_l.css';

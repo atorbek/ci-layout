@@ -21,8 +21,13 @@ import FooterContent from '../Footer/Content/FooterContent';
 import FooterCopyright from '../Footer/Copyright/FooterCopyright';
 import Footer from '../Footer';
 import FooterList from '../Footer/List/FooterList';
-import FormSettings from '../FormSettings/Form-settings';
-const SettingsPage = () => {
+import HeaderButtons from '../Header/Buttons/Header-Buttons';
+import Button, { ButtonText } from '../Button';
+import Icon from '../Icon';
+import BuildHistory from '../BuildHistory';
+import BuildLog from '../BuildLog';
+import Text from '../Text';
+const BuildPage = () => {
   return (
     <>
       <Header spaceV="l" spaceH="m">
@@ -31,17 +36,39 @@ const SettingsPage = () => {
             mix={[
               'text',
               ' text_size_xxxl',
-              'text_view_secondary',
+              'text_view_primary',
               'text_line-height_xl'
             ]}
           >
-            School CI server
+            philip1967/my-awesome-repo
           </HeaderTitle>
+          <HeaderButtons>
+            <Button size="xl" view="control" form="round" indentR="xs">
+              <Icon type="play" size="s" view="brand" mix={['button__icon']} />
+              <ButtonText>Rebuild</ButtonText>
+            </Button>
+            <Button size="l" view="control" form="round">
+              <Icon
+                type="rebuild"
+                size="s"
+                view="brand"
+                mix={['button__icon']}
+              />
+            </Button>
+          </HeaderButtons>
         </HeaderContent>
       </Header>
       <Layout verticalAlign="top" spaceH="m" direction="column">
         <LayoutContainer size="m" align="center">
-          <FormSettings mix={['mix']} />
+          <BuildHistory
+            id="#1368"
+            msg="add documentation for postgres scaler"
+            indentT="xs"
+            indentB="s"
+          />
+          <BuildLog indentB="l" space="s">
+            <Text size="xs">test</Text>
+          </BuildLog>
         </LayoutContainer>
       </Layout>
       <Footer spaceH="m">
@@ -83,4 +110,4 @@ const SettingsPage = () => {
 const mapStateToProps = (state) => ({});
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(BuildPage);
