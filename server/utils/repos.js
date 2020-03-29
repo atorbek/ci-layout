@@ -11,7 +11,11 @@ const commitInfo = (path, hash) =>
     cwd: path
   });
 
-const parseRepoName = (fullname) => parse(fullname.split('/')[1]).name;
+const parseRepoName = (fullname) => {
+  const arr = fullname.split('/');
+  const len = arr.length;
+  return parse(arr[len - 1]).name;
+};
 
 module.exports = {
   gitClone,
