@@ -1,21 +1,21 @@
 import { takeLatest, put, call, fork } from 'redux-saga/effects';
 import {
-  handleSettings,
-  handleSettingsSuccess,
-  handleSettingsError
+  fetchSettings,
+  fetchSettingsSuccess,
+  fetchSettingsError
 } from './StartActions';
 import { getSettings } from './StartApi';
 
 function* fetchSettingsWatcher() {
-  yield takeLatest(handleSettings, fetchSettingsFlow);
+  yield takeLatest(fetchSettings, fetchSettingsFlow);
 }
 
 export function* fetchSettingsFlow() {
   try {
     const settings = yield call(getSettings);
-    yield put(handleSettingsSuccess(settings));
+    yield put(fetchSettingsSuccess(settings));
   } catch (e) {
-    throw new handleSettingsError({ error: e.message });
+    throw new fetchSettingsError({ error: e.message });
   }
 }
 

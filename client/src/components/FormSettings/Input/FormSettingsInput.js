@@ -1,6 +1,7 @@
 import React from 'react';
 import './FormSettings-Input.css';
 import './FormSettings-Input_number.css';
+import './_state/FormSettings-input_state_alert.css';
 import { withNaming } from '@bem-react/classname';
 const cn = withNaming({ e: '__', m: '_', v: '_' });
 
@@ -9,6 +10,7 @@ const FormSettingsInput = ({
   name,
   placeholder,
   type = 'search',
+  state,
   mix
 }) => (
   <input
@@ -16,7 +18,7 @@ const FormSettingsInput = ({
     name={name}
     placeholder={placeholder}
     type={type}
-    className={cn('form-settings__input')({}, mix)}
+    className={cn('form-settings__input')({ state }, mix)}
   />
 );
 

@@ -1,18 +1,18 @@
 import { handleActions } from 'redux-actions';
 import {
-  handleSettings,
-  handleSettingsSuccess,
-  handleSettingsError
+  fetchSettings,
+  fetchSettingsSuccess,
+  fetchSettingsError
 } from './StartActions';
 
 const settings = handleActions(
   {
-    [handleSettings]: () => ({ load: true }),
-    [handleSettingsSuccess]: (state, action) => ({
+    [fetchSettings]: () => ({ load: true }),
+    [fetchSettingsSuccess]: (state, action) => ({
       load: false,
       ...action.payload
     }),
-    [handleSettingsError]: (state, action) => ({
+    [fetchSettingsError]: (state, action) => ({
       load: false,
       ...action.payload
     })

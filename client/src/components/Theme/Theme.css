@@ -116,6 +116,8 @@
   --color-bg-border: var(--grey-450);
   /* Цвет границ в фокусе*/
   --color-border-focused: var(--grey-600);
+  /* Цвет границ при ошибке*/
+  --color-border-alert: var(--red-400);
   /* Цвет успеха */
   --color-bg-success: var(--green-500);
   /* Цвет ошибки */

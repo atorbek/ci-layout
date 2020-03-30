@@ -1,2 +1,6 @@
-export const getSettings = () =>
-  fetch(`http://localhost:3001/api/settings`).then((resp) => resp.json());
+import { axiosInstance } from '../../axios';
+
+export const getSettings = async () => {
+  const resp = await axiosInstance.get('/settings');
+  return resp.data;
+};

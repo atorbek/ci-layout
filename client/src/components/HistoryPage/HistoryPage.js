@@ -25,6 +25,8 @@ import FooterContent from '../Footer/Content/FooterContent';
 import FooterCopyright from '../Footer/Copyright/FooterCopyright';
 import Footer from '../Footer';
 import FooterList from '../Footer/List/FooterList';
+import { withRouter, NavLink } from 'react-router-dom';
+import { compose } from 'redux';
 
 const HistoryPage = () => {
   return (
@@ -47,7 +49,14 @@ const HistoryPage = () => {
               <ButtonText>Run build</ButtonText>
             </Button>
             <Button size="l" view="control" form="round">
-              <Icon type="gear" size="s" view="brand" mix={['button__icon']} />
+              <NavLink to="/settings" exact>
+                <Icon
+                  type="gear"
+                  size="s"
+                  view="brand"
+                  mix={['button__icon']}
+                />
+              </NavLink>
             </Button>
           </HeaderButtons>
         </HeaderContent>
@@ -111,4 +120,7 @@ const HistoryPage = () => {
 const mapStateToProps = (state) => ({});
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(HistoryPage);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(HistoryPage);

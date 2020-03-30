@@ -27,16 +27,16 @@ import FooterList from '../Footer/List/FooterList';
 import {
   getIsLoad,
   getIsSettings,
-  handleSettings
+  fetchSettings
 } from '../../modules/StartPage';
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import Settings from '../Settings';
 import SettingsContent from '../Settings/Content/Settings-Content';
 import SettingsAction from '../Settings/Action/Settings-Action';
 import Text from '../Text';
-const StartPage = ({ handleSettings, isSettings, isLoad }) => {
+const StartPage = ({ fetchSettings, isSettings, isLoad }) => {
   useEffect(() => {
-    handleSettings();
+    fetchSettings();
   }, []);
 
   if (!isSettings) {
@@ -64,7 +64,11 @@ const StartPage = ({ handleSettings, isSettings, isLoad }) => {
                   view="brand"
                   mix={['button__icon']}
                 />
-                <ButtonText>Settings</ButtonText>
+                <ButtonText>
+                  <NavLink to="/settings" exact>
+                    Settings
+                  </NavLink>
+                </ButtonText>
               </Button>
             </HeaderButtons>
           </HeaderContent>
@@ -139,6 +143,6 @@ const mapStateToProps = (state) => ({
   isLoad: getIsLoad(state),
   isSettings: getIsSettings(state)
 });
-const mapDispatchToProps = { handleSettings };
+const mapDispatchToProps = { fetchSettings };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StartPage);

@@ -1,5 +1,4 @@
-import React from 'react';
-import connect from 'react-redux/es/connect/connect';
+import React, { useEffect } from 'react';
 import '../Text/Text.css';
 import '../Text/_size/Text_size_xxxl.css';
 import '../Text/_size/Text_size_m.css';
@@ -22,7 +21,17 @@ import FooterCopyright from '../Footer/Copyright/FooterCopyright';
 import Footer from '../Footer';
 import FooterList from '../Footer/List/FooterList';
 import FormSettings from '../FormSettings/Form-settings';
-const SettingsPage = () => {
+import {
+  fetchSettings,
+  getIsLoad,
+  getIsSettings
+} from '../../modules/StartPage';
+import { connect } from 'react-redux';
+const SettingsPage = ({ fetchSettings }) => {
+  useEffect(() => {
+    fetchSettings();
+  }, []);
+
   return (
     <>
       <Header spaceV="l" spaceH="m">
@@ -80,7 +89,10 @@ const SettingsPage = () => {
   );
 };
 
-const mapStateToProps = (state) => ({});
-const mapDispatchToProps = {};
+const mapStateToProps = (state) => ({
+  isLoad: getIsLoad(state),
+  isSettings: getIsSettings(state)
+});
+const mapDispatchToProps = { fetchSettings };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsPage);
