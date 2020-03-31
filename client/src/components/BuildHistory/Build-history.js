@@ -1,4 +1,6 @@
 import React from 'react';
+import { format } from 'date-fns';
+import { ru } from 'date-fns/locale';
 import './Build-history.css';
 import './_indent-t/Button_indent-t_xs.css';
 import './_indent-b/Button_indent-b_xs.css';
@@ -20,22 +22,37 @@ import TimerInfo from '../TimeInfo';
 const cn = withNaming({ e: '__', m: '_', v: '_' });
 
 const BuildHistory = ({
-  id,
-  msg,
-  branch,
+  buildNumber,
+  commitMessage,
+  branchName,
+  authorName,
   hash,
-  author,
-  dateTime,
-  durationTime,
+  start,
+  status,
+  duration,
   indentT,
   indentB,
   mix
 }) => {
+  const stateBuild = {
+    Waiting: 'warning',
+    Success: 'success',
+    Fail: 'alert',
+    Canceled: 'alert',
+    InProgress: 'warning'
+  };
+
+  const shortHash = hash.slice(0, 6);
+  const formatStart = (start) =>
+    format(new Date(start), 'd MMM HH:mm', {
+      locale: ru
+    }).replace('.', ',');
+
   return (
     <div className={cn('build-history')({ indentT, indentB }, mix)}>
       <BuildHistoryDescription>
         <BuildHistoryStatus>
-          <Icon type="success" size="m" view="brand" />
+          <Icon type={stateBuild[status]} size="m" view="brand" />
         </BuildHistoryStatus>
         <BuildHistoryInfo>
           <BuildHistoryTitle>
@@ -43,25 +60,27 @@ const BuildHistory = ({
               mix={[
                 'text',
                 'text_size_xs',
-                'text_view_success',
+                `text_view_${stateBuild[status]}`,
                 'text_lineHeight_xs',
                 'text_size_xxl'
               ]}
             >
-              {id}
+              {buildNumber}
             </BuildHistoryId>
             <BuildHistoryMsg
               mix={['text', 'text_size_l', 'text_lineHeight_xs']}
             >
-              {msg}
+              {commitMessage}
             </BuildHistoryMsg>
           </BuildHistoryTitle>
-          <Commit branch={branch} hash={hash} author={author} />
+          <Commit branch={branchName} hash={shortHash} author={authorName} />
         </BuildHistoryInfo>
       </BuildHistoryDescription>
-      <BuildHistoryData>
-        <TimerInfo dateTime={dateTime} durationTime={durationTime} />
-      </BuildHistoryData>
+      {start && (
+        <BuildHistoryData>
+          <TimerInfo start={formatStart(start)} duration={duration} />
+        </BuildHistoryData>
+      )}
     </div>
   );
 };

@@ -7,15 +7,19 @@ import {
 
 const builds = handleActions(
   {
-    [fetchBuilds]: (state) => [...state],
-    [fetchBuildsSuccess]: (state, action) => [...state, ...action.payload],
-    [fetchBuildsError]: (state, action) => ({
-      ...state,
-      ...action.payload
+    [fetchBuilds]: ({ data }) => ({ load: false, data }),
+    [fetchBuildsSuccess]: ({ data }, action) => ({
+      load: true,
+      data: [...data, ...action.payload]
+    }),
+    [fetchBuildsError]: ({ data }) => ({
+      load: false,
+      data
     })
   },
-  []
+  { load: false, data: [] }
 );
 
 export default builds;
-export const getBuilds = ({ builds }) => builds;
+export const getBuilds = ({ builds: { data } }) => data;
+export const isLoadBuilds = ({ load }) => load;

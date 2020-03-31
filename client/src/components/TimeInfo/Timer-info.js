@@ -7,19 +7,19 @@ import TimerInfoDateTime from './DateTime/Timer-info-Date-time';
 import TimerInfoDurationTime from './DurationTime/Timer-info-Duration-time';
 const cn = withNaming({ e: '__', m: '_', v: '_' });
 
-const TimerInfo = ({ dateTime, durationTime, mix }) => {
+const TimerInfo = ({ start, duration, mix }) => {
   return (
     <div className={cn('timer-info')({}, mix)}>
       <TimerInfoDateTime>
         <Icon type="calendar" />
         <Text size="m" lineHeight="xxxs" view="secondary2">
-          {dateTime}
+          {start}
         </Text>
       </TimerInfoDateTime>
       <TimerInfoDurationTime>
         <Icon type="stopwatch" />
         <Text size="m" lineHeight="xxxs" view="secondary2">
-          {durationTime}
+          {duration}
         </Text>
       </TimerInfoDurationTime>
     </div>

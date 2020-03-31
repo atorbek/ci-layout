@@ -27,24 +27,46 @@ import Footer from '../Footer';
 import FooterList from '../Footer/List/FooterList';
 // import { withRouter, NavLink } from 'react-router-dom';
 
-import { fetchBuilds, getBuilds } from '../../modules/HistoryPage';
+import {
+  fetchBuilds,
+  getBuilds,
+  isLoadBuilds
+} from '../../modules/HistoryPage';
 
 import { compose } from 'redux';
 
-const HistoryPage = ({ fetchBuilds, builds }) => {
+const HistoryPage = ({ fetchBuilds, builds, isLoadBuilds }) => {
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(5);
 
   useEffect(() => {
     fetchBuilds({ offset, limit });
-  });
+  }, [offset]);
 
   const handleClickShowMore = () => {
-    fetchBuilds({ offset, limit });
     setLimit(limit);
+    if (builds.length < offset) {
+      return;
+    }
     setOffset(offset + limit);
   };
 
+  const renderBuilds = (builds) =>
+    builds.map((b) => (
+      <BuildHistory
+        key={b.id}
+        buildNumber={b.buildNumber}
+        commitMessage={b.commitMessage}
+        branchName={b.branchName}
+        authorName={b.authorName}
+        hash={b.commitHash}
+        start={b.start}
+        status={b.status}
+        duration={b.duration}
+        indentT="xs"
+        indentB="xs"
+      />
+    ));
   return (
     <>
       <Header spaceV="l" spaceH="m">
@@ -74,19 +96,7 @@ const HistoryPage = ({ fetchBuilds, builds }) => {
       </Header>
       <Layout verticalAlign="top" spaceH="m" direction="column">
         <LayoutContainer size="m" align="center">
-          {builds.map((build) => (
-            <BuildHistory
-              key={build.id}
-              id={build.buildNumber}
-              msg={build.commitMessage}
-              branch={build.branchName}
-              author={build.authorName}
-              hash={build.commitHash}
-              // dateTime={build.dateTime}
-              // durationTime={build.durationTime}
-              indentT="xs"
-            />
-          ))}
+          {renderBuilds(builds)}
         </LayoutContainer>
         <LayoutContainer size="m" align="center" indentB="l">
           <Button
@@ -136,7 +146,8 @@ const HistoryPage = ({ fetchBuilds, builds }) => {
 };
 
 const mapStateToProps = (state) => ({
-  builds: getBuilds(state)
+  builds: getBuilds(state),
+  isLoadBuilds: isLoadBuilds(state)
 });
 const mapDispatchToProps = {
   fetchBuilds
