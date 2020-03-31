@@ -19,7 +19,18 @@ import BuildHistoryData from './Data/Build-history-Data';
 import TimerInfo from '../TimeInfo';
 const cn = withNaming({ e: '__', m: '_', v: '_' });
 
-const BuildHistory = ({ id, msg, indentT, indentB, mix }) => {
+const BuildHistory = ({
+  id,
+  msg,
+  branch,
+  hash,
+  author,
+  dateTime,
+  durationTime,
+  indentT,
+  indentB,
+  mix
+}) => {
   return (
     <div className={cn('build-history')({ indentT, indentB }, mix)}>
       <BuildHistoryDescription>
@@ -45,11 +56,11 @@ const BuildHistory = ({ id, msg, indentT, indentB, mix }) => {
               {msg}
             </BuildHistoryMsg>
           </BuildHistoryTitle>
-          <Commit branch="master" hash="9c9f0b9" author="Philip Kirkorov" />
+          <Commit branch={branch} hash={hash} author={author} />
         </BuildHistoryInfo>
       </BuildHistoryDescription>
       <BuildHistoryData>
-        <TimerInfo />
+        <TimerInfo dateTime={dateTime} durationTime={durationTime} />
       </BuildHistoryData>
     </div>
   );

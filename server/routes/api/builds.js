@@ -12,7 +12,8 @@ const { commitInfo, parseRepoName } = require('../../utils/repos');
 
 router.get('/builds', async (req, res) => {
   try {
-    const list = await axios.get('/build/list');
+    const { offset, limit } = req.query;
+    const list = await axios.get(`/build/list?offset=${offset}&limit=${limit}`);
     res.json(list.data);
   } catch (error) {
     res

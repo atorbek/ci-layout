@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import connect from 'react-redux/es/connect/connect';
 import '../Text/Text.css';
 import '../Text/_size/Text_size_xxxl.css';
@@ -25,10 +25,26 @@ import FooterContent from '../Footer/Content/FooterContent';
 import FooterCopyright from '../Footer/Copyright/FooterCopyright';
 import Footer from '../Footer';
 import FooterList from '../Footer/List/FooterList';
-import { withRouter, NavLink } from 'react-router-dom';
+// import { withRouter, NavLink } from 'react-router-dom';
+
+import { fetchBuilds, getBuilds } from '../../modules/HistoryPage';
+
 import { compose } from 'redux';
 
-const HistoryPage = () => {
+const HistoryPage = ({ fetchBuilds, builds }) => {
+  const [offset, setOffset] = useState(0);
+  const [limit, setLimit] = useState(5);
+
+  useEffect(() => {
+    fetchBuilds({ offset, limit });
+  });
+
+  const handleClickShowMore = () => {
+    fetchBuilds({ offset, limit });
+    setLimit(limit);
+    setOffset(offset + limit);
+  };
+
   return (
     <>
       <Header spaceV="l" spaceH="m">
@@ -49,34 +65,36 @@ const HistoryPage = () => {
               <ButtonText>Run build</ButtonText>
             </Button>
             <Button size="l" view="control" form="round">
-              <NavLink to="/settings" exact>
-                <Icon
-                  type="gear"
-                  size="s"
-                  view="brand"
-                  mix={['button__icon']}
-                />
-              </NavLink>
+              {/*<NavLink to="/settings" exact>*/}
+              <Icon type="gear" size="s" view="brand" mix={['button__icon']} />
+              {/*</NavLink>*/}
             </Button>
           </HeaderButtons>
         </HeaderContent>
       </Header>
       <Layout verticalAlign="top" spaceH="m" direction="column">
         <LayoutContainer size="m" align="center">
-          <BuildHistory
-            id="#1368"
-            msg="add documentation for postgres scaler"
-            indentT="xs"
-          />
-          <BuildHistory
-            id="#1368"
-            msg="add documentation for postgres scaler"
-            indentT="xs"
-            indentB="xs"
-          />
+          {builds.map((build) => (
+            <BuildHistory
+              key={build.id}
+              id={build.buildNumber}
+              msg={build.commitMessage}
+              branch={build.branchName}
+              author={build.authorName}
+              hash={build.commitHash}
+              // dateTime={build.dateTime}
+              // durationTime={build.durationTime}
+              indentT="xs"
+            />
+          ))}
         </LayoutContainer>
         <LayoutContainer size="m" align="center" indentB="l">
-          <Button size="xl" view="control" form="round">
+          <Button
+            size="xl"
+            view="control"
+            form="round"
+            onClick={handleClickShowMore}
+          >
             Show more
           </Button>
         </LayoutContainer>
@@ -117,10 +135,14 @@ const HistoryPage = () => {
   );
 };
 
-const mapStateToProps = (state) => ({});
-const mapDispatchToProps = {};
+const mapStateToProps = (state) => ({
+  builds: getBuilds(state)
+});
+const mapDispatchToProps = {
+  fetchBuilds
+};
 
 export default compose(
-  withRouter,
+  // withRouter,
   connect(mapStateToProps, mapDispatchToProps)
 )(HistoryPage);
