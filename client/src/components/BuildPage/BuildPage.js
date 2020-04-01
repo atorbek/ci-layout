@@ -1,5 +1,6 @@
 import React from 'react';
 import connect from 'react-redux/es/connect/connect';
+// import Convert from 'ansi-to-html';
 import '../Text/Text.css';
 import '../Text/_size/Text_size_xxxl.css';
 import '../Text/_view/Text_view_primary.css';
@@ -13,11 +14,13 @@ import Icon from '../Icon';
 import BuildHistory from '../BuildHistory';
 import BuildLog from '../BuildLog';
 import Text from '../Text';
-const BuildPage = () => {
+const BuildPage = ({ repoName }) => {
+  // const convert = new Convert({ fg: '#000', bg: '#000' });
+
   return (
     <>
       <Header
-        title="philip1967/my-awesome-repo"
+        title={repoName}
         titleMix={[
           'text',
           ' text_size_xxxl',
@@ -51,7 +54,9 @@ const BuildPage = () => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  repoName: state.settings.data.repoName
+});
 const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(BuildPage);
