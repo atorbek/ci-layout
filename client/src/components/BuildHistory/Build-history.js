@@ -1,6 +1,5 @@
 import React from 'react';
-import { format } from 'date-fns';
-import { ru } from 'date-fns/locale';
+import { withRouter } from 'react-router-dom';
 import './Build-history.css';
 import './_indent-t/Button_indent-t_xs.css';
 import './_indent-b/Button_indent-b_xs.css';
@@ -22,6 +21,11 @@ import TimerInfo from '../TimeInfo';
 const cn = withNaming({ e: '__', m: '_', v: '_' });
 
 const BuildHistory = ({
+  history,
+  location,
+  match,
+  staticContext,
+  to,
   buildNumber,
   commitMessage,
   branchName,
@@ -30,9 +34,10 @@ const BuildHistory = ({
   start,
   status,
   duration,
-  indentT,
-  indentB,
-  mix
+  indentT = 'xs',
+  indentB = 'xs',
+  mix,
+  ...rest
 }) => {
   const stateBuild = {
     Waiting: 'warning',
@@ -42,14 +47,18 @@ const BuildHistory = ({
     InProgress: 'warning'
   };
 
+  const handleClick = () => {
+    to && history.push(to);
+  };
+
   const shortHash = hash.slice(0, 6);
-  const formatStart = (start) =>
-    format(new Date(start), 'd MMM HH:mm', {
-      locale: ru
-    }).replace('.', ',');
 
   return (
-    <div className={cn('build-history')({ indentT, indentB }, mix)}>
+    <div
+      onClick={handleClick}
+      className={cn('build-history')({ indentT, indentB }, mix)}
+      {...rest}
+    >
       <BuildHistoryDescription>
         <BuildHistoryStatus>
           <Icon type={stateBuild[status]} size="m" view="brand" />
@@ -78,11 +87,11 @@ const BuildHistory = ({
       </BuildHistoryDescription>
       {start && (
         <BuildHistoryData>
-          <TimerInfo start={formatStart(start)} duration={duration} />
+          <TimerInfo start={start} duration={duration} />
         </BuildHistoryData>
       )}
     </div>
   );
 };
 
-export default BuildHistory;
+export default withRouter(BuildHistory);

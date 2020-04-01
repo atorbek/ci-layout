@@ -2,15 +2,17 @@ import { handleActions } from 'redux-actions';
 import {
   fetchBuilds,
   fetchBuildsSuccess,
-  fetchBuildsError
+  fetchBuildsError,
+  handleShowMore
 } from './HistoryPageActions';
 
 const builds = handleActions(
   {
+    [handleShowMore]: ({ data }) => ({ load: false, data }),
     [fetchBuilds]: ({ data }) => ({ load: false, data }),
     [fetchBuildsSuccess]: ({ data }, action) => ({
       load: true,
-      data: [...data, ...action.payload]
+      data: action.payload
     }),
     [fetchBuildsError]: ({ data }) => ({
       load: false,

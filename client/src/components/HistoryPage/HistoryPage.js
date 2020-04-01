@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import connect from 'react-redux/es/connect/connect';
+import { connect } from 'react-redux';
 import '../Text/Text.css';
 import '../Text/_size/Text_size_xxxl.css';
 import '../Text/_view/Text_view_primary.css';
@@ -11,25 +11,39 @@ import Layout from '../Layout';
 import LayoutContainer from '../Layout/Container/Layout-Container';
 import BuildHistory from '../BuildHistory';
 import Footer from '../Footer';
-// import { withRouter, NavLink } from 'react-router-dom';
 
 import {
   fetchBuilds,
   getBuilds,
+  handleShowMore,
   isLoadBuilds
 } from '../../modules/HistoryPage';
 
 import { compose } from 'redux';
+import LinkButton from '../ButtonLink';
 
-const HistoryPage = ({ fetchBuilds, repoName, builds, isLoadBuilds }) => {
+const HistoryPage = ({
+  fetchBuilds,
+  handleShowMore,
+  repoName,
+  builds,
+  isLoadBuilds
+}) => {
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(5);
+  const [isShowMore, setIsShowMore] = useState(false);
 
   useEffect(() => {
-    fetchBuilds({ offset, limit });
-  }, [offset]);
+    if (isShowMore) {
+      handleShowMore({ offset, limit });
+      setIsShowMore(!isShowMore);
+    } else {
+      fetchBuilds({ offset, limit });
+    }
+  }, [fetchBuilds, limit, offset]);
 
   const handleClickShowMore = () => {
+    setIsShowMore(!isShowMore);
     setLimit(limit);
     if (builds.length < offset) {
       return;
@@ -41,6 +55,7 @@ const HistoryPage = ({ fetchBuilds, repoName, builds, isLoadBuilds }) => {
     builds.map((b) => (
       <BuildHistory
         key={b.id}
+        to={`build/${b.id}`}
         buildNumber={b.buildNumber}
         commitMessage={b.commitMessage}
         branchName={b.branchName}
@@ -49,8 +64,6 @@ const HistoryPage = ({ fetchBuilds, repoName, builds, isLoadBuilds }) => {
         start={b.start}
         status={b.status}
         duration={b.duration}
-        indentT="xs"
-        indentB="xs"
       />
     ));
   return (
@@ -64,17 +77,14 @@ const HistoryPage = ({ fetchBuilds, repoName, builds, isLoadBuilds }) => {
           'text_line-height_xl'
         ]}
       >
-        <Button size="xl" view="control" form="round" indentR="xs">
+        <LinkButton size="xl" view="control" form="round" indentR="xs">
           <Icon type="play" size="s" view="brand" mix={['button__icon']} />
           <ButtonText>Run build</ButtonText>
-        </Button>
-        <Button size="l" view="control" form="round">
-          {/*<NavLink to="/settings" exact>*/}
+        </LinkButton>
+        <LinkButton to="/settings" size="l" view="control" form="round">
           <Icon type="gear" size="s" view="brand" mix={['button__icon']} />
-          {/*</NavLink>*/}
-        </Button>
+        </LinkButton>
       </Header>
-
       <Layout verticalAlign="top" spaceH="m" direction="column">
         <LayoutContainer size="m" align="center">
           {isLoadBuilds ? 'Loading...' : renderBuilds(builds)}
@@ -101,10 +111,10 @@ const mapStateToProps = (state) => ({
   repoName: state.settings.data.repoName
 });
 const mapDispatchToProps = {
-  fetchBuilds
+  fetchBuilds,
+  handleShowMore
 };
 
-export default compose(
-  // withRouter,
-  connect(mapStateToProps, mapDispatchToProps)
-)(HistoryPage);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(
+  HistoryPage
+);

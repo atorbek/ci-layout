@@ -5,7 +5,7 @@ import { withNaming } from '@bem-react/classname';
 const cn = withNaming({ e: '__', m: '_', v: '_' });
 
 const ListItem = ({ children, mix }) => {
-  return <a className={cn('list__item')({}, mix)}>{children}</a>;
+  return <span className={cn('list__item')({}, mix)}>{children}</span>;
 };
 
 const mapStateToProps = (state) => ({});

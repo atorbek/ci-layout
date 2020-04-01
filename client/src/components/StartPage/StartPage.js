@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import connect from 'react-redux/es/connect/connect';
+import React from 'react';
+import { connect } from 'react-redux';
 import '../Text/Text.css';
 import '../Text/_size/Text_size_xxxl.css';
 import '../Text/_size/Text_size_m.css';
@@ -7,7 +7,7 @@ import '../Text/_view/Text_view_secodary.css';
 import '../Text/_line-height/Text_line-height_xl.css';
 import '../Text/_indent-r/Text_indent-r_xs.css';
 import Header from '../Header';
-import Button, { ButtonText } from '../Button';
+import { ButtonText } from '../Button';
 import Icon from '../Icon';
 import Layout from '../Layout';
 import LayoutContainer from '../Layout/Container/Layout-Container';
@@ -17,16 +17,14 @@ import {
   getIsSettings,
   fetchSettings
 } from '../../modules/StartPage';
-import { NavLink, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import Settings from '../Settings';
 import SettingsContent from '../Settings/Content/Settings-Content';
 import SettingsAction from '../Settings/Action/Settings-Action';
 import Text from '../Text';
-const StartPage = ({ fetchSettings, isSettings, isLoad }) => {
-  useEffect(() => {
-    fetchSettings();
-  }, []);
-
+import { compose } from 'redux';
+import LinkButton from '../ButtonLink';
+const StartPage = ({ isSettings, isLoad }) => {
   if (!isSettings) {
     return isLoad ? (
       'Loading...'
@@ -41,14 +39,16 @@ const StartPage = ({ fetchSettings, isSettings, isLoad }) => {
             'text_line-height_xl'
           ]}
         >
-          <Button size="xl" view="control" form="round" indentR="xs">
+          <LinkButton
+            to="/settings"
+            size="xl"
+            view="control"
+            form="round"
+            indentR="xs"
+          >
             <Icon type="gear" size="s" view="brand" mix={['button__icon']} />
-            <ButtonText>
-              <NavLink to="/settings" exact>
-                Settings
-              </NavLink>
-            </ButtonText>
-          </Button>
+            <ButtonText>Settings</ButtonText>
+          </LinkButton>
         </Header>
         <Layout verticalAlign="center" spaceH="m">
           <LayoutContainer size="m" align="center">
@@ -70,9 +70,14 @@ const StartPage = ({ fetchSettings, isSettings, isLoad }) => {
                 </Text>
               </SettingsContent>
               <SettingsAction distribute="center">
-                <Button size="xxxxl" view="action" form="round">
+                <LinkButton
+                  to="/settings"
+                  size="xxxxl"
+                  view="action"
+                  form="round"
+                >
                   Open settings
-                </Button>
+                </LinkButton>
               </SettingsAction>
             </Settings>
           </LayoutContainer>
@@ -91,4 +96,4 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = { fetchSettings };
 
-export default connect(mapStateToProps, mapDispatchToProps)(StartPage);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(StartPage);

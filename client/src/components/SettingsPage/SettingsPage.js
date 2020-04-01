@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../Text/Text.css';
 import '../Text/_size/Text_size_xxxl.css';
 import '../Text/_view/Text_view_secodary.css';
@@ -8,17 +8,9 @@ import Layout from '../Layout';
 import LayoutContainer from '../Layout/Container/Layout-Container';
 import Footer from '../Footer';
 import FormSettings from '../FormSettings/Form-settings';
-import {
-  fetchSettings,
-  getIsLoad,
-  getIsSettings
-} from '../../modules/StartPage';
+import { getIsLoad, getIsSettings } from '../../modules/StartPage';
 import { connect } from 'react-redux';
-const SettingsPage = ({ fetchSettings }) => {
-  useEffect(() => {
-    fetchSettings();
-  }, []);
-
+const SettingsPage = () => {
   return (
     <>
       <Header
@@ -44,6 +36,5 @@ const mapStateToProps = (state) => ({
   isLoad: getIsLoad(state),
   isSettings: getIsSettings(state)
 });
-const mapDispatchToProps = { fetchSettings };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsPage);
+export default connect(mapStateToProps, {})(SettingsPage);

@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getIsSettings } from '../../modules/StartPage/StartPage';
 
-const PrivateRoute = ({ isSettings, component: Component, ...rest }) => {
+const CustomRoute = ({ isSettings, component: Component, ...rest }) => {
   const renderRoute = (props) => {
     return isSettings ? <Component {...props} /> : <Redirect to="/" />;
   };
@@ -13,4 +13,4 @@ const PrivateRoute = ({ isSettings, component: Component, ...rest }) => {
 
 export default connect((state) => ({
   isSettings: getIsSettings(state)
-}))(PrivateRoute);
+}))(CustomRoute);

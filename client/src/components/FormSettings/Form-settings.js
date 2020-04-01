@@ -13,7 +13,7 @@ import Button from '../Button';
 import { handleSaveSettings } from '../../modules/SettingsPage/SettingsPageActions';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { withRouter, NavLink } from 'react-router-dom';
+import LinkButton from '../ButtonLink';
 const cn = withNaming({ e: '__', m: '_', v: '_' });
 
 const required = (value) => (value ? undefined : 'Обязательное поле');
@@ -151,11 +151,15 @@ const FormSettings = ({
         >
           Save
         </Button>
-        <Button size="xxxxl" view="control" form="round" disabled={submitting}>
-          <NavLink to="/" exact>
-            Cancel
-          </NavLink>
-        </Button>
+        <LinkButton
+          to="/"
+          size="xxxxl"
+          view="control"
+          form="round"
+          disabled={submitting}
+        >
+          Cancel
+        </LinkButton>
       </FormItem>
     </form>
   );
@@ -167,7 +171,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = { handleSaveSettings };
 
 export default compose(
-  withRouter,
   connect(mapStateToProps, mapDispatchToProps),
   reduxForm({
     form: 'formSettings',
