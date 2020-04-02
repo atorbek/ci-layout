@@ -7,6 +7,6 @@
 }
 
 .form-settings__input:focus {
-  border: 2px solid var(--color-border-focused);
+  border: 2px solid var(--color-placeholder-focused);
   outline: none;
 }

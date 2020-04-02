@@ -1,3 +1,11 @@
 .form-settings__input_state_alert {
   border: 2px solid var(--color-border-alert);
 }
+
+.form-settings__input_state_alert::placeholder {
+  color: var(--color-placeholder-alert);
+}
+
+.form-settings__input_state_alert:focus::placeholder {
+  color: var(--color-placeholder-focused);
+}

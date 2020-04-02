@@ -1,6 +1,5 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { createNumberMask } from 'redux-form-input-masks';
+import { Field, reduxForm, getFormSyncErrors } from 'redux-form';
 import './Form-settings.css';
 import './_indentB/Form-settings_indentB_l.css';
 import './_space/Form-settings_space_r.css';
@@ -17,13 +16,11 @@ import LinkButton from '../ButtonLink';
 const cn = withNaming({ e: '__', m: '_', v: '_' });
 
 const required = (value) => (value ? undefined : 'Обязательное поле');
-const number = (value) =>
-  value && isNaN(Number(value)) ? 'Должно быть число' : undefined;
 
-const numberMask = createNumberMask({
-  locale: 'en-US',
-  allowNegative: true
-});
+const normalizeNumber = (value, previousValue) => {
+  const re = /^[1-9]\d*$/;
+  return re.test(value) ? value : previousValue;
+};
 
 const renderField = ({
   input,
@@ -31,17 +28,19 @@ const renderField = ({
   placeholder,
   type,
   meta: { touched, error },
-  mix
+  mix,
+  ...rest
 }) => {
   return (
     <>
       <FormSettingsInput
         input={input}
         name={name}
-        placeholder={placeholder}
+        placeholder={touched && error ? error : placeholder}
         type={type}
         state={touched && error && 'alert'}
         mix={mix}
+        {...rest}
       />
     </>
   );
@@ -124,12 +123,11 @@ const FormSettings = ({
         <Field
           name="period"
           placeholder="10"
-          value="10"
           type="text"
           component={renderField}
-          validate={[number]}
+          // validate={[numberNotZero]}
+          normalize={normalizeNumber}
           mix={['form-settings_space_r', 'form-settings__input_number']}
-          {...numberMask}
         />
         <Text
           size="m"
@@ -166,7 +164,7 @@ const FormSettings = ({
 };
 
 const mapStateToProps = (state) => ({
-  initialValues: state.settings.data
+  initialValues: { period: 10, ...state.settings.data }
 });
 const mapDispatchToProps = { handleSaveSettings };
 

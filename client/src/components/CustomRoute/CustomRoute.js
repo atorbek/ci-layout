@@ -5,7 +5,7 @@ import { getIsSettings } from '../../modules/StartPage/StartPage';
 
 const CustomRoute = ({ isSettings, component: Component, ...rest }) => {
   const renderRoute = (props) => {
-    return isSettings ? <Component {...props} /> : <Redirect to="/" />;
+    return isSettings ? <Component {...props} /> : <Redirect to="/start" />;
   };
 
   return <Route {...rest} render={renderRoute} />;

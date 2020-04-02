@@ -11,7 +11,8 @@ const FormSettingsInput = ({
   placeholder,
   type = 'search',
   state,
-  mix
+  mix,
+  rest
 }) => (
   <input
     {...input}
@@ -19,6 +20,7 @@ const FormSettingsInput = ({
     placeholder={placeholder}
     type={type}
     className={cn('form-settings__input')({ state }, mix)}
+    {...rest}
   />
 );
 

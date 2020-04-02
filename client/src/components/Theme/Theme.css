@@ -118,6 +118,10 @@
   --color-border-focused: var(--grey-600);
   /* Цвет границ при ошибке*/
   --color-border-alert: var(--red-400);
+  /* Цвет placeholder при ошибке*/
+  --color-placeholder-alert: var(--red-400);
+  /* Цвет placeholder при фокусе*/
+  --color-placeholder-focused: var(--grey-600);
   /* Цвет успеха */
   --color-bg-success: var(--green-500);
   /* Цвет ошибки */

@@ -28,8 +28,8 @@ const App = ({ fetchSettings }) => {
         ]}
       >
         <Switch>
-          <PrivateRoute path="/history" component={History} exact />
-          <Route path="/" component={Start} exact />
+          <PrivateRoute path="/" component={History} exact />
+          <Route path="/start" component={Start} exact />
           <Route path="/settings" component={Settings} exact />
           <Route path="/build/:id" component={Build} exact />
           <Redirect to="/" />
