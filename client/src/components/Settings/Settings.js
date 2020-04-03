@@ -1,7 +1,6 @@
 import React from 'react';
 import './Settings.css';
-import { withNaming } from '@bem-react/classname';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../config';
 
 const Settings = ({ mix, children }) => {
   return <div className={cn('settings')({}, mix)}>{children}</div>;

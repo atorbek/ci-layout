@@ -7,13 +7,12 @@ import '../Text/_view/Text_view_secodary.css';
 import '../Text/_line-height/Text_line-height_xxs.css';
 import '../Text/_line-height/Text_line-height_xxxs.css';
 import '../Text/_indent-r/Text_indent-r_xs.css';
-import { withNaming } from '@bem-react/classname';
 import FooterContent from './Content/FooterContent';
 import FooterList from './List/FooterList';
 import List from '../List/List';
 import ListItem from '../List/Item/List-Item';
 import FooterCopyright from './Copyright/FooterCopyright';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../config';
 
 const Footer = ({ footerMix }) => {
   return (

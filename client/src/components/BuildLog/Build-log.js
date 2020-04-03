@@ -3,9 +3,8 @@ import Convert from 'ansi-to-html';
 import './Build-log.css';
 import './_indent-b/Build-log_indent-b_l.css';
 import './_space/build-log_space_s.css';
-import { withNaming } from '@bem-react/classname';
 import Text from '../Text';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../config';
 
 const BuildLog = ({ log, indentB, space, mix, ...props }) => {
   const convert = new Convert({ fg: '#000', bg: '#000' });

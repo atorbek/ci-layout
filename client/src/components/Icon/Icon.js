@@ -15,8 +15,7 @@ import './_size/Icon_size_s.css';
 import './_size/Icon_size_m.css';
 import './_view/Icon_view_brand.css';
 import './_indent-r/Icon_indent-r_xxs.css';
-import { withNaming } from '@bem-react/classname';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../config';
 
 const Icon = ({ type, size, view, indentR, mix, children }) => {
   return (

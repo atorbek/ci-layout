@@ -1,8 +1,7 @@
 import React from 'react';
 import connect from 'react-redux/es/connect/connect';
 import '../List/List.css';
-import { withNaming } from '@bem-react/classname';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../config';
 
 const List = ({ indentT, children, mix }) => {
   return <div className={cn('list')({ indentT }, mix)}>{children}</div>;

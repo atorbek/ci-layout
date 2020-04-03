@@ -1,4 +1,4 @@
-import { axiosInstance } from '../../axios';
+import { axiosInstance } from '../../config';
 
 export const getBuild = async (id) => {
   const resp = await axiosInstance.get(`/builds/${id}`);

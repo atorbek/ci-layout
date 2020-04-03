@@ -1,7 +1,6 @@
 import React from 'react';
 import './Modal.css';
-import { withNaming } from '@bem-react/classname';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../config';
 
 const Modal = ({ border, space, mix, children, ...rest }) => {
   return (

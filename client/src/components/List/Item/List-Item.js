@@ -1,8 +1,7 @@
 import React from 'react';
 import connect from 'react-redux/es/connect/connect';
 import '../Item/List-Item.css';
-import { withNaming } from '@bem-react/classname';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../../config';
 
 const ListItem = ({ children, mix }) => {
   return <span className={cn('list__item')({}, mix)}>{children}</span>;

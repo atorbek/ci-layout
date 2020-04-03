@@ -1,7 +1,6 @@
 import React from 'react';
 import './Settings-Action.css';
-import { withNaming } from '@bem-react/classname';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../../config';
 
 const SettingsAction = ({ distribute, mix, children }) => {
   return (

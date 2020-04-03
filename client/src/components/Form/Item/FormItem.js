@@ -8,9 +8,7 @@ import './_indentB/Form-item_indent-b_xxxxl.css';
 import './_indentB/Form-item_indent-b_xxxxxl.css';
 import './_indentT/Form-item_indent-t_xs.css';
 import './_vertical/Form-item_vertical-align_center.css';
-
-import { withNaming } from '@bem-react/classname';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../../config';
 
 const FormItem = ({
   indentT,

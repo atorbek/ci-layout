@@ -1,9 +1,9 @@
-.settings-modal__button {
+.run-build-modal__button {
   margin-right: var(--space-xs);
 }
 
 @media screen and (max-width: 320px) {
-  .settings-modal__button {
+  .run-build-modal__button {
     margin-right: 0;
     margin-bottom: var(--space-s);
   }

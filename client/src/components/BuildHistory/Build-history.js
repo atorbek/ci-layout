@@ -4,7 +4,6 @@ import './Build-history.css';
 import './_indent-t/Button_indent-t_xs.css';
 import './_indent-b/Button_indent-b_xs.css';
 import './_indent-b/Button_indent-b_s.css';
-import { withNaming } from '@bem-react/classname';
 import '../Text/Text.css';
 import '../Text/_size/Text_size_l.css';
 import '../Text/_line-height/Text_line-height_xs.css';
@@ -18,7 +17,7 @@ import BuildHistoryMsg from './Msg/Build-history-Msg';
 import Commit from '../Commit';
 import BuildHistoryData from './Data/Build-history-Data';
 import TimerInfo from '../TimeInfo';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../config';
 
 const BuildHistory = ({
   history,

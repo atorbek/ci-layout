@@ -1,13 +1,12 @@
 import React from 'react';
 import './Time-info.css';
-import { withNaming } from '@bem-react/classname';
 import Icon from '../Icon';
 import Text from '../Text';
 import TimerInfoDateTime from './DateTime/Timer-info-Date-time';
 import TimerInfoDurationTime from './DurationTime/Timer-info-Duration-time';
 import { addMinutes, format } from 'date-fns';
 import { ru } from 'date-fns/locale';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../config';
 
 const TimerInfo = ({ start, duration, mix }) => {
   const formatStart = (start) =>

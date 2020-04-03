@@ -1,7 +1,6 @@
 import React from 'react';
 import './Form.css';
-import { withNaming } from '@bem-react/classname';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../config';
 
 const Form = ({ children, mix, ...rest }) => {
   return (

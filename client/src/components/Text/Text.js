@@ -33,8 +33,7 @@ import './_view/Text_view_secodary2.css';
 import './_view/Text_view_success.css';
 import './_view/Text_view_warning.css';
 import './_indent-r/Text_indent-r_xxs.css';
-import { withNaming } from '@bem-react/classname';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../config';
 
 const Text = ({
   tag = 'div',

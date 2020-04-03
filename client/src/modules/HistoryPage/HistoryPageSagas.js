@@ -3,12 +3,31 @@ import {
   fetchBuilds,
   fetchBuildsSuccess,
   fetchBuildsError,
-  handleShowMore
+  handleShowMore,
+  handleRunBuild
 } from './HistoryPageActions';
-import { getBuilds } from './HistoryPageApi';
+import { getBuilds, sendBuildToQueue } from './HistoryPageApi';
+import { startSubmit, stopSubmit, SubmissionError } from 'redux-form';
+import { postSettings } from '../SettingsPage/SettingsPageApi';
 
 function* fetchBuildsWatcher() {
   yield takeLatest([fetchBuilds, handleShowMore], fetchBuildsFlow);
+}
+
+function* fetchRunBuildWatcher() {
+  yield takeLatest(handleRunBuild, fetchRunBuildFlow);
+}
+
+function* fetchRunBuildFlow(action) {
+  try {
+    yield put(startSubmit('formRunBuildModal'));
+    const { commitHash } = action.payload;
+    yield call(sendBuildToQueue, commitHash);
+    yield put(stopSubmit('formRunBuildModal'));
+  } catch (e) {
+    yield put(stopSubmit('formRunBuildModal', { error: e.message }));
+    throw new SubmissionError({ error: e.message });
+  }
 }
 
 export function* fetchBuildsFlow(action) {
@@ -30,4 +49,5 @@ export function* fetchBuildsFlow(action) {
 
 export default function* () {
   yield fork(fetchBuildsWatcher);
+  yield fork(fetchRunBuildWatcher);
 }

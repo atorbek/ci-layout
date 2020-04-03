@@ -1,7 +1,6 @@
 import React from 'react';
 import './Header-Buttons.css';
-import { withNaming } from '@bem-react/classname';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../../config';
 
 const HeaderButtons = ({ mix, children }) => {
   return <div className={cn('header__buttons')({}, mix)}>{children}</div>;

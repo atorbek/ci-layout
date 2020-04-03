@@ -2,12 +2,11 @@ import React from 'react';
 import './Commit.css';
 import './Info/Commit-Info.css';
 import './Author/Commit-Author.css';
-import { withNaming } from '@bem-react/classname';
 import CommitInfo from './Info/Commit-Info';
 import Icon from '../Icon';
 import Text from '../Text';
 import CommitAuthor from './Author/Commit-Author';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../config';
 
 const Commit = ({ branch, hash, author, mix }) => {
   return (

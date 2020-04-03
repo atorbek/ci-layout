@@ -1,7 +1,6 @@
 import React from 'react';
 import './Build-history-Data.css';
-import { withNaming } from '@bem-react/classname';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../../config';
 
 const BuildHistoryData = ({ mix, children }) => {
   return <div className={cn('build-history__data')({}, mix)}>{children}</div>;

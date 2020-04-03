@@ -1,7 +1,6 @@
 import React from 'react';
 import './Commit-Author.css';
-import { withNaming } from '@bem-react/classname';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../../config';
 
 const CommitAuthor = ({ mix, children }) => {
   return <div className={cn('commit__author')({}, mix)}>{children}</div>;

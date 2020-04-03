@@ -4,8 +4,7 @@ import './_size/Layout-Container_size_m.css';
 import './_size/Layout-Container_size_xs.css';
 import './_align/Layout-Container_align_center.css';
 import './_indent-b/Layout-Container_indent-b_l.css';
-import { withNaming } from '@bem-react/classname';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../../config';
 
 const LayoutContainer = ({ size, align, indentB, mix, children }) => {
   return (

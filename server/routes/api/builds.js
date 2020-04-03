@@ -40,14 +40,16 @@ router.post('/builds/:commitHash', async (req, res) => {
         .toString()
         .split(' ');
 
-      const { status, statusText } = await axios.post('/build/request', {
+      const {
+        data: { data }
+      } = await axios.post('/build/request', {
         commitMessage,
         commitHash: req.params.commitHash,
         branchName,
         authorName
       });
 
-      res.json({ status, statusText });
+      res.json({ data });
     });
   } catch (error) {
     res

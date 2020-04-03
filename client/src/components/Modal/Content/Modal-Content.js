@@ -1,7 +1,6 @@
 import React from 'react';
 import './Modal-Content.css';
-import { withNaming } from '@bem-react/classname';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../../config';
 
 const ModalContent = ({
   space = 'l',

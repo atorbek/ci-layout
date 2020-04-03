@@ -1,7 +1,6 @@
 import React from 'react';
 import './Timer-info-Duration-time.css';
-import { withNaming } from '@bem-react/classname';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import { cn } from '../../../config';
 
 const TimerInfoDurationTime = ({ mix, children }) => {
   return (

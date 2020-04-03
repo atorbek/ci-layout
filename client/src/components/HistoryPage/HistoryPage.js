@@ -20,7 +20,7 @@ import {
 
 import { compose } from 'redux';
 import LinkButton from '../ButtonLink';
-import SettingsModal from '../SettingsModal';
+import SettingsModal from '../RunBuildModal';
 
 const HistoryPage = ({
   fetchBuilds,
@@ -112,7 +112,7 @@ const HistoryPage = ({
         </LayoutContainer>
       </Layout>
       <Footer />
-      {isModal && <SettingsModal />}
+      {isModal && <SettingsModal handleClickRunBuild={handleClickRunBuild} />}
     </>
   );
 };

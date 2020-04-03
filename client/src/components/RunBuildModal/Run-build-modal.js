@@ -1,5 +1,5 @@
 import React from 'react';
-import './Settings-modal.css';
+import './Run-build-modal.css';
 import '../Modal/Content/_space/Modal-Content_space_l.css';
 import '../Modal/Content/_border/Modal-Content_border_all.css';
 import Form from '../Form/Form';
@@ -7,13 +7,13 @@ import FormItem from '../Form/Item/FormItem';
 import Text from '../Text';
 import { Field, reduxForm } from 'redux-form';
 import FormInput from '../Form/Input/FormInput';
-import { handleSaveSettings } from '../../modules/SettingsPage/SettingsPageActions';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import LinkButton from '../ButtonLink/ButtonLink';
 import ModalContent from '../Modal/Content/Modal-Content';
 import Modal from '../Modal';
-import SettingsModalButton from './Button/SettingsModal-Button';
+import RunBuildModalButton from './Button/Run-build-modal-Button';
+import { handleRunBuild } from '../../modules/HistoryPage';
 
 const renderField = ({
   input,
@@ -39,21 +39,26 @@ const renderField = ({
   );
 };
 
-const SettingsModal = ({ handleSubmit, submitting }) => {
-  const handleSaveSubmit = (e) => {};
+const RunBuildModal = ({
+  handleSubmit,
+  handleRunBuild,
+  handleClickRunBuild,
+  submitting
+}) => {
+  const handleClickSaveSubmit = (commitHash) => {
+    console.log(commitHash);
+    handleRunBuild(commitHash);
+  };
 
-  const handleCancel = (e) => {};
+  const handleClickCancel = () => {
+    handleClickRunBuild();
+  };
 
   return (
     <Modal>
-      <ModalContent mix={['settings-modal']}>
-        <Form onSubmit={handleSubmit(handleSaveSubmit)}>
-          <FormItem
-            direction="column"
-            indentB="xl"
-            indentT="xs"
-            mix={['settings__modal']}
-          >
+      <ModalContent mix={['run-build-modal']}>
+        <Form onSubmit={handleSubmit(handleClickSaveSubmit)}>
+          <FormItem direction="column" indentB="xl" indentT="xs">
             <Text tag="h2" size="l" lineHeight="xs" type="h2">
               New build
             </Text>
@@ -67,7 +72,7 @@ const SettingsModal = ({ handleSubmit, submitting }) => {
             />
           </FormItem>
           <FormItem direction="row">
-            <SettingsModalButton
+            <RunBuildModalButton
               size="xxxxl"
               view="action"
               form="round"
@@ -75,9 +80,9 @@ const SettingsModal = ({ handleSubmit, submitting }) => {
               disabled={submitting}
             >
               Save
-            </SettingsModalButton>
+            </RunBuildModalButton>
             <LinkButton
-              onClick={handleCancel}
+              onClick={handleClickCancel}
               size="xxxxl"
               view="control"
               form="round"
@@ -93,11 +98,11 @@ const SettingsModal = ({ handleSubmit, submitting }) => {
 };
 
 const mapStateToProps = () => ({});
-const mapDispatchToProps = { handleSaveSettings };
+const mapDispatchToProps = { handleRunBuild };
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   reduxForm({
-    form: 'settingsModal'
+    form: 'formRunBuildModal'
   })
-)(SettingsModal);
+)(RunBuildModal);
