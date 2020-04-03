@@ -1,19 +1,18 @@
 import React from 'react';
-import { Field, reduxForm, getFormSyncErrors } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import './Form-settings.css';
 import './_indentB/Form-settings_indentB_l.css';
 import './_space/Form-settings_space_r.css';
 import './Button/Form-settings-Button.css';
-import { withNaming } from '@bem-react/classname';
 import FormItem from '../Form/Item/FormItem';
 import Text from '../Text';
-import FormSettingsInput from './Input/FormSettingsInput';
 import Button from '../Button';
 import { handleSaveSettings } from '../../modules/SettingsPage/SettingsPageActions';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import LinkButton from '../ButtonLink';
-const cn = withNaming({ e: '__', m: '_', v: '_' });
+import Form from '../Form/Form';
+import FormInput from '../Form/Input/FormInput';
 
 const required = (value) => (value ? undefined : 'Обязательное поле');
 
@@ -33,7 +32,7 @@ const renderField = ({
 }) => {
   return (
     <>
-      <FormSettingsInput
+      <FormInput
         input={input}
         name={name}
         placeholder={touched && error ? error : placeholder}
@@ -46,21 +45,13 @@ const renderField = ({
   );
 };
 
-const FormSettings = ({
-  handleSubmit,
-  handleSaveSettings,
-  submitting,
-  mix
-}) => {
+const FormSettings = ({ handleSubmit, handleSaveSettings, submitting }) => {
   const handleSaveSubmit = (e) => {
     handleSaveSettings(e);
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(handleSaveSubmit)}
-      className={cn('form-settings')({}, mix)}
-    >
+    <Form onSubmit={handleSubmit(handleSaveSubmit)} mix={['form-settings']}>
       <FormItem indentT="xs" mix={['form-settings_indentB_l']}>
         <Text tag="h2" size="l" lineHeight="xs" type="h2">
           Settings
@@ -125,7 +116,6 @@ const FormSettings = ({
           placeholder="10"
           type="text"
           component={renderField}
-          // validate={[numberNotZero]}
           normalize={normalizeNumber}
           mix={['form-settings_space_r', 'form-settings__input_number']}
         />
@@ -159,12 +149,12 @@ const FormSettings = ({
           Cancel
         </LinkButton>
       </FormItem>
-    </form>
+    </Form>
   );
 };
 
 const mapStateToProps = (state) => ({
-  initialValues: { period: 10, ...state.settings.data }
+  initialValues: { period: 1, ...state.settings.data }
 });
 const mapDispatchToProps = { handleSaveSettings };
 

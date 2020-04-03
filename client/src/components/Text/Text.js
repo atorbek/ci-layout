@@ -45,7 +45,8 @@ const Text = ({
   view,
   indentR,
   mix,
-  children
+  children,
+  ...rest
 }) => {
   return React.createElement(
     tag,
@@ -53,7 +54,8 @@ const Text = ({
       className: cn('text')(
         { align, lineHeight, size, type, view, indentR },
         mix
-      )
+      ),
+      ...rest
     },
     children
   );

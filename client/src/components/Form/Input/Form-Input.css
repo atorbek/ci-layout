@@ -1,4 +1,4 @@
-.form-settings__input {
+.form__input {
   height: 36px;
   padding: 11px 13px 10px;
   font-size: var(--size-text-m);
@@ -6,7 +6,7 @@
   border: 2px solid var(--color-bg-border);
 }
 
-.form-settings__input:focus {
+.form__input:focus {
   border: 2px solid var(--color-placeholder-focused);
   outline: none;
 }

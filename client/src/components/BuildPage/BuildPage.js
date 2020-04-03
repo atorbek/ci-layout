@@ -20,6 +20,7 @@ import {
   isLoadBuild,
   isLoadLog
 } from '../../modules/BuildPage';
+import ButtonLink from '../ButtonLink';
 const BuildPage = ({
   match: {
     params: { id: buildId }
@@ -66,9 +67,9 @@ const BuildPage = ({
           <Icon type="play" size="s" view="brand" mix={['button__icon']} />
           <ButtonText>Rebuild</ButtonText>
         </Button>
-        <Button size="l" view="control" form="round">
-          <Icon type="rebuild" size="s" view="brand" mix={['button__icon']} />
-        </Button>
+        <ButtonLink to="/settings" size="l" view="control" form="round">
+          <Icon type="gear" size="s" view="brand" mix={['button__icon']} />
+        </ButtonLink>
       </Header>
       <Layout verticalAlign="top" spaceH="m" direction="column">
         <LayoutContainer size="m" align="center">
@@ -86,7 +87,7 @@ const BuildPage = ({
 };
 
 const mapStateToProps = (state) => ({
-  // repoName: state.settings.data.repoName
+  repoName: state.settings.data.repoName,
   build: getBuild(state),
   log: getLog(state),
   isBuild: isLoadBuild(state),

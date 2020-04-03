@@ -11,16 +11,16 @@ import Layout from '../Layout';
 import LayoutContainer from '../Layout/Container/Layout-Container';
 import BuildHistory from '../BuildHistory';
 import Footer from '../Footer';
-
 import {
   fetchBuilds,
-  getBuilds,
   handleShowMore,
+  getBuilds,
   isLoadBuilds
 } from '../../modules/HistoryPage';
 
 import { compose } from 'redux';
 import LinkButton from '../ButtonLink';
+import SettingsModal from '../SettingsModal';
 
 const HistoryPage = ({
   fetchBuilds,
@@ -32,6 +32,7 @@ const HistoryPage = ({
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(5);
   const [isShowMore, setIsShowMore] = useState(false);
+  const [isModal, setIsModal] = useState(false);
 
   useEffect(() => {
     if (isShowMore) {
@@ -49,6 +50,10 @@ const HistoryPage = ({
       return;
     }
     setOffset(offset + limit);
+  };
+
+  const handleClickRunBuild = () => {
+    setIsModal(!isModal);
   };
 
   const renderBuilds = (builds) =>
@@ -77,7 +82,13 @@ const HistoryPage = ({
           'text_line-height_xl'
         ]}
       >
-        <LinkButton size="xl" view="control" form="round" indentR="xs">
+        <LinkButton
+          onClick={handleClickRunBuild}
+          size="xl"
+          view="control"
+          form="round"
+          indentR="xs"
+        >
           <Icon type="play" size="s" view="brand" mix={['button__icon']} />
           <ButtonText>Run build</ButtonText>
         </LinkButton>
@@ -101,6 +112,7 @@ const HistoryPage = ({
         </LayoutContainer>
       </Layout>
       <Footer />
+      {isModal && <SettingsModal />}
     </>
   );
 };

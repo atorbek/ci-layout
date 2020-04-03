@@ -1,0 +1,4 @@
+.modal__content {
+  background-color: var(--color-bg-default);
+  margin: 15% auto;
+}

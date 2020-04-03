@@ -9,5 +9,7 @@ export const getLog = async (id) => {
   const resp = await axiosInstance.get(`/builds/${id}/logs`, {
     'Content-Type': 'text/plain'
   });
+
+  console.log(resp.data);
   return resp.data;
 };

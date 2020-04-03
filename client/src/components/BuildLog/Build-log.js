@@ -12,9 +12,11 @@ const BuildLog = ({ log, indentB, space, mix, ...props }) => {
 
   return (
     <div className={cn('build-log')({ indentB, space }, mix)} {...props}>
-      <Text tag="pre" size="xs">
-        {convert.toHtml(log)}
-      </Text>
+      <Text
+        tag="pre"
+        size="xs"
+        dangerouslySetInnerHTML={{ __html: convert.toHtml(log) }}
+      />
     </div>
   );
 };
