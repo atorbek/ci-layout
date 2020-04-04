@@ -13,6 +13,7 @@ import { compose } from 'redux';
 import LinkButton from '../ButtonLink';
 import Form from '../Form/Form';
 import FormInput from '../Form/Input/FormInput';
+import { formNames } from '../../config';
 
 const required = (value) => (value ? undefined : 'Обязательное поле');
 
@@ -161,7 +162,7 @@ const mapDispatchToProps = { handleSaveSettings };
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   reduxForm({
-    form: 'formSettings',
+    form: formNames.formSettings,
     enableReinitialize: true
   })
 )(FormSettings);

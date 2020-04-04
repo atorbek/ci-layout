@@ -5,7 +5,12 @@ import '../Modal/Content/_border/Modal-Content_border_all.css';
 import Form from '../Form/Form';
 import FormItem from '../Form/Item/FormItem';
 import Text from '../Text';
-import { Field, reduxForm } from 'redux-form';
+import {
+  Field,
+  reduxForm,
+  getFormSubmitErrors,
+  hasSubmitSucceeded
+} from 'redux-form';
 import FormInput from '../Form/Input/FormInput';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -14,6 +19,7 @@ import ModalContent from '../Modal/Content/Modal-Content';
 import Modal from '../Modal';
 import RunBuildModalButton from './Button/Run-build-modal-Button';
 import { handleRunBuild } from '../../modules/HistoryPage';
+import { formNames } from '../../config';
 
 const renderField = ({
   input,
@@ -43,11 +49,17 @@ const RunBuildModal = ({
   handleSubmit,
   handleRunBuild,
   handleClickRunBuild,
-  submitting
+  clearSubmitErrors,
+  submitting,
+  submitErrors,
+  resetForm
 }) => {
+  const { error } = submitErrors;
+
   const handleClickSaveSubmit = (commitHash) => {
-    console.log(commitHash);
+    clearSubmitErrors(formNames.formRunBuildModal);
     handleRunBuild(commitHash);
+    resetForm();
   };
 
   const handleClickCancel = () => {
@@ -70,6 +82,11 @@ const RunBuildModal = ({
               placeholder="Commit hash"
               component={renderField}
             />
+            {error && (
+              <Text tag="span" size="m" view="alert">
+                Commit not found!
+              </Text>
+            )}
           </FormItem>
           <FormItem direction="row">
             <RunBuildModalButton
@@ -97,12 +114,17 @@ const RunBuildModal = ({
   );
 };
 
-const mapStateToProps = () => ({});
-const mapDispatchToProps = { handleRunBuild };
+const mapStateToProps = (state) => ({
+  submitErrors: getFormSubmitErrors(formNames.formRunBuildModal)(state),
+  submitSucceeded: hasSubmitSucceeded(formNames.formRunBuildModal)(state)
+});
+const mapDispatchToProps = {
+  handleRunBuild
+};
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   reduxForm({
-    form: 'formRunBuildModal'
+    form: formNames.formRunBuildModal
   })
 )(RunBuildModal);

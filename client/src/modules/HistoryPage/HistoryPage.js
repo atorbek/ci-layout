@@ -3,12 +3,14 @@ import {
   fetchBuilds,
   fetchBuildsSuccess,
   fetchBuildsError,
-  handleShowMore
+  handleShowMore,
+  handleRunBuild,
+  handleRunBuildSuccess
 } from './HistoryPageActions';
 
-const builds = handleActions(
+export const builds = handleActions(
   {
-    [handleShowMore]: ({ data }) => ({ load: false, data }),
+    [handleShowMore]: (state) => state,
     [fetchBuilds]: ({ data }) => ({ load: false, data }),
     [fetchBuildsSuccess]: ({ data }, action) => ({
       load: true,
@@ -22,6 +24,23 @@ const builds = handleActions(
   { load: false, data: [] }
 );
 
-export default builds;
+export const runBuild = handleActions(
+  {
+    [handleRunBuild]: (state) => state,
+    [handleRunBuildSuccess]: (state, action) => ({
+      run: true,
+      data: action.payload.data
+    })
+  },
+  { run: false, data: {} }
+);
+
 export const getBuilds = ({ builds: { data } }) => data;
+export const getIsAdded = ({ runBuild: { run } }) => run;
+export const getBuildId = ({
+  runBuild: {
+    data: { id }
+  }
+}) => id;
+
 export const isLoadBuilds = ({ load }) => load;

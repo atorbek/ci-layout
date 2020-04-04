@@ -10,6 +10,5 @@ export const getLog = async (id) => {
     'Content-Type': 'text/plain'
   });
 
-  console.log(resp.data);
   return resp.data;
 };

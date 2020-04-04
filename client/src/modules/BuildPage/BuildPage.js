@@ -5,7 +5,10 @@ import {
   fetchBuildError,
   fetchLog,
   fetchLogSuccess,
-  fetchLogError
+  fetchLogError,
+  handleRebuild,
+  handleRebuildSuccess,
+  handleRebuildError
 } from './BuildPageActions';
 
 export const build = handleActions(
@@ -23,12 +26,27 @@ export const build = handleActions(
   { load: false, data: [] }
 );
 
+export const rebuild = handleActions(
+  {
+    [handleRebuild]: (state) => state,
+    [handleRebuildSuccess]: (state, { payload: { data } }) => ({
+      rebuild: true,
+      data
+    }),
+    [handleRebuildError]: (state, { payload: { error } }) => ({
+      ...state,
+      error
+    })
+  },
+  { rebuild: false, data: {}, error: {} }
+);
+
 export const log = handleActions(
   {
     [fetchLog]: (state) => state,
-    [fetchLogSuccess]: ({ log }, action) => ({
+    [fetchLogSuccess]: (state, { payload }) => ({
       load: true,
-      log: action.payload
+      log: payload
     }),
     [fetchLogError]: (state) => state
   },
@@ -39,3 +57,5 @@ export const getBuild = ({ build: { data } }) => data;
 export const getLog = ({ log: { log } }) => log;
 export const isLoadBuild = ({ build: { load } }) => load;
 export const isLoadLog = ({ log: { load } }) => load;
+export const isRebuild = ({ rebuild: { rebuild } }) => rebuild;
+export const getRebuild = ({ rebuild: { data } }) => data;
