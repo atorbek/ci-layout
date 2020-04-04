@@ -5,9 +5,13 @@ import {
   fetchBuildError,
   fetchLog,
   fetchLogSuccess,
-  fetchLogError
+  fetchLogError,
+  handleRebuild,
+  handleRebuildSuccess,
+  handleRebuildError
 } from './BuildPageActions';
 import { getBuild, getLog } from './BuildPageApi';
+import { sendBuildToQueue } from '../HistoryPage/HistoryPageApi';
 
 function* fetchBuildWatcher() {
   yield takeLatest(fetchBuild, fetchBuildFlow);
@@ -15,6 +19,10 @@ function* fetchBuildWatcher() {
 
 function* fetchLogWatcher() {
   yield takeLatest(fetchLog, fetchLogFlow);
+}
+
+function* fetchRebuildWatcher() {
+  yield takeLatest(handleRebuild, fetchRebuildFlow);
 }
 
 export function* fetchBuildFlow(action) {
@@ -37,7 +45,18 @@ export function* fetchLogFlow(action) {
   }
 }
 
+function* fetchRebuildFlow(action) {
+  try {
+    const commitHash = action.payload;
+    const rebuild = yield call(sendBuildToQueue, commitHash);
+    yield put(handleRebuildSuccess(rebuild));
+  } catch (e) {
+    yield put(handleRebuildError({ error: e.message }));
+  }
+}
+
 export default function* () {
   yield fork(fetchBuildWatcher);
   yield fork(fetchLogWatcher);
+  yield fork(fetchRebuildWatcher);
 }

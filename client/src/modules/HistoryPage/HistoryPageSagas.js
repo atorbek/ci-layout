@@ -4,11 +4,12 @@ import {
   fetchBuildsSuccess,
   fetchBuildsError,
   handleShowMore,
-  handleRunBuild
+  handleRunBuild,
+  handleRunBuildSuccess
 } from './HistoryPageActions';
 import { getBuilds, sendBuildToQueue } from './HistoryPageApi';
 import { startSubmit, stopSubmit, SubmissionError } from 'redux-form';
-import { postSettings } from '../SettingsPage/SettingsPageApi';
+import { formNames } from '../../config';
 
 function* fetchBuildsWatcher() {
   yield takeLatest([fetchBuilds, handleShowMore], fetchBuildsFlow);
@@ -19,13 +20,15 @@ function* fetchRunBuildWatcher() {
 }
 
 function* fetchRunBuildFlow(action) {
+  const { formRunBuildModal } = formNames;
   try {
-    yield put(startSubmit('formRunBuildModal'));
+    yield put(startSubmit(formRunBuildModal));
     const { commitHash } = action.payload;
-    yield call(sendBuildToQueue, commitHash);
-    yield put(stopSubmit('formRunBuildModal'));
+    const newBuild = yield call(sendBuildToQueue, commitHash);
+    yield put(stopSubmit(formRunBuildModal));
+    yield put(handleRunBuildSuccess(newBuild));
   } catch (e) {
-    yield put(stopSubmit('formRunBuildModal', { error: e.message }));
+    yield put(stopSubmit(formRunBuildModal, { error: e.message }));
     throw new SubmissionError({ error: e.message });
   }
 }
@@ -34,7 +37,6 @@ export function* fetchBuildsFlow(action) {
   try {
     const { offset, limit } = action.payload;
     const { data: builds } = yield call(getBuilds, offset, limit);
-
     if (action.type === handleShowMore().type) {
       const state = yield select();
       const stateBuilds = [...state.builds.data, ...builds];

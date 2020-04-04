@@ -1,5 +1,6 @@
 import React from 'react';
 import './Form-Input.css';
+import './_state/Form-input_state_alert.css';
 import '../../FormSettings/Input/Form-Settings__input_number.css';
 import { cn } from '../../../config';
 
@@ -21,5 +22,4 @@ const FormInput = ({
     {...rest}
   />
 );
-
 export default FormInput;

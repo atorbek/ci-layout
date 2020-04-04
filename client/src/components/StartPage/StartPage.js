@@ -24,10 +24,11 @@ import SettingsAction from '../Settings/Action/Settings-Action';
 import Text from '../Text';
 import { compose } from 'redux';
 import LinkButton from '../ButtonLink';
+import Loader from '../Loader/Loader';
 const StartPage = ({ isSettings, isLoad }) => {
   if (!isSettings) {
     return isLoad ? (
-      'Loading...'
+      <Loader />
     ) : (
       <>
         <Header

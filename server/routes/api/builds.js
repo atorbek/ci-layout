@@ -32,10 +32,12 @@ router.post('/builds/:commitHash', async (req, res) => {
       throw 'Error in repositories. Is repository cloned?';
     }
 
-    commitInfo(
+    const newBuild = commitInfo(
       `${process.env.WORKSPACES}/${repoName}`,
       req.params.commitHash
-    ).stdout.on('data', async (info) => {
+    );
+
+    newBuild.stdout.on('data', async (info) => {
       const [authorName, commitMessage, branchName] = info
         .toString()
         .split(' ');

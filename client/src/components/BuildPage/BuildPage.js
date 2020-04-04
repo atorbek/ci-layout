@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../Text/Text.css';
 import '../Text/_size/Text_size_xxxl.css';
@@ -15,24 +16,34 @@ import BuildLog from '../BuildLog';
 import {
   fetchBuild,
   fetchLog,
+  handleRebuild,
   getBuild,
   getLog,
   isLoadBuild,
-  isLoadLog
+  isLoadLog,
+  isRebuild,
+  getRebuild
 } from '../../modules/BuildPage';
 import ButtonLink from '../ButtonLink';
+import Loader from '../Loader/Loader';
+import { compose } from 'redux';
 const BuildPage = ({
   match: {
     params: { id: buildId }
   },
   fetchLog,
   fetchBuild,
+  handleRebuild,
   build,
+  rebuild,
   log,
   isBuild,
   isLog,
+  isRebuild,
   repoName
 }) => {
+  const [isRedirect, setIsRedirect] = useState(false);
+
   useEffect(() => {
     fetchBuild({ id: buildId });
     fetchLog({ id: buildId });
@@ -52,47 +63,72 @@ const BuildPage = ({
     />
   );
 
-  return (
-    <>
-      <Header
-        title={repoName}
-        titleMix={[
-          'text',
-          ' text_size_xxxl',
-          'text_view_primary',
-          'text_line-height_xl'
-        ]}
-      >
-        <Button size="xl" view="control" form="round" indentR="xs">
-          <Icon type="play" size="s" view="brand" mix={['button__icon']} />
-          <ButtonText>Rebuild</ButtonText>
-        </Button>
-        <ButtonLink to="/settings" size="l" view="control" form="round">
-          <Icon type="gear" size="s" view="brand" mix={['button__icon']} />
-        </ButtonLink>
-      </Header>
-      <Layout verticalAlign="top" spaceH="m" direction="column">
-        <LayoutContainer size="m" align="center">
-          {isBuild && isLog && (
+  const handleClickRebuild = () => {
+    setIsRedirect(!isRedirect);
+    handleRebuild(build.commitHash);
+  };
+
+  const render = () => {
+    if (isRebuild && isRedirect) {
+      setIsRedirect(!isRedirect);
+      return <Redirect to={`/build/${rebuild.id}`} />;
+    }
+
+    return isBuild && isLog ? (
+      <>
+        <Header
+          title={repoName}
+          titleMix={[
+            'text',
+            ' text_size_xxxl',
+            'text_view_primary',
+            'text_line-height_xl'
+          ]}
+        >
+          <Button
+            onClick={handleClickRebuild}
+            size="xl"
+            view="control"
+            form="round"
+            indentR="xs"
+          >
+            <Icon type="play" size="s" view="brand" mix={['button__icon']} />
+            <ButtonText>Rebuild</ButtonText>
+          </Button>
+          <ButtonLink to="/settings" size="l" view="control" form="round">
+            <Icon type="gear" size="s" view="brand" mix={['button__icon']} />
+          </ButtonLink>
+        </Header>
+        <Layout verticalAlign="top" spaceH="m" direction="column">
+          <LayoutContainer size="m" align="center">
             <>
               {renderBuild(build)}
               {build.start && <BuildLog log={log} indentB="l" space="s" />}
             </>
-          )}
-        </LayoutContainer>
-      </Layout>
-      <Footer />
-    </>
-  );
+          </LayoutContainer>
+        </Layout>
+        <Footer />
+      </>
+    ) : (
+      <Loader />
+    );
+  };
+
+  return render();
 };
 
 const mapStateToProps = (state) => ({
-  repoName: state.settings.data.repoName,
+  // repoName: state.settings.data.repoName,
   build: getBuild(state),
+  rebuild: getRebuild(state),
   log: getLog(state),
   isBuild: isLoadBuild(state),
-  isLog: isLoadLog(state)
+  isLog: isLoadLog(state),
+  isRebuild: isRebuild(state)
 });
-const mapDispatchToProps = { fetchBuild, fetchLog };
+const mapDispatchToProps = { fetchBuild, fetchLog, handleRebuild };
 
-export default connect(mapStateToProps, mapDispatchToProps)(BuildPage);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(BuildPage);

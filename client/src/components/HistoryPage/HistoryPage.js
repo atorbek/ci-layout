@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../Text/Text.css';
 import '../Text/_size/Text_size_xxxl.css';
@@ -15,19 +16,23 @@ import {
   fetchBuilds,
   handleShowMore,
   getBuilds,
-  isLoadBuilds
+  isLoadBuilds,
+  getIsAdded,
+  getBuildId
 } from '../../modules/HistoryPage';
 
 import { compose } from 'redux';
 import LinkButton from '../ButtonLink';
-import SettingsModal from '../RunBuildModal';
+import RunBuildModal from '../RunBuildModal';
 
 const HistoryPage = ({
   fetchBuilds,
   handleShowMore,
   repoName,
   builds,
-  isLoadBuilds
+  isLoadBuilds,
+  isAdded,
+  buildId
 }) => {
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(5);
@@ -41,7 +46,7 @@ const HistoryPage = ({
     } else {
       fetchBuilds({ offset, limit });
     }
-  }, [fetchBuilds, limit, offset]);
+  }, [limit, offset]);
 
   const handleClickShowMore = () => {
     setIsShowMore(!isShowMore);
@@ -71,7 +76,9 @@ const HistoryPage = ({
         duration={b.duration}
       />
     ));
-  return (
+  return isAdded ? (
+    <Redirect to={`build/${buildId}`} />
+  ) : (
     <>
       <Header
         title={repoName}
@@ -112,7 +119,7 @@ const HistoryPage = ({
         </LayoutContainer>
       </Layout>
       <Footer />
-      {isModal && <SettingsModal handleClickRunBuild={handleClickRunBuild} />}
+      {isModal && <RunBuildModal handleClickRunBuild={handleClickRunBuild} />}
     </>
   );
 };
@@ -120,7 +127,9 @@ const HistoryPage = ({
 const mapStateToProps = (state) => ({
   builds: getBuilds(state),
   isLoadBuilds: isLoadBuilds(state),
-  repoName: state.settings.data.repoName
+  repoName: state.settings.data.repoName,
+  isAdded: getIsAdded(state),
+  buildId: getBuildId(state)
 });
 const mapDispatchToProps = {
   fetchBuilds,
