@@ -95,6 +95,7 @@ const HistoryPage = ({
           view="control"
           form="round"
           indentR="xs"
+          mix={['header__button']}
         >
           <Icon type="play" size="s" view="brand" mix={['button__icon']} />
           <ButtonText>Run build</ButtonText>
