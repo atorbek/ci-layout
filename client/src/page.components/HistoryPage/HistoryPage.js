@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import '../Text/Text.css';
-import '../Text/_size/Text_size_xxxl.css';
-import '../Text/_view/Text_view_primary.css';
-import '../Text/_line-height/Text_line-height_xl.css';
-import Header from '../Header';
-import Button, { ButtonText } from '../Button';
-import Icon from '../Icon';
-import Layout from '../Layout';
-import LayoutContainer from '../Layout/Container/Layout-Container';
-import BuildHistory from '../BuildHistory';
-import Footer from '../Footer';
+import '../../components/Text/Text.css';
+import '../../components/Text/_size/Text_size_xxxl.css';
+import '../../components/Text/_view/Text_view_primary.css';
+import '../../components/Text/_line-height/Text_line-height_xl.css';
+import Header from '../../components/Header';
+import Button, { ButtonText } from '../../components/Button';
+import Icon from '../../components/Icon';
+import Layout from '../../components/Layout';
+import LayoutContainer from '../../components/Layout/Container/Layout-Container';
+import BuildHistory from '../../components/BuildHistory';
+import Footer from '../../components/Footer';
 import {
   fetchBuilds,
   handleShowMore,
@@ -22,8 +22,8 @@ import {
 } from '../../modules/HistoryPage';
 
 import { compose } from 'redux';
-import LinkButton from '../ButtonLink';
-import RunBuildModal from '../RunBuildModal';
+import LinkButton from '../../components/ButtonLink';
+import RunBuildModal from '../../components/RunBuildModal';
 
 const HistoryPage = ({
   fetchBuilds,
@@ -104,7 +104,12 @@ const HistoryPage = ({
           <Icon type="gear" size="s" view="brand" mix={['button__icon']} />
         </LinkButton>
       </Header>
-      <Layout verticalAlign="top" spaceH="m" direction="column">
+      <Layout
+        verticalAlign="top"
+        spaceH="m"
+        direction="column"
+        mix={['history']}
+      >
         <LayoutContainer size="m" align="center">
           {isLoadBuilds ? 'Loading...' : renderBuilds(builds)}
         </LayoutContainer>

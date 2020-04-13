@@ -1,9 +1,9 @@
-import axios from 'axios';
-import { withNaming } from '@bem-react/classname';
+const axios = require('axios');
+const { withNaming } = require('@bem-react/classname');
 
-export const cn = withNaming({ e: '__', m: '_', v: '_' });
+const cn = withNaming({ e: '__', m: '_', v: '_' });
 
-export const axiosInstance = axios.create({
+const axiosInstance = axios.create({
   baseURL: 'http://localhost:3001/api',
   timeout: 10000,
   headers: {
@@ -11,7 +11,13 @@ export const axiosInstance = axios.create({
   }
 });
 
-export const formNames = {
+const formNames = {
   formSettings: 'formSettings',
   formRunBuildModal: 'formRunBuildModal'
+};
+
+module.exports = {
+  cn,
+  axiosInstance,
+  formNames
 };

@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import '../Theme/Theme.css';
 import Page from '../Page';
-import History from '../HistoryPage';
-import Start from '../StartPage';
-import Settings from '../SettingsPage';
-import Build from '../BuildPage';
+import History from '../../page.components/HistoryPage';
+import Start from '../../page.components/StartPage';
+import Settings from '../../page.components/SettingsPage';
+import Build from '../../page.components/BuildPage';
 import PrivateRoute from '../CustomRoute';
 import { fetchSettings } from '../../modules/StartPage';
 

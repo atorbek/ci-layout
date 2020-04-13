@@ -4,8 +4,7 @@ const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const createError = require('http-errors');
 
-const settingsRouter = require('./routes/api/settings');
-const buildsRouter = require('./routes/api/builds');
+const router = require('./routes/index');
 
 const app = express();
 
@@ -21,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/api', settingsRouter, buildsRouter);
+app.use('/api', router);
 
 app.use((req, res, next) => {
   next(createError(404));

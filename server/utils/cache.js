@@ -5,11 +5,12 @@ const adapter = new FileSync('./cache.json');
 const low = require('lowdb');
 const db = low(adapter);
 
-const isRepo = (name) =>
-  db
+function isRepo(name) {
+  return db
     .get('repos')
     .value()
     .some((n) => n === name);
+}
 const isLogExist = (name) => db.get('logs').value()[name] !== undefined;
 
 setLogPath = (path) => {

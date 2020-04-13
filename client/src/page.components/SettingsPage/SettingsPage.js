@@ -1,13 +1,13 @@
 import React from 'react';
-import '../Text/Text.css';
-import '../Text/_size/Text_size_xxxl.css';
-import '../Text/_view/Text_view_secodary.css';
-import '../Text/_line-height/Text_line-height_xl.css';
-import Header from '../Header';
-import Layout from '../Layout';
-import LayoutContainer from '../Layout/Container/Layout-Container';
-import Footer from '../Footer';
-import FormSettings from '../FormSettings/Form-settings';
+import '../../components/Text/Text.css';
+import '../../components/Text/_size/Text_size_xxxl.css';
+import '../../components/Text/_view/Text_view_secodary.css';
+import '../../components/Text/_line-height/Text_line-height_xl.css';
+import Header from '../../components/Header';
+import Layout from '../../components/Layout';
+import LayoutContainer from '../../components/Layout/Container/Layout-Container';
+import Footer from '../../components/Footer';
+import FormSettings from '../../components/FormSettings/Form-settings';
 import { getIsLoad, getIsSettings } from '../../modules/StartPage';
 import { connect } from 'react-redux';
 const SettingsPage = () => {

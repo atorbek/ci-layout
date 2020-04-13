@@ -1,90 +1,93 @@
-const express = require('express');
-const router = express.Router();
 const axios = require('../../config');
 const {
   isLogExist,
   setLogPath,
   createLogFile,
-  readLogFile,
-  isRepo
+  readLogFile
 } = require('../../utils/cache');
 const { commitInfo, parseRepoName } = require('../../utils/repos');
 
-router.get('/builds', async (req, res) => {
+const getBuilds = async (req, res) => {
   try {
     const { offset, limit } = req.query;
-    const list = await axios.get(`/build/list?offset=${offset}&limit=${limit}`);
-    res.json(list.data);
+    const list = await axios.get('/build/list', {
+      params: {
+        offset,
+        limit
+      }
+    });
+
+    res.status(200).json(list.data);
   } catch (error) {
     res
       .status(error.status || 400)
       .json({ message: error.message, status: error.status || 400 });
   }
-});
+};
 
-router.post('/builds/:commitHash', async (req, res) => {
+const postBuild = async (req, res) => {
   try {
-    const data = await axios.get('/conf');
-    const repo = data.data.data.repoName;
+    const settings = await axios.get('/conf');
+    const repo = settings.data.data.repoName;
     const repoName = parseRepoName(repo);
 
-    if (!isRepo(repo)) {
-      throw 'Error in repositories. Is repository cloned?';
-    }
-
-    const newBuild = commitInfo(
+    const { authorName, commitMessage, branchName } = await commitInfo(
       `${process.env.WORKSPACES}/${repoName}`,
       req.params.commitHash
     );
 
-    newBuild.stdout.on('data', async (info) => {
-      const [authorName, commitMessage, branchName] = info
-        .toString()
-        .split(' ');
-
-      const {
-        data: { data }
-      } = await axios.post('/build/request', {
-        commitMessage,
-        commitHash: req.params.commitHash,
-        branchName,
-        authorName
-      });
-
-      res.json({ data });
+    const {
+      data: { data }
+    } = await axios.post('/build/request', {
+      commitMessage,
+      commitHash: req.params.commitHash,
+      branchName,
+      authorName
     });
+    res.status(200).json({ data });
   } catch (error) {
     res
       .status(error.status || 400)
       .json({ message: error.message, status: error.status || 400 });
   }
-});
+};
 
-router.get('/builds/:buildId', async (req, res) => {
+const getBuild = async (req, res) => {
   try {
-    const build = await axios.get(
-      `/build/details?buildId=${req.params.buildId}`
-    );
-    res.json(build.data);
+    const build = await axios.get('/build/details', {
+      params: {
+        buildId: req.query.buildId
+      }
+    });
+
+    res.status(200).json(build.data);
   } catch (error) {
     res
       .status(error.status || 400)
       .json({ message: error.message, status: error.status || 400 });
   }
-});
+};
 
-router.get('/builds/:buildId/logs', async (req, res) => {
+const getBuildLog = async (req, res) => {
   const {
     params: { buildId }
   } = req;
 
   try {
-    const build = await axios.get(`/build/log?buildId=${buildId}`, {
-      headers: {
-        'Content-Type': 'text/plain'
+    const build = await axios.get(
+      '/build/log',
+      {
+        params: {
+          buildId
+        }
       },
-      responseType: 'stream'
-    });
+      {
+        headers: {
+          'Content-Type': 'text/plain'
+        },
+        responseType: 'stream'
+      }
+    );
 
     const path = `${process.env.TMP}/${buildId}.txt`;
 
@@ -100,6 +103,11 @@ router.get('/builds/:buildId/logs', async (req, res) => {
       .status(error.status || 400)
       .json({ message: error.message, status: error.status || 400 });
   }
-});
+};
 
-module.exports = router;
+module.exports = {
+  getBuilds,
+  postBuild,
+  getBuild,
+  getBuildLog
+};

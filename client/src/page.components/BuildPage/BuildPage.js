@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import '../Text/Text.css';
-import '../Text/_size/Text_size_xxxl.css';
-import '../Text/_view/Text_view_primary.css';
-import '../Text/_line-height/Text_line-height_xl.css';
-import Header from '../Header';
-import Layout from '../Layout';
-import LayoutContainer from '../Layout/Container/Layout-Container';
-import Footer from '../Footer';
-import Button, { ButtonText } from '../Button';
-import Icon from '../Icon';
-import BuildHistory from '../BuildHistory';
-import BuildLog from '../BuildLog';
+import '../../components/Text/Text.css';
+import '../../components/Text/_size/Text_size_xxxl.css';
+import '../../components/Text/_view/Text_view_primary.css';
+import '../../components/Text/_line-height/Text_line-height_xl.css';
+import Header from '../../components/Header';
+import Layout from '../../components/Layout';
+import LayoutContainer from '../../components/Layout/Container/Layout-Container';
+import Footer from '../../components/Footer';
+import Button, { ButtonText } from '../../components/Button';
+import Icon from '../../components/Icon';
+import BuildHistory from '../../components/BuildHistory';
+import BuildLog from '../../components/BuildLog';
 import {
   fetchBuild,
   fetchLog,
@@ -24,8 +24,8 @@ import {
   isRebuild,
   getRebuild
 } from '../../modules/BuildPage';
-import ButtonLink from '../ButtonLink';
-import Loader from '../Loader/Loader';
+import ButtonLink from '../../components/ButtonLink';
+import Loader from '../../components/Loader/Loader';
 import { compose } from 'redux';
 const BuildPage = ({
   match: {

@@ -1,7 +1,8 @@
 module.exports = {
+  baseUrl: 'http://localhost:3000',
   sets: {
     desktop: {
-      files: 'tests/*/*.hermione.js'
+      files: 'src/**/*.hermione.js'
     }
   },
 
@@ -11,5 +12,14 @@ module.exports = {
         browserName: 'chrome'
       }
     }
+  },
+
+  windowSize: {
+    width: 1366,
+    height: 768
+  },
+
+  plugins: {
+    'hermione-wdio-utility-wrap-plugin': true
   }
 };

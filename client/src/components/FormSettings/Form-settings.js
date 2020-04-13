@@ -33,7 +33,6 @@ const renderField = ({
 }) => {
   return (
     <>
-      {console.log(touched, error)}
       <FormInput
         input={input}
         name={name}

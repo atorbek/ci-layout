@@ -1,30 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import '../Text/Text.css';
-import '../Text/_size/Text_size_xxxl.css';
-import '../Text/_size/Text_size_m.css';
-import '../Text/_view/Text_view_secodary.css';
-import '../Text/_line-height/Text_line-height_xl.css';
-import '../Text/_indent-r/Text_indent-r_xs.css';
-import Header from '../Header';
-import { ButtonText } from '../Button';
-import Icon from '../Icon';
-import Layout from '../Layout';
-import LayoutContainer from '../Layout/Container/Layout-Container';
-import Footer from '../Footer';
+import '../../components/Text/Text.css';
+import '../../components/Text/_size/Text_size_xxxl.css';
+import '../../components/Text/_size/Text_size_m.css';
+import '../../components/Text/_view/Text_view_secodary.css';
+import '../../components/Text/_line-height/Text_line-height_xl.css';
+import '../../components/Text/_indent-r/Text_indent-r_xs.css';
+import Header from '../../components/Header';
+import { ButtonText } from '../../components/Button';
+import Icon from '../../components/Icon';
+import Layout from '../../components/Layout';
+import LayoutContainer from '../../components/Layout/Container/Layout-Container';
+import Footer from '../../components/Footer';
 import {
   getIsLoad,
   getIsSettings,
   fetchSettings
 } from '../../modules/StartPage';
 import { Redirect } from 'react-router-dom';
-import Settings from '../Settings';
-import SettingsContent from '../Settings/Content/Settings-Content';
-import SettingsAction from '../Settings/Action/Settings-Action';
-import Text from '../Text';
+import Settings from '../../components/Settings';
+import SettingsContent from '../../components/Settings/Content/Settings-Content';
+import SettingsAction from '../../components/Settings/Action/Settings-Action';
+import Text from '../../components/Text';
 import { compose } from 'redux';
-import LinkButton from '../ButtonLink';
-import Loader from '../Loader/Loader';
+import LinkButton from '../../components/ButtonLink';
+import Loader from '../../components/Loader/Loader';
 const StartPage = ({ isSettings, isLoad }) => {
   if (!isSettings) {
     return isLoad ? (
