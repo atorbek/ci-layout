@@ -9,7 +9,6 @@ chai.use(sinonChai);
 const cache = require('../utils/cache');
 const isRepo = stub(cache, 'isRepo').returns(true);
 
-const axiosMock = new MockAdapter(axios);
 const getSettingsData = {
   data: {
     id: '7ee33ef9-6b07-4217-8d5c-765bde249d65',
@@ -28,6 +27,11 @@ const mockResponse = () => {
 };
 
 describe('settings', () => {
+  let axiosMock;
+  beforeEach(function () {
+    axiosMock = new MockAdapter(axios);
+  });
+
   it('Ручка GET api/settings должна вернуть настройки', async () => {
     // Подготовка
     axiosMock.onGet('/conf').reply(200, getSettingsData);
@@ -55,8 +59,11 @@ describe('settings', () => {
     //TODO не нашел как проверить statusText
   });
 
-  after(function () {
+  afterEach(function () {
     axiosMock.restore();
+  });
+
+  after(function () {
     isRepo.restore();
   });
 });

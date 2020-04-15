@@ -13,7 +13,7 @@ const commitInfo = stub(repos, 'commitInfo').returns(
 const { getBuilds, postBuild, getBuild } = require('../routes/api/builds');
 
 describe('builds', () => {
-  const axiosMock = new MockAdapter(axios);
+  let axiosMock;
   const settingsData = {
     data: {
       id: '7ee33ef9-6b07-4217-8d5c-765bde249d65',
@@ -71,6 +71,10 @@ describe('builds', () => {
     res.json = stub().returns(res);
     return res;
   };
+
+  beforeEach(function () {
+    axiosMock = new MockAdapter(axios);
+  });
 
   it('Ручка GET api/builds должна вернуть список билдов', async () => {
     // Подготовка
@@ -140,8 +144,11 @@ describe('builds', () => {
     res.json.should.have.been.calledWith(buildData);
   });
 
-  after(function () {
+  afterEach(function () {
     axiosMock.restore();
+  });
+
+  after(function () {
     commitInfo.restore();
   });
 });
