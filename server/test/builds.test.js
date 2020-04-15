@@ -12,29 +12,46 @@ const commitInfo = stub(repos, 'commitInfo').returns(
 );
 const { getBuilds, postBuild, getBuild } = require('../routes/api/builds');
 
-const axiosMock = new MockAdapter(axios);
-const settingsData = {
-  data: {
-    id: '7ee33ef9-6b07-4217-8d5c-765bde249d65',
-    repoName: 'git@github.com:username/username-repository.git',
-    buildCommand: 'npm install && npm build',
-    mainBranch: 'master',
-    period: 10
-  }
-};
-const buildsData = {
-  data: [
-    {
-      id: '88d4527a-cab9-471c-b761-02c2730ef5a1',
-      configurationId: '7ee33ef9-6b07-4217-8d5c-765bde249d65',
-      buildNumber: 1,
-      commitMessage: 'commit message',
-      commitHash: '595a8cc482d71a8348332cd5d110d8764d2f6104',
-      branchName: 'branch1',
-      authorName: 'user1',
-      status: 'Waiting'
-    },
-    {
+describe('builds', () => {
+  const axiosMock = new MockAdapter(axios);
+  const settingsData = {
+    data: {
+      id: '7ee33ef9-6b07-4217-8d5c-765bde249d65',
+      repoName: 'git@github.com:username/username-repository.git',
+      buildCommand: 'npm install && npm build',
+      mainBranch: 'master',
+      period: 10
+    }
+  };
+  const buildsData = {
+    data: [
+      {
+        id: '88d4527a-cab9-471c-b761-02c2730ef5a1',
+        configurationId: '7ee33ef9-6b07-4217-8d5c-765bde249d65',
+        buildNumber: 1,
+        commitMessage: 'commit message',
+        commitHash: '595a8cc482d71a8348332cd5d110d8764d2f6104',
+        branchName: 'branch1',
+        authorName: 'user1',
+        status: 'Waiting'
+      },
+      {
+        id: '20b51baf-4129-420b-872a-ad4b98ca9f08',
+        configurationId: '7ee33ef9-6b07-4217-8d5c-765bde249d65',
+        buildNumber: 2,
+        commitMessage: 'commit message 2',
+        commitHash: 'd97b16a6ee782f1ff80ce0ffb6ea8345041375d2',
+        branchName: 'branch2',
+        authorName: 'user2',
+        status: 'Success',
+        start: '2020-04-02T21:55:01.077',
+        duration: 2
+      }
+    ]
+  };
+
+  const buildData = {
+    data: {
       id: '20b51baf-4129-420b-872a-ad4b98ca9f08',
       configurationId: '7ee33ef9-6b07-4217-8d5c-765bde249d65',
       buildNumber: 2,
@@ -46,32 +63,15 @@ const buildsData = {
       start: '2020-04-02T21:55:01.077',
       duration: 2
     }
-  ]
-};
+  };
 
-const buildData = {
-  data: {
-    id: '20b51baf-4129-420b-872a-ad4b98ca9f08',
-    configurationId: '7ee33ef9-6b07-4217-8d5c-765bde249d65',
-    buildNumber: 2,
-    commitMessage: 'commit message 2',
-    commitHash: 'd97b16a6ee782f1ff80ce0ffb6ea8345041375d2',
-    branchName: 'branch2',
-    authorName: 'user2',
-    status: 'Success',
-    start: '2020-04-02T21:55:01.077',
-    duration: 2
-  }
-};
+  const mockResponse = () => {
+    const res = {};
+    res.status = stub().returns(res);
+    res.json = stub().returns(res);
+    return res;
+  };
 
-const mockResponse = () => {
-  const res = {};
-  res.status = stub().returns(res);
-  res.json = stub().returns(res);
-  return res;
-};
-
-describe('builds', () => {
   it('Ручка GET api/builds должна вернуть список билдов', async () => {
     // Подготовка
     const params = {
