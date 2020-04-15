@@ -5,8 +5,8 @@ module.exports = function (hermione) {
         () => {
           return browser.isExisting(selector);
         },
-        300000,
-        'Element not exist',
+        30000,
+        `Element by ${selector} not exist`,
         500
       );
     });
@@ -17,7 +17,7 @@ module.exports = function (hermione) {
           return browser.isVisible(selector);
         },
         30000,
-        'Element not visible',
+        `Element by ${selector} not visible`,
         500
       );
     });

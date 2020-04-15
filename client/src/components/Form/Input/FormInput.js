@@ -6,7 +6,6 @@ import { cn } from '../../../config';
 
 const FormInput = ({
   input,
-  name,
   placeholder,
   type = 'search',
   state,
@@ -15,7 +14,6 @@ const FormInput = ({
 }) => (
   <input
     {...input}
-    name={name}
     placeholder={placeholder}
     type={type}
     className={cn('form__input')({ state }, mix)}

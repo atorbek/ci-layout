@@ -22,24 +22,12 @@ const normalizeNumber = (value, previousValue) => {
   return re.test(value) ? value : previousValue;
 };
 
-const renderField = ({
-  input,
-  name,
-  placeholder,
-  type,
-  meta: { touched, error },
-  mix,
-  ...rest
-}) => {
+const renderField = ({ placeholder, meta: { touched, error }, ...rest }) => {
   return (
     <>
       <FormInput
-        input={input}
-        name={name}
         placeholder={touched && error ? error : placeholder}
-        type={type}
         state={touched && error && 'alert'}
-        mix={mix}
         {...rest}
       />
     </>
@@ -73,8 +61,8 @@ const FormSettings = ({ handleSubmit, handleSaveSettings, submitting }) => {
           </Text>
         </Text>
         <Field
-          name="repoName"
           placeholder="user-name/repo-name"
+          name="repoName"
           component={renderField}
           validate={[required]}
         />
@@ -91,8 +79,8 @@ const FormSettings = ({ handleSubmit, handleSaveSettings, submitting }) => {
           </Text>
         </Text>
         <Field
-          name="buildCommand"
           placeholder="npm ci && npm run build"
+          name="buildCommand"
           component={renderField}
           validate={[required]}
         />
@@ -136,7 +124,7 @@ const FormSettings = ({ handleSubmit, handleSaveSettings, submitting }) => {
           form="round"
           type="submit"
           disabled={submitting}
-          mix={['form-settings__button']}
+          mix={['form-settings__button', 'form-settings__button_type_save']}
         >
           Save
         </Button>
