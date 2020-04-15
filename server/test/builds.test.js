@@ -10,12 +10,7 @@ const repos = require('../utils/repos');
 const commitInfo = stub(repos, 'commitInfo').returns(
   '{"authorName": "user", "commitMessage": "commit message", "branchName": "master"}'
 );
-const {
-  getBuilds,
-  postBuild,
-  getBuild,
-  getBuildLog
-} = require('../routes/api/builds');
+const { getBuilds, postBuild, getBuild } = require('../routes/api/builds');
 
 const axiosMock = new MockAdapter(axios);
 const settingsData = {
@@ -117,7 +112,6 @@ describe('builds', () => {
 
     // Действия
     const res = mockResponse();
-    const { postBuild } = require('../routes/api/builds');
     await postBuild(
       { params: { commitHash: '595a8cc482d71a8348332cd5d110d8764d2f6104' } },
       res
@@ -139,12 +133,7 @@ describe('builds', () => {
 
     // Действия
     const res = mockResponse();
-    const queryParam = {
-      query: {
-        buildId: '88d4527a-cab9-471c-b761-02c2730ef5a1'
-      }
-    };
-    await getBuild(queryParam, res);
+    await getBuild(params, res);
 
     // Проверка
     res.status.should.have.been.calledWith(200);

@@ -6,6 +6,7 @@ const builds = require('./api/builds');
 
 router.get('/settings', settings.getSettings);
 router.post('/settings', settings.postSettings);
+router.delete('/settings', settings.deleteSettings);
 
 router.get('/builds', builds.getBuilds);
 router.post('/builds/:commitHash', builds.postBuild);

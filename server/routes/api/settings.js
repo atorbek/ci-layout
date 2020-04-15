@@ -1,6 +1,6 @@
 const axios = require('../../config');
 const { gitClone } = require('../../utils/repos');
-const { isRepo, saveRepo } = require('../../utils/cache');
+const { isRepo } = require('../../utils/cache');
 
 const getSettings = async (req, res) => {
   try {
@@ -30,7 +30,19 @@ const postSettings = async ({ body }, res) => {
   }
 };
 
+const deleteSettings = async (req, res) => {
+  try {
+    await axios.delete('/conf');
+    res.status(200);
+  } catch (error) {
+    res
+      .status(error.status || 400)
+      .json({ message: error.message, status: error.status || 400 });
+  }
+};
+
 module.exports = {
   getSettings,
-  postSettings
+  postSettings,
+  deleteSettings
 };

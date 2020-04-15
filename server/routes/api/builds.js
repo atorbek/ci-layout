@@ -56,7 +56,7 @@ const getBuild = async (req, res) => {
   try {
     const build = await axios.get('/build/details', {
       params: {
-        buildId: req.query.buildId
+        buildId: req.params.buildId
       }
     });
 
