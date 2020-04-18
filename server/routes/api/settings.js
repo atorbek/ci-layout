@@ -1,6 +1,6 @@
 const axios = require('../../config');
 const { gitClone } = require('../../utils/repos');
-const { isRepo } = require('../../utils/cache');
+const { isRepo, saveRepo } = require('../../utils/cache');
 
 const getSettings = async (req, res) => {
   try {
@@ -20,6 +20,7 @@ const postSettings = async ({ body }, res) => {
 
     if (!isRepo(repoName)) {
       await gitClone(process.env.WORKSPACES, repoName);
+      saveRepo(repoName);
     }
 
     res.status(status).json({ statusText });
