@@ -5,7 +5,7 @@ const cn = withNaming({ e: '__', m: '_', v: '_' });
 
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:3001/api',
-  timeout: 10000,
+  timeout: 30000,
   headers: {
     'Content-Type': 'application/json'
   }

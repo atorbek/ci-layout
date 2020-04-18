@@ -26,6 +26,11 @@ server/node_modules
 server/.env
 server/cache.json
 
+## build-server
+build-server/node_modules
+build-server/cache.json
+build-server/server-conf.json
+
 ## general
 .vscode
 .idea

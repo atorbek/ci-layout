@@ -1,10 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-require('dotenv').config();
 const createError = require('http-errors');
+require('./triggers/taskTriggers');
 
-const { routers } = require('./routes');
+const { routers } = require('./routes/index');
 
 const app = express();
 
@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/api', routers);
+app.use('/', routers);
 
 app.use((req, res, next) => {
   next(createError(404));
