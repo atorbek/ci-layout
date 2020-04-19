@@ -1,4 +1,4 @@
-const axios = require('../config');
+const { axiosInstance: axios } = require('../config');
 const { setCache } = require('../caches/utilsCache');
 
 /**
@@ -8,13 +8,14 @@ const { setCache } = require('../caches/utilsCache');
  * @returns {Promise<void>}
  */
 const postNotifyAgent = async (req, res) => {
+  let agentId = '';
   try {
     const { body } = req;
 
-    setCache('agent', body);
-
-    res.status(200);
+    agentId = setCache('agent', { status: 'free', ...body });
+    res.status(200).json({});
   } catch (error) {
+    setCache('removeAgent', agentId);
     res
       .status(error.status || 400)
       .json({ message: error.message, status: error.status || 400 });
@@ -29,13 +30,18 @@ const postNotifyAgent = async (req, res) => {
  */
 const postNotifyBuildResult = async (req, res) => {
   try {
-    const { body } = req;
+    const {
+      body: { agentId, ...rest }
+    } = req;
+    await axios.post('/build/finish', rest);
 
-    await axios.get('/build/finish', {
-      params: { body }
+    setCache('updateAgent', {
+      agentId,
+      status: 'free',
+      build: {}
     });
 
-    res.status(200);
+    res.status(200).json({});
   } catch (error) {
     res
       .status(error.status || 400)

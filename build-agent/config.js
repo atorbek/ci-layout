@@ -1,11 +1,11 @@
 const config = require('axios');
 const https = require('https');
+const { serverHost: host, serverPort: port } = require('./agent-conf');
 
 const axiosInstance = config.create({
-  baseURL: 'https://hw.shri.yandex/api/',
+  baseURL: `${host}:${port}`,
   timeout: 30000 * 60,
   headers: {
-    Authorization: `Bearer ${process.env.AUTH_TOKEN}`,
     'Content-Type': 'application/json'
   },
   httpsAgent: new https.Agent({
@@ -13,4 +13,4 @@ const axiosInstance = config.create({
   })
 });
 
-module.exports = axiosInstance;
+module.exports = { axiosInstance };

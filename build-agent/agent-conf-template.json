@@ -1,0 +1,5 @@
+{
+  "port": "//порт build-server",
+  "serverHost": "//адрес api(БД)",
+  "serverPort": "//токен для работы с api"
+}

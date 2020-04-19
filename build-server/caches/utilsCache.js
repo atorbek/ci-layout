@@ -1,9 +1,8 @@
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
-const adapter = new FileSync('./agentCache.json');
+const adapter = new FileSync('./serverCache.json');
 const cache = low(adapter);
 const { v1: uuid } = require('uuid');
-const { isEmptyObject } = require('../helpers/utils');
 
 const getAgents = () => {
   return cache.get('agents');
@@ -13,31 +12,37 @@ const getAgent = (id) => {
   return getAgents().find({ agentId: id });
 };
 
-const getFreeAgent = () => {
-  let freeAgent = getAgents().find({ status: 'free' }).value();
-  return (!isEmptyObject(freeAgent) && freeAgent) || {};
-};
-
 const addAgent = (value) => {
   const agentUuidWrapped = { agentId: uuid(), ...value };
   getAgents().push(agentUuidWrapped).write();
+  return agentUuidWrapped.agentId;
+};
+
+const removeAgent = (agentId) => {
+  getAgents().remove({ agentId }).write();
 };
 
 const addBuild = ({ agentId, build }) => {
-  getAgent(agentId).set('build', build).write();
+  updateAgent({ agentId, build });
+};
+
+const updateAgent = ({ agentId, ...rest }) => {
+  return getAgent(agentId).assign(rest).write();
 };
 
 const setCache = (key, value) => {
   const object = {
     agent: addAgent,
-    build: addBuild
+    build: addBuild,
+    updateAgent,
+    removeAgent
   };
 
-  object[key](value);
+  return object[key](value);
 };
 
 module.exports = {
   setCache,
-  getFreeAgent,
-  getAgent
+  getAgent,
+  getAgents
 };

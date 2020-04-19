@@ -1,5 +1,7 @@
 {
   "port": "//порт build-server",
   "apiBaseUrl": "//адрес api(БД)",
-  "apiToken": "//токен для работы с api"
+  "apiToken": "//токен для работы с api",
+  "limitBuildInQueue": "// лимит билдов в очереди",
+  "buildTimeout": "// лимит выполнения сборки на агенте"
 }

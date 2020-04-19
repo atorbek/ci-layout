@@ -4,7 +4,7 @@ const { apiToken: token, apiBaseUrl: apiUrl } = require('./server-conf');
 
 const axiosInstance = config.create({
   baseURL: apiUrl,
-  timeout: 10000,
+  timeout: 30000 * 60,
   headers: {
     Authorization: `Bearer ${token}`,
     'Content-Type': 'application/json'
@@ -14,4 +14,4 @@ const axiosInstance = config.create({
   })
 });
 
-module.exports = axiosInstance;
+module.exports = { axiosInstance };

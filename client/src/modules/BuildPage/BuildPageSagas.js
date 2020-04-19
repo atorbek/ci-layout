@@ -51,6 +51,7 @@ function* fetchRebuildFlow(action) {
     const rebuild = yield call(sendBuildToQueue, commitHash);
     yield put(handleRebuildSuccess(rebuild));
   } catch (e) {
+    console.log(e);
     yield put(handleRebuildError({ error: e.message }));
   }
 }

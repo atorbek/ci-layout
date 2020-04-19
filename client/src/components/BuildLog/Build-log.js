@@ -8,7 +8,6 @@ import { cn } from '../../config';
 
 const BuildLog = ({ log, indentB, space, mix, ...props }) => {
   const convert = new Convert({ fg: '#000', bg: '#000' });
-
   return (
     <div className={cn('build-log')({ indentB, space }, mix)} {...props}>
       <Text
