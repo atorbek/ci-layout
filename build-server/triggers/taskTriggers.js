@@ -1,7 +1,14 @@
+const retry = require('async-retry');
 const { axiosInstance: axios } = require('../config');
 const { setCache, getAgents } = require('../caches/utilsCache');
-const { isEmptyObject } = require('../helpers/utils');
-const { limitBuildInQueue, buildTimeout } = require('../server-conf');
+const { isEmptyObject, diffDate } = require('../helpers/utils');
+const {
+  limitBuildInQueue = 100,
+  agentBuildTimeout = 120,
+  agentBuildPeriod = 300000,
+  retryRequest = 20,
+  buildPeriod = 50000
+} = require('../server-conf');
 
 const statuses = {
   FREE: 'free',
@@ -14,20 +21,39 @@ const buildStatuses = {
 };
 
 const sendTaskOnAgent = async ({ host, port, ...rest }) => {
-  console.log('Send task on Agent');
   const url = `http://${host}:${port}`;
-  await axios({
-    method: 'post',
-    url: '/build',
-    baseURL: url,
-    data: rest
-  });
+  await retry(
+    async () => {
+      console.log('Send task on Agent');
+      await axios({
+        method: 'post',
+        url: '/build',
+        baseURL: url,
+        data: rest
+      });
+    },
+    {
+      retries: retryRequest,
+      maxTimeout: buildPeriod,
+      onRetry: (error) => console.log(error.message)
+    }
+  );
 };
 
-const changeBuildStatus = async (status, buildData) => {
-  await axios.post(`/build/${status}`, {
-    ...buildData
-  });
+const changeStatusBuild = async (status, buildData) => {
+  await retry(
+    async () => {
+      console.log('Change status build');
+      await axios.post(`/build/${status}`, {
+        ...buildData
+      });
+    },
+    {
+      retries: retryRequest,
+      maxTimeout: buildPeriod,
+      onRetry: (error) => console.log(error.message)
+    }
+  );
 };
 
 const getSettings = async () => {
@@ -47,11 +73,6 @@ const getFreeAgent = () => {
   return (!freeAgent !== undefined && freeAgent) || {};
 };
 
-const diffDate = (d1, d2) => {
-  const diffTime = Math.abs(d2 - d1);
-  return Math.ceil(diffTime / (1000 * 60 * 60));
-};
-
 const getAgentTimeoutErrorAndFree = (timeout) => {
   const currentTime = new Date();
 
@@ -66,7 +87,7 @@ const getAgentTimeoutErrorAndFree = (timeout) => {
 
       if (diffTime > timeout) {
         setCache('updateAgent', { agentId, status: statuses.FREE, build: {} });
-        await changeBuildStatus(buildStatuses.CANCEL, {
+        await changeStatusBuild(buildStatuses.CANCEL, {
           buildId: build.buildId
         });
       }
@@ -120,7 +141,7 @@ setInterval(async () => {
 
         await sendTaskOnAgent(data);
         Promise.all([
-          changeBuildStatus(buildStatuses.START, buildData),
+          changeStatusBuild(buildStatuses.START, buildData),
           setCache('updateAgent', cacheData)
         ]);
 
@@ -130,13 +151,13 @@ setInterval(async () => {
   } catch (e) {
     console.log('Error:', e.message);
   }
-}, 3000);
+}, buildPeriod);
 
 /**
  *
  */
 setInterval(async () => {
   console.log('Check build timeout');
-  getAgentTimeoutErrorAndFree(buildTimeout);
+  getAgentTimeoutErrorAndFree(agentBuildTimeout);
   console.log('Build timeout checked');
-}, 1000 * 10);
+}, agentBuildPeriod);

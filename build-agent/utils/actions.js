@@ -1,7 +1,9 @@
 const { spawn } = require('child_process');
 const { workspaces } = require('../agent-conf');
 const { axiosInstance: axios } = require('../config');
+const retry = require('async-retry');
 const Git = require('./git');
+const { period, retryRequest } = require('../agent-conf');
 
 const runCommand = async (repoPath, command) => {
   return new Promise((resolve) => {
@@ -32,40 +34,41 @@ const runCommand = async (repoPath, command) => {
   });
 };
 
-const postNotifyBuildResult = (data) => {
-  let registered = false;
-  const id = setInterval(async () => {
-    console.log('Register agent');
-    try {
-      if (registered) {
-        clearInterval(id);
-        return;
+const postNotifyBuildResult = async (data) => {
+  try {
+    await retry(
+      async () => {
+        console.log('Build result');
+        await axios.post('/notify-build-result', data);
+      },
+      {
+        retries: retryRequest,
+        maxTimeout: period,
+        onRetry: (error) => console.log(error.message)
       }
-
-      await axios.post('/notify-build-result', data);
-      registered = true;
-    } catch (e) {
-      console.log('Error notify build result:', e.message);
-    }
-  }, 5000);
+    );
+  } catch (e) {
+    console.log('Error notify build result:', e.message);
+  }
 };
 
-const postNotifyAgent = (data) => {
-  let registered = false;
-  const id = setInterval(async () => {
-    console.log('Register agent');
-    try {
-      if (registered) {
-        clearInterval(id);
-        return;
+const postNotifyAgent = async (data) => {
+  try {
+    await retry(
+      async () => {
+        console.log('Register agent');
+        await axios.post('/notify-agent', data);
+      },
+      {
+        retries: retryRequest,
+        maxTimeout: period,
+        onRetry: (error) => console.log(error.message)
       }
-
-      await axios.post('/notify-agent', data);
-      registered = true;
-    } catch (e) {
-      console.log('Error notify agent result:', e.message);
-    }
-  }, 5000);
+    );
+  } catch (e) {
+    console.log('Error notify agent result:', e.message);
+    process.exit(1);
+  }
 };
 
 const diffDate = (d1, d2) => {
@@ -101,6 +104,7 @@ const runActions = (data) => {
       console.log('Error:', e);
       reject();
     } finally {
+      console.log('Remove repository');
       git.remove();
     }
   });

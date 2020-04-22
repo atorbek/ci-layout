@@ -1,5 +1,7 @@
+const retry = require('async-retry');
 const { axiosInstance: axios } = require('../config');
 const { setCache } = require('../caches/utilsCache');
+const { retryRequest = 20, buildPeriod = 50000 } = require('../server-conf');
 
 /**
  * Зарегистрировать агента
@@ -33,7 +35,18 @@ const postNotifyBuildResult = async (req, res) => {
     const {
       body: { agentId, ...rest }
     } = req;
-    await axios.post('/build/finish', rest);
+
+    await retry(
+      async () => {
+        console.log('Send task on Agent');
+        await axios.post('/build/finish', rest);
+      },
+      {
+        retries: retryRequest,
+        maxTimeout: buildPeriod,
+        onRetry: (error) => console.log(error.message)
+      }
+    );
 
     setCache('updateAgent', {
       agentId,

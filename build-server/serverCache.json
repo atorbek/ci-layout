@@ -1,3 +1,14 @@
 {
-  "agents": []
+  "agents": [
+    {
+      "agentId": "b6ea5fb0-84e2-11ea-954e-051c0b10acb1",
+      "status": "busy",
+      "host": "192.168.0.103",
+      "port": 3003,
+      "build": {
+        "buildId": "97779428-e7c9-4a40-a1f5-36db51b535d4",
+        "dateTime": "2020-04-22T21:47:38.556Z"
+      }
+    }
+  ]
 }
