@@ -28,7 +28,7 @@ server/cache.json
 
 ## build-server
 build-server/node_modules
-#build-server/serverCache.json
+build-server/serverCache.json
 build-server/server-conf.json
 
 ## build-agent
