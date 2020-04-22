@@ -51,15 +51,13 @@ const RunBuildModal = ({
   handleClickRunBuild,
   clearSubmitErrors,
   submitting,
-  submitErrors,
-  resetForm
+  submitErrors
 }) => {
   const { error } = submitErrors;
 
   const handleClickSaveSubmit = (commitHash) => {
     clearSubmitErrors(formNames.formRunBuildModal);
     handleRunBuild(commitHash);
-    resetForm();
   };
 
   const handleClickCancel = () => {
