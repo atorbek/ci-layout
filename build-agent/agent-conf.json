@@ -1,8 +1,0 @@
-{
-  "port": 3003,
-  "serverHost": "http://127.0.0.1",
-  "serverPort": "3002",
-  "workspaces": "/home/alexander/Documents/projects/ci/agent",
-  "period": 5000,
-  "retryRequest": 5
-}
