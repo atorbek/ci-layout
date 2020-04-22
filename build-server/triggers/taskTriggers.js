@@ -153,9 +153,6 @@ setInterval(async () => {
   }
 }, buildPeriod);
 
-/**
- *
- */
 setInterval(async () => {
   console.log('Check build timeout');
   getAgentTimeoutErrorAndFree(agentBuildTimeout);
