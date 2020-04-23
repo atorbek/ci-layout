@@ -1,5 +1,5 @@
 {
-  "port": "//порт build-server",
+  "port": "//порт build-server, указывать если запускать не в docker",
   "apiBaseUrl": "//адрес api(БД)",
   "apiToken": "//токен для работы с api",
   "limitBuildInQueue": "// лимит билдов в очереди",

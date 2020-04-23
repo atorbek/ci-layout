@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "nodemon": "nodemon --ignore serverCache.json ./bin/www"
+    "nodemon": "nodemon --ignore serverCache.json ./bin/www",
+    "build-docker-image": "docker build -t atorbek/build-server .",
+    "run-docker-container": "docker run -p 3002:3000 -d atorbek/build-server"
   },
   "dependencies": {
     "axios": "^0.19.2",

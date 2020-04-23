@@ -9,9 +9,14 @@
 
 3. Через терминал:
 
-- Перейти в папку с сервером `cd agent`;
+- Перейти в папку с агентом `cd build-agent`;
 - Установить зависимости через `npm ci`;
 - Поднять агента через `npm start`.
 
 Либо одной командой `cd agent && npm ci && npm start`.
 
+Или 
+
+- Перейти в папку с агентом `cd build-agent`;
+- Собрать образ `npm run build-docker-image`;
+- Создать контейнер `npm run run-docker-container`.
