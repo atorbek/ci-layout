@@ -1,6 +1,6 @@
-const axios = require('../config');
-const { gitClone } = require('../utils/repos');
-const { isRepo, saveRepo } = require('../utils/cache');
+import axios from '../config';
+import { gitClone } from '../utils/repos';
+import { isRepo, saveRepo } from '../utils/cache';
 
 const getSettings = async (req, res) => {
   try {
@@ -42,7 +42,7 @@ const deleteSettings = async (req, res) => {
   }
 };
 
-module.exports = {
+export default {
   getSettings,
   postSettings,
   deleteSettings

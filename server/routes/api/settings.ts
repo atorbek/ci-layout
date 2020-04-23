@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
-const settings = require('../../controllers/settingsController');
+import settings from '../../controllers/settingsController';
 
 router.get('/settings', settings.getSettings);
 router.post('/settings', settings.postSettings);
 router.delete('/settings', settings.deleteSettings);
 
-module.exports = router;
+export default router;

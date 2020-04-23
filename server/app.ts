@@ -1,10 +1,11 @@
-const express = require('express');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-require('dotenv').config();
-const createError = require('http-errors');
+import express from 'express';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import { config } from 'dotenv';
+import createError from 'http-errors';
+import { routers } from './routes';
 
-const { routers } = require('./routes');
+config();
 
 const app = express();
 

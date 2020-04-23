@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "nodemon": "nodemon --ignore ./cache.json  ./bin/www",
+    "nodemon": "TS_NODE_FILES=1 nodemon -r ts-node/register --ignore ./cache.json  ./bin/www",
     "test": "mocha ./test"
   },
   "dependencies": {
@@ -18,6 +18,10 @@
     "lowdb": "^1.0.0"
   },
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.6",
+    "@types/http-errors": "^1.6.3",
     "chai": "^4.2.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
@@ -27,6 +31,8 @@
     "nodemon": "^2.0.2",
     "prettier": "^2.0.2",
     "sinon": "^9.0.2",
-    "sinon-chai": "^3.5.0"
+    "sinon-chai": "^3.5.0",
+    "ts-node": "^8.9.0",
+    "typescript": "^3.8.3"
   }
 }
