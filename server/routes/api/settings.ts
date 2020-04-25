@@ -3,8 +3,13 @@ const router = express.Router();
 
 import settings from '../../controllers/settingsController';
 
-router.get('/settings', settings.getSettings);
-router.post('/settings', settings.postSettings);
-router.delete('/settings', settings.deleteSettings);
+export type GetResponseSettings = Configuration;
+router.get<{}, GetResponseSettings>('/settings', settings.getSettings);
+export type GetRequestSettings = Configuration;
+export type PostStatusTextResponse = { statusText: string };
+router.post<{}, PostStatusTextResponse, GetRequestSettings>(
+  '/settings',
+  settings.postSettings
+);
 
 export default router;

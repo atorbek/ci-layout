@@ -2,10 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { config } from 'dotenv';
-import createError from 'http-errors';
-import { routers } from './routes';
-
 config();
+import createError from 'http-errors';
+import routers from './routes';
 
 const app = express();
 
@@ -21,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/api', routers);
+app.use('/api', routers.routers);
 
 app.use((req, res, next) => {
   next(createError(404));

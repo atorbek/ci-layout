@@ -1,13 +1,14 @@
-const axios = require('../config');
-const {
-  isLogExist,
-  setLogPath,
+import axios from '../config';
+import { Request, Response } from 'express';
+import {
   createLogFile,
-  readLogFile
-} = require('../utils/cache');
-const { commitInfo, parseRepoName } = require('../utils/repos');
+  isLogExist,
+  readLogFile,
+  setLogPath
+} from '../utils/cache';
+import { commitInfo, parseRepoName } from '../utils/repos';
 
-const getBuilds = async (req, res) => {
+const getBuilds = async (req: Request, res: Response)  => {
   try {
     const { offset, limit } = req.query;
     const list = await axios.get('/build/list', {
@@ -25,13 +26,13 @@ const getBuilds = async (req, res) => {
   }
 };
 
-const postBuild = async (req, res) => {
+const postBuild = async (req: Request, res: Response): Promise<void> => {
   try {
     const settings = await axios.get('/conf');
     const repo = settings.data.data.repoName;
     const repoName = parseRepoName(repo);
 
-    const { authorName, commitMessage, branchName } = await commitInfo(
+    const { commitMessage, branchName, authorName } = await commitInfo(
       `${process.env.WORKSPACES}/${repoName}`,
       req.params.commitHash
     );
@@ -52,7 +53,7 @@ const postBuild = async (req, res) => {
   }
 };
 
-const getBuild = async (req, res) => {
+const getBuild = async (req: Request, res: Response) => {
   try {
     const build = await axios.get('/build/details', {
       params: {
@@ -68,26 +69,21 @@ const getBuild = async (req, res) => {
   }
 };
 
-const getBuildLog = async (req, res) => {
+const getBuildLog = async (req: Request, res: Response) => {
   const {
     params: { buildId }
   } = req;
 
   try {
-    const build = await axios.get(
-      '/build/log',
-      {
-        params: {
-          buildId
-        }
+    const build = await axios.get('/build/log', {
+      params: {
+        buildId
       },
-      {
-        headers: {
-          'Content-Type': 'text/plain'
-        },
-        responseType: 'stream'
-      }
-    );
+      headers: {
+        'Content-Type': 'text/plain'
+      },
+      responseType: 'stream'
+    });
 
     const path = `${process.env.TMP}/${buildId}.txt`;
 
@@ -105,7 +101,7 @@ const getBuildLog = async (req, res) => {
   }
 };
 
-module.exports = {
+export default {
   getBuilds,
   postBuild,
   getBuild,

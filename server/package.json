@@ -18,10 +18,14 @@
     "lowdb": "^1.0.0"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.6",
     "@types/express": "^4.17.6",
     "@types/http-errors": "^1.6.3",
+    "@typescript-eslint/eslint-plugin": "^2.29.0",
+    "@typescript-eslint/parser": "^2.29.0",
+    "@types/lowdb": "^1.0.9",
     "chai": "^4.2.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
