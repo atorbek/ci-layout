@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "TS_NODE_FILES=1 ts-node ./bin/www -r ts-node/register --ignore ./cache.json",
     "nodemon": "TS_NODE_FILES=1 nodemon -r ts-node/register --ignore ./cache.json  ./bin/www",
-    "test": "mocha ./test"
+    "test": "mocha -r ts-node/register  ./test"
   },
   "dependencies": {
     "axios": "^0.19.2",

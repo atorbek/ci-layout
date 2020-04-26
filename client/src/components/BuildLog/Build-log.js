@@ -6,6 +6,14 @@ import './_space/build-log_space_s.css';
 import Text from '../Text';
 import { cn } from '../../config';
 
+// declare interface BuildLogProps {
+//   log: string;
+//   indentB: string;
+//   space: string;
+//   mix: string[];
+// }
+
+// : React.FC<BuildLogProps>
 const BuildLog = ({ log, indentB, space, mix, ...props }) => {
   const convert = new Convert({ fg: '#000', bg: '#000' });
   return (

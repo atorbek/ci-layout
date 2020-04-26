@@ -8,7 +8,7 @@ import {
 } from '../utils/cache';
 import { commitInfo, parseRepoName } from '../utils/repos';
 
-const getBuilds = async (req: Request, res: Response)  => {
+const getBuilds = async (req: Request, res: Response) => {
   try {
     const { offset, limit } = req.query;
     const list = await axios.get('/build/list', {
