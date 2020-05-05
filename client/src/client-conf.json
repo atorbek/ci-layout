@@ -1,0 +1,6 @@
+{
+  "pushServerKey": "BHDMCBeVBmygMBqc846ZUHXR-IiuxkakywPzc3cextS51LsHMdTeH17K6WElRh37UlDwFa7sdvQQXXZPMoHLFPo",
+  "buildServerHost": "http://127.0.0.1",
+  "buildServerPort": "3002",
+  "baseUrl": "http://localhost:3001/api"
+}

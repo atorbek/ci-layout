@@ -8,8 +8,16 @@ const getAgents = () => {
   return cache.get('agents');
 };
 
+const getPushSubscription = () => {
+  return cache.get('pushSubscription');
+};
+
 const getAgent = (id) => {
   return getAgents().find({ agentId: id });
+};
+
+const addPushSubscription = (subscription) => {
+  getPushSubscription().assign(subscription).write();
 };
 
 const addAgent = (value) => {
@@ -34,6 +42,7 @@ const setCache = (key, value) => {
   const object = {
     agent: addAgent,
     build: addBuild,
+    pushSubscription: addPushSubscription,
     updateAgent,
     removeAgent
   };
@@ -44,5 +53,6 @@ const setCache = (key, value) => {
 module.exports = {
   setCache,
   getAgent,
-  getAgents
+  getAgents,
+  getPushSubscription
 };

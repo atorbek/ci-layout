@@ -79,6 +79,7 @@ const diffDate = (d1, d2) => {
 const runActions = (data) => {
   return new Promise(async (resolve, reject) => {
     const {
+      buildNumber,
       repoName,
       commitHash,
       buildCommand,
@@ -94,6 +95,7 @@ const runActions = (data) => {
       const result = await runCommand(git.getFullPath(), buildCommand);
       const duration = diffDate(new Date(dateTime), new Date());
       await postNotifyBuildResult({
+        buildNumber,
         agentId,
         buildId,
         duration,

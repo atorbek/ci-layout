@@ -1,75 +1,70 @@
-/** @alias ServiceWorkerGlobalScope */
-let self = this;
-const CACHE_NAME = `static-files`;
-const statics = /.(?:png|gif|jpg|jpeg|svg|js|css|)$/;
-const fonts = `https://yastatic.net/islands/(.*)`;
+const CACHE = 'cache-and-update';
+const statics = /\.(?:png|gif|jpg|jpeg|svg|js|css)$/;
+const fonts = new RegExp('(.*)yastatic.net/islands/(.*)');
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(['./static/']);
-    })
+  event.waitUntil(precache());
+});
+
+const precache = async () => {
+  const cache = await caches.open(CACHE);
+  return await cache.addAll(['./static']);
+};
+
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    (async () => {
+      if (
+        (!statics.test(event.request.url) ||
+          event.request.url.indexOf('chrome-extension') !== -1) &&
+        !fonts.test(event.request.url)
+      ) {
+        return await fetch(event.request);
+      }
+
+      let response = await fromCache(event.request);
+      if (response) {
+        event.waitUntil(update(event.request));
+        return response;
+      }
+
+      response = await fetch(event.request);
+      event.waitUntil(toCache(event.request, response.clone()));
+      return response;
+    })()
   );
 });
 
-const updateCache = async (request) => {
-  const responseToCache = request.clone();
-  const cache = await caches.open(CACHE_NAME);
-  cache.put(event.request, responseToCache);
+const fromCache = async (request) => {
+  const cache = await caches.open(CACHE);
+  return await cache.match(request);
 };
 
-self.addEventListener('fetch', async (event) => {
-  if (statics.test(event.request.url) || fonts.test(event.request.url)) {
-    const response = await caches.match(event.request);
+const toCache = async (request, response) => {
+  const cache = await caches.open(CACHE);
+  cache.put(request, response);
+};
 
-    if (response) {
-      event.respondWith(response);
-      event.waitUntil(await updateCache(response));
-      return;
-    }
+const update = async (request) => {
+  const response = await fetch(request);
+  toCache(request, response);
+};
 
-    const fetchRequest = event.request.clone();
-    const fetchResponse = await fetch(fetchRequest);
-    if (
-      !fetchResponse ||
-      fetchResponse.status !== 200 ||
-      fetchResponse.type !== 'basic'
-    ) {
-      return event.respondWith(fetchResponse);
-    }
+self.addEventListener('push', (event) => {
+  let notificationData = {};
 
-    event.respondWith(fetchResponse);
-    event.waitUntil(await updateCache(fetchResponse));
+  try {
+    notificationData = event.data.json();
+  } catch (e) {
+    notificationData = {
+      title: 'Что-то пошло не так..',
+      body: 'Обратись в тех. поддержку!'
+    };
   }
 
-  // event.respondWith(
-  //   (async () => {
-  //     if (statics.test(event.request.url) || fonts.test(event.request.url)) {
-  //       const response = await caches.match(event.request);
-  //
-  //       // если в кэше найдено то, что нужно, мы можем тут же вернуть ответ.
-  //       if (response) {
-  //         return response;
-  //       }
-  //
-  //       const fetchRequest = event.request.clone();
-  //       const fetchResponse = await fetch(fetchRequest);
-  //       if (
-  //         !fetchResponse ||
-  //         fetchResponse.status !== 200 ||
-  //         fetchResponse.type !== 'basic'
-  //       ) {
-  //         return fetchResponse;
-  //       }
-  //
-  //       const responseToCache = fetchResponse.clone();
-  //       const cache = await caches.open(CACHE_NAME);
-  //       cache.put(event.request, responseToCache);
-  //
-  //       return fetchResponse;
-  //     }
-  //
-  //     return await fetch(event.request);
-  //   })()
-  // );
+  event.waitUntil(
+    self.registration.showNotification(notificationData.title, {
+      body: notificationData.body
+    })
+  );
 });

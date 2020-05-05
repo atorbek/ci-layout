@@ -1,3 +1,62 @@
 {
-  "agents": []
+  "agents": [
+    {
+      "agentId": "22b26940-8fe2-11ea-83b5-dddf12e59c9a",
+      "status": "busy",
+      "host": "192.168.0.103",
+      "port": 3003,
+      "build": {
+        "buildId": "4302f24f-594f-47c9-8390-f28836b1a93d",
+        "dateTime": "2020-05-06T21:49:39.346Z"
+      }
+    },
+    {
+      "agentId": "99019f70-8fe3-11ea-958b-6b5d362605a8",
+      "status": "busy",
+      "host": "192.168.0.103",
+      "port": "3003",
+      "build": {
+        "buildId": "c52425b1-8cf8-499b-aedf-f99ff80f58ad",
+        "dateTime": "2020-05-06T21:56:05.795Z"
+      }
+    },
+    {
+      "agentId": "87e88720-8fe4-11ea-bf0e-dd4dccd61dbd",
+      "status": "free",
+      "host": "192.168.0.103",
+      "port": "3003",
+      "build": {}
+    },
+    {
+      "agentId": "6088ca60-8fed-11ea-80d3-0d69fc3ff441",
+      "status": "free",
+      "host": "192.168.0.103",
+      "port": "3003"
+    },
+    {
+      "agentId": "abdfe660-8fed-11ea-80d3-0d69fc3ff441",
+      "status": "free",
+      "host": "192.168.0.103",
+      "port": "3003"
+    },
+    {
+      "agentId": "b1a4cc50-8fed-11ea-80d3-0d69fc3ff441",
+      "status": "free",
+      "host": "192.168.0.103",
+      "port": "3003"
+    },
+    {
+      "agentId": "6e6f1520-8ff3-11ea-a1be-99f895375574",
+      "status": "free",
+      "host": "192.168.0.103",
+      "port": "3003"
+    }
+  ],
+  "pushSubscription": {
+    "endpoint": "https://fcm.googleapis.com/fcm/send/emhAvCbOOhc:APA91bGDEbCW99xkcPhOCqTly7_A97IiOmj4dJV5OE5R-aA3pGraMHmb5G-zZi_WptaPtmGhdJ270U2Uo3EixzCRlOAfvcdMYtAPaCZyca0d1Dw5BW4ligMGuKGF3ZRA5CvXQb4abb5N",
+    "keys": {
+      "p256dh": "BFz6Wzrcsy-bnsApM32Pm6xR3GqdqwHk0xl5AMZHy9JUWPi847W9bpu08JQwmyamx37ReBCMPfGLiT6rMtVCQBA",
+      "auth": "3JTglQrbbaLuDca2l_YuTw"
+    }
+  }
 }

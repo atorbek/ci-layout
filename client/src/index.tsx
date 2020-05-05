@@ -5,7 +5,6 @@ import App from './components/App';
 import createAppStore from './store';
 import registerWorker from './register-worker';
 
-registerWorker();
 const store = createAppStore();
 
 ReactDOM.render(
@@ -14,3 +13,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
+registerWorker();
