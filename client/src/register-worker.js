@@ -4,8 +4,8 @@ const {
   buildServerPort
 } = require('./client-conf');
 
-const requestPermission = () => {
-  return new Promise((resolve, reject) => {
+const requestPermission = async () => {
+  const permissionResult = await new Promise((resolve, reject) => {
     const permissionResult = Notification.requestPermission((result) => {
       resolve(result);
     });
@@ -13,11 +13,11 @@ const requestPermission = () => {
     if (permissionResult) {
       permissionResult.then(resolve, reject);
     }
-  }).then((permissionResult) => {
-    if (permissionResult !== 'granted') {
-      throw new Error('Permission not granted.');
-    }
   });
+
+  if (permissionResult !== 'granted') {
+    throw new Error('Permission not granted.');
+  }
 };
 
 const urlB64ToUint8Array = (base64String) => {
@@ -33,37 +33,31 @@ const urlB64ToUint8Array = (base64String) => {
   return outputArray;
 };
 
-const subscribeUserToPush = () => {
-  navigator.serviceWorker
-    .register(`./service-worker-custom.js`)
-    .then((registration) => {
-      console.log('Registration succeeded. Scope is ' + registration.scope);
-      return registration.pushManager.getSubscription().then((subscription) => {
-        if (subscription) {
-          return subscription;
-        }
+const subscribeUserToPush = async (registration) => {
+  try {
+    let subscription = await registration.pushManager.getSubscription();
+    if (subscription) {
+      return;
+    }
 
-        return registration.pushManager.subscribe({
-          userVisibleOnly: true,
-          applicationServerKey: urlB64ToUint8Array(pushServerKey)
-        });
-      });
-    })
-    .then((subscription) => {
-      fetch(`${buildServerHost}:${buildServerPort}/register-notification`, {
-        method: 'post',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(subscription)
-      });
-    })
-    .catch((err) => {
-      console.log('Registration failed with ' + err);
+    subscription = await registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlB64ToUint8Array(pushServerKey)
     });
+
+    fetch(`${buildServerHost}:${buildServerPort}/register-notification`, {
+      method: 'post',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(subscription)
+    });
+  } catch (e) {
+    console.log('Subscription failed with ' + e);
+  }
 };
 
-const registerWorker = () => {
+export const registerWorker = async () => {
   if (!('serviceWorker' in navigator)) {
     console.log('Service workers are not supported.');
     return;
@@ -74,11 +68,15 @@ const registerWorker = () => {
     return;
   }
 
-  requestPermission()
-    .then(() => {
-      subscribeUserToPush();
-    })
-    .catch((e) => console.log(e.message));
-};
+  await requestPermission();
 
-module.exports = registerWorker;
+  try {
+    const registration = await navigator.serviceWorker.register(
+      `./service-worker-custom.js`
+    );
+    await subscribeUserToPush(registration);
+    console.log('Registration succeeded. Scope is ' + registration.scope);
+  } catch (e) {
+    console.log('Registration failed with ' + e);
+  }
+};

@@ -50,13 +50,19 @@
       "status": "free",
       "host": "192.168.0.103",
       "port": "3003"
+    },
+    {
+      "agentId": "eee5e0f0-9069-11ea-94d5-fb7935bd7e5e",
+      "status": "free",
+      "host": "192.168.0.103",
+      "port": "3003"
     }
   ],
   "pushSubscription": {
-    "endpoint": "https://fcm.googleapis.com/fcm/send/emhAvCbOOhc:APA91bGDEbCW99xkcPhOCqTly7_A97IiOmj4dJV5OE5R-aA3pGraMHmb5G-zZi_WptaPtmGhdJ270U2Uo3EixzCRlOAfvcdMYtAPaCZyca0d1Dw5BW4ligMGuKGF3ZRA5CvXQb4abb5N",
+    "endpoint": "https://fcm.googleapis.com/fcm/send/cBT-p6razuo:APA91bE9dgVvTJHZASbKCiIk-onZbS_Z549qzsxV3jPd1x8YgDm9glzTd7he5onrFfRMhvHZvsyLd74Mbak-KcedXDuUNzBr3KdUI9d09IoJ05Qmc9Y4XxOeLsS8vMGxYfJNb6ZD1sCU",
     "keys": {
-      "p256dh": "BFz6Wzrcsy-bnsApM32Pm6xR3GqdqwHk0xl5AMZHy9JUWPi847W9bpu08JQwmyamx37ReBCMPfGLiT6rMtVCQBA",
-      "auth": "3JTglQrbbaLuDca2l_YuTw"
+      "p256dh": "BC0UUrEjFVidXvjj5TFhVfXycAWmydNmdgCG_t1hBRz5sie9LW5g9xz2enD4hZ2NCQVEv7mae_gLiZ2Tbh5GkgU",
+      "auth": "wsEp2fdmCe8xZsDQCD4V4g"
     }
   }
 }

@@ -1,0 +1,13 @@
+{
+  "header": {
+    "buttons": {
+      "settings": "Settings"
+    }
+  },
+  "layout": {
+    "content": {
+      "text": "Configure repository connection and synchronization settings",
+      "button": "Open settings"
+    }
+  }
+}

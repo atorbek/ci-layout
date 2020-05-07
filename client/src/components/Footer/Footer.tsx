@@ -13,11 +13,14 @@ import List from '../List/List';
 import ListItem from '../List/Item/List-Item';
 import FooterCopyright from './Copyright/FooterCopyright';
 import { cn } from '../../config';
+import { useTranslation } from 'react-i18next';
 
 declare interface FooterProps {
   mix?: string[];
 }
 const Footer: React.FC<FooterProps> = ({ mix }) => {
+  const { t } = useTranslation(['Footer']);
+
   return (
     <div className={cn('footer')({ spaceH: 'm' }, mix)}>
       <FooterContent>
@@ -31,10 +34,20 @@ const Footer: React.FC<FooterProps> = ({ mix }) => {
                 'text_indentR_xs'
               ]}
             >
-              Support
+              {t('list.support')}
+            </ListItem>
+            <ListItem
+              mix={[
+                'text',
+                'text_lineHeight_xxxs',
+                'text_size_m',
+                'text_indentR_xs'
+              ]}
+            >
+              {t('list.learning')}
             </ListItem>
             <ListItem mix={['text', 'text_lineHeight_xxxs', 'text_size_m']}>
-              Learning
+              {t('list.langRu')}
             </ListItem>
           </List>
         </FooterList>
@@ -47,7 +60,7 @@ const Footer: React.FC<FooterProps> = ({ mix }) => {
             'text_indentR_xs'
           ]}
         >
-          © 2020 Your Name
+          {t('copyright')}
         </FooterCopyright>
       </FooterContent>
     </div>

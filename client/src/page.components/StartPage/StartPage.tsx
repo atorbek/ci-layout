@@ -20,8 +20,10 @@ import Text from '../../components/Text';
 import LinkButton from '../../components/ButtonLink';
 import Loader from '../../components/Loader';
 import { useTypedSelector } from '../../modules/StartPage';
+import { useTranslation } from 'react-i18next';
 
 const StartPage = () => {
+  const { t } = useTranslation(['StartPage']);
   const isSettings = useTypedSelector(getIsSettings);
   const isLoad = useTypedSelector(getIsLoad);
 
@@ -31,7 +33,7 @@ const StartPage = () => {
     ) : (
       <>
         <Header
-          title="School CI server"
+          title={t('header.title')}
           titleMix={[
             'text',
             ' text_size_xxxl',
@@ -47,7 +49,7 @@ const StartPage = () => {
             indentR="xs"
           >
             <Icon type="gear" size="s" view="brand" mix={['button__icon']} />
-            <ButtonText>Settings</ButtonText>
+            <ButtonText>{t('header.buttons.settings')}</ButtonText>
           </LinkButton>
         </Header>
         <Layout verticalAlign="center" spaceH="m">
@@ -66,7 +68,7 @@ const StartPage = () => {
                   align="center"
                   mix={['settings__content_text']}
                 >
-                  Configure repository connection and synchronization settings
+                  {t('layout.content.text')}
                 </Text>
               </SettingsContent>
               <SettingsAction distribute="center">
@@ -76,7 +78,7 @@ const StartPage = () => {
                   color="action"
                   form="round"
                 >
-                  Open settings
+                  {t('layout.content.button')}
                 </LinkButton>
               </SettingsAction>
             </Settings>
