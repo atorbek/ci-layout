@@ -35,6 +35,9 @@ build-server/server-conf.json
 build-agent/node_modules
 build-agent/agent-conf.json
 
+## client
+client/src/client-conf.json
+
 ## general
 .vscode
 .idea
