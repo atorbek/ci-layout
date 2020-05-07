@@ -2,6 +2,25 @@ const CACHE = 'cache-and-update';
 const statics = /\.(?:png|gif|jpg|jpeg|svg|js|css)$/;
 const fonts = new RegExp('(.*)yastatic.net/islands/(.*)');
 
+self.addEventListener('push', (event) => {
+  let notificationData = {};
+
+  try {
+    notificationData = event.data.json();
+  } catch (e) {
+    notificationData = {
+      title: 'Что-то пошло не так..',
+      body: 'Обратись в тех. поддержку!'
+    };
+  }
+
+  event.waitUntil(
+    self.registration.showNotification(notificationData.title, {
+      body: notificationData.body
+    })
+  );
+});
+
 self.addEventListener('install', (event) => {
   event.waitUntil(precache());
 });
@@ -49,22 +68,3 @@ const update = async (request) => {
   const response = await fetch(request);
   toCache(request, response);
 };
-
-self.addEventListener('push', (event) => {
-  let notificationData = {};
-
-  try {
-    notificationData = event.data.json();
-  } catch (e) {
-    notificationData = {
-      title: 'Что-то пошло не так..',
-      body: 'Обратись в тех. поддержку!'
-    };
-  }
-
-  event.waitUntil(
-    self.registration.showNotification(notificationData.title, {
-      body: notificationData.body
-    })
-  );
-});

@@ -7,9 +7,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "test": "node_modules/.bin/hermione",
-    "sw-test": "mocha -r ts-node/register ./src/service-worker-custom.test.js",
-    "selenium": "./node_modules/.bin/selenium-standalone start"
+    "sw-test": "react-scripts test --watchAll=false",
+    "e2e-test": "node_modules/.bin/hermione",
+    "run-selenium": "./node_modules/.bin/selenium-standalone start"
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.4",

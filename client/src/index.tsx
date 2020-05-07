@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './components/App';
 import createAppStore from './store';
-import registerWorker from './register-worker';
+import { registerWorker } from './register-worker';
 
 const store = createAppStore();
 
@@ -14,4 +14,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-registerWorker();
+registerWorker().catch((e) => console.log(e));
