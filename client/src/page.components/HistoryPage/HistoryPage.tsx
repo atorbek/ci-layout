@@ -27,8 +27,11 @@ import {
 import LinkButton from '../../components/ButtonLink';
 import RunBuildModal from '../../components/RunBuildModal';
 import { useTypedSelector } from '../../modules/StartPage';
+import { useTranslation } from 'react-i18next';
+import Loader from '../../components/Loader';
 
 const HistoryPage = () => {
+  const { t } = useTranslation(['HistoryPage']);
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(5);
   const [isShowMore, setIsShowMore] = useState(false);
@@ -100,7 +103,7 @@ const HistoryPage = () => {
           mix={['header__button']}
         >
           <Icon type="play" size="s" view="brand" mix={['button__icon']} />
-          <ButtonText>Run build</ButtonText>
+          <ButtonText>{t('header.buttons.runBuild')}</ButtonText>
         </Button>
         <LinkButton to="/settings" size="l" color="control" form="round">
           <Icon type="gear" size="s" view="brand" mix={['button__icon']} />
@@ -113,7 +116,7 @@ const HistoryPage = () => {
         mix={['history']}
       >
         <LayoutContainer size="m" align="center">
-          {isLoad ? 'Loading...' : renderBuilds(builds)}
+          {isLoad ? <Loader /> : renderBuilds(builds)}
         </LayoutContainer>
         <LayoutContainer size="m" align="center" indentB="l">
           <Button
@@ -122,7 +125,7 @@ const HistoryPage = () => {
             form="round"
             onClick={handleClickShowMore}
           >
-            Show more
+            {t('layout.buttons.showMore')}
           </Button>
         </LayoutContainer>
       </Layout>

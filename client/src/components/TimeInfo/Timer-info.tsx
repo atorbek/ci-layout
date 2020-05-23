@@ -4,9 +4,10 @@ import Icon from '../Icon';
 import Text from '../Text';
 import TimerInfoDateTime from './DateTime/Timer-info-Date-time';
 import TimerInfoDurationTime from './DurationTime/Timer-info-Duration-time';
-import { addMinutes, format } from 'date-fns';
-import { ru } from 'date-fns/locale';
+import { format } from 'date-fns';
+import { ru, enGB } from 'date-fns/locale';
 import { cn } from '../../config';
+import { useTranslation } from 'react-i18next';
 
 declare interface TimerInfoProps {
   start: string;
@@ -14,16 +15,21 @@ declare interface TimerInfoProps {
   mix?: string[];
 }
 const TimerInfo: React.FC<TimerInfoProps> = ({ start, duration, mix }) => {
-  const formatStart = (start: string) =>
+  const { i18n } = useTranslation();
+
+  const formatStart = (start: string, lang: string): string =>
     format(new Date(start), 'd MMM HH:mm', {
-      locale: ru
+      locale: lang === 'ru' ? ru : enGB
     }).replace('.', ',');
 
-  const formatDuration = (duration: number) => {
-    const helperDate = addMinutes(new Date(0, 0, 0, 0, 0, 0), duration);
-    return format(helperDate, 'H ч mm мин', {
-      locale: ru
-    });
+  const formatDuration = (duration: number, lang: string): string => {
+    const hours: number = Math.floor(duration / 60);
+    const minutes: number = duration % 60;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+
+    return lang === 'ru'
+      ? `${hours} ч ${formattedMinutes} мин`
+      : `${hours} h ${formattedMinutes} min`;
   };
 
   return (
@@ -31,14 +37,14 @@ const TimerInfo: React.FC<TimerInfoProps> = ({ start, duration, mix }) => {
       <TimerInfoDateTime>
         <Icon type="calendar" />
         <Text size="m" lineHeight="xxxs" view="secondary2">
-          {formatStart(start)}
+          {formatStart(start, i18n.language)}
         </Text>
       </TimerInfoDateTime>
 
       <TimerInfoDurationTime>
         <Icon type="stopwatch" />
         <Text size="m" lineHeight="xxxs" view="secondary2">
-          {duration && formatDuration(duration)}
+          {duration && formatDuration(duration, i18n.language)}
         </Text>
       </TimerInfoDurationTime>
     </div>

@@ -1,0 +1,12 @@
+{
+  "header": {
+    "buttons": {
+      "runBuild": "Run Build"
+    }
+  },
+  "layout": {
+    "buttons": {
+      "showMore": "Show more"
+    }
+  }
+}

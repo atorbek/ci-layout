@@ -1,0 +1,16 @@
+{
+  "form": {
+    "title": "New build",
+    "items": {
+      "newBuild": {
+        "label": "Enter the commit hash which you want to build",
+        "placeholder": "Commit hash",
+        "errorMsg": "Commit not found!"
+      }
+    },
+    "buttons": {
+      "save": "Save",
+      "cancel": "Cancel"
+    }
+  }
+}

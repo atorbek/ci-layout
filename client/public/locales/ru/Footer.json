@@ -2,7 +2,10 @@
   "list": {
     "support": "Поддержка",
     "learning": "Обучение",
-    "langRu": "English version"
+    "lang": {
+      "linkId": "en",
+      "linkText": "English version"
+    }
   },
   "copyright": "© 2020 Александр Торбек"
 }

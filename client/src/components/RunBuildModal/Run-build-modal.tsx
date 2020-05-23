@@ -22,6 +22,7 @@ import {
   handleRunBuildAsync,
   useFormSelector
 } from '../../modules/HistoryPage';
+import { useTranslation } from 'react-i18next';
 
 declare interface renderFieldProps {
   mix: string[];
@@ -63,6 +64,7 @@ type FormData = {
 const RunBuildModal: React.FC<
   InjectedFormProps<FormData, {}> & RunBuildModalProps
 > = ({ handleSubmit, handleClickRunBuild, submitting }) => {
+  const { t } = useTranslation('RunBuildModal');
   const { error }: any = useFormSelector(
     getFormSubmitErrors(formNames.formRunBuildModal)
   );
@@ -78,19 +80,19 @@ const RunBuildModal: React.FC<
         <Form onSubmit={handleSubmit(handleClickSaveSubmit)}>
           <FormItem direction="column" indentB="xl" indentT="xs">
             <Text tag="h2" size="l" lineHeight="xs" type="h2">
-              New build
+              {t('form.title')}
             </Text>
             <Text size="m" lineHeight="xxs" view="secondary">
-              Enter the commit hash which you want to build
+              {t('form.items.newBuild.label')}
             </Text>
             <Field
               name="commitHash"
-              placeholder="Commit hash"
+              placeholder={t('form.items.newBuild.placeholder')}
               component={renderField}
             />
             {error && (
               <Text tag="span" size="m" view="alert">
-                Commit not found!
+                {t('form.items.newBuild.errorMsg')}
               </Text>
             )}
           </FormItem>
@@ -102,7 +104,7 @@ const RunBuildModal: React.FC<
               type="submit"
               disabled={submitting}
             >
-              Save
+              {t('form.buttons.save')}
             </RunBuildModalButton>
             <LinkButton
               onClick={handleClickRunBuild}
@@ -111,7 +113,7 @@ const RunBuildModal: React.FC<
               form="round"
               disabled={submitting}
             >
-              Cancel
+              {t('form.buttons.cancel')}
             </LinkButton>
           </FormItem>
         </Form>

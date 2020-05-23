@@ -1,10 +1,35 @@
 {
-  "title": "Settings",
-  "description": "Configure repository connection and synshronization settings.",
-  "repoName": "GitHub repository",
-  "buildCommand": "Build command",
-  "mainBranch": "Main branch",
-  "synchronize": {
-    "part1": "Synchronize every {{minutes}} minutes"
+  "form": {
+    "title": "Settings",
+    "description": "Configure repository connection and synshronization settings.",
+    "items": {
+      "repoName": {
+        "label": "GitHub repository",
+        "placeholder": "user-name/repo-name",
+        "errorMsg": ""
+      },
+      "buildCommand": {
+        "label": "Build command",
+        "placeholder": "npm ci && npm run build",
+        "errorMsg": ""
+      },
+      "mainBranch": {
+        "label": "Main branch",
+        "placeholder": "",
+        "errorMsg": ""
+      },
+      "synchronize": {
+        "label": "<0>Synchronize every</0> <1/> <2>minutes</2>",
+        "placeholder": "",
+        "errorMsg": ""
+      }
+    },
+    "errors": {
+      "required": "Required field!"
+    },
+    "buttons": {
+      "save": "Save",
+      "cancel": "Cancel"
+    }
   }
 }

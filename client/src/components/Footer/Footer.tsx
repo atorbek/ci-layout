@@ -19,7 +19,10 @@ declare interface FooterProps {
   mix?: string[];
 }
 const Footer: React.FC<FooterProps> = ({ mix }) => {
-  const { t } = useTranslation(['Footer']);
+  const { t, i18n } = useTranslation(['Footer']);
+  const handleClickLanguage = () => {
+    i18n.changeLanguage(t('list.lang.linkId'));
+  };
 
   return (
     <div className={cn('footer')({ spaceH: 'm' }, mix)}>
@@ -46,8 +49,11 @@ const Footer: React.FC<FooterProps> = ({ mix }) => {
             >
               {t('list.learning')}
             </ListItem>
-            <ListItem mix={['text', 'text_lineHeight_xxxs', 'text_size_m']}>
-              {t('list.langRu')}
+            <ListItem
+              mix={['text', 'text_lineHeight_xxxs', 'text_size_m']}
+              onClick={handleClickLanguage}
+            >
+              {t('list.lang.linkText')}
             </ListItem>
           </List>
         </FooterList>

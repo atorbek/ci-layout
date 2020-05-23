@@ -5,12 +5,13 @@ import App from './components/App';
 import createAppStore from './store';
 import { registerWorker } from './register-worker';
 import './i18n';
+import Loader from './components/Loader';
 
 const store = createAppStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <Suspense fallback="loading">
+    <Suspense fallback={<Loader />}>
       <App />
     </Suspense>
   </Provider>,

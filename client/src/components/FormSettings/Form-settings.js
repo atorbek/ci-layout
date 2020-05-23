@@ -14,8 +14,9 @@ import LinkButton from '../ButtonLink';
 import Form from '../Form/Form';
 import FormInput from '../Form/Input/FormInput';
 import { formNames } from '../../config';
+import { useTranslation, Trans } from 'react-i18next';
 
-const required = (value) => (value ? undefined : 'Обязательное поле');
+const required = (value) => (value ? undefined : 'Required field!');
 
 const normalizeNumber = (value, previousValue) => {
   const re = /^[1-9]\d*$/;
@@ -35,6 +36,8 @@ const renderField = ({ placeholder, meta: { touched, error }, ...rest }) => {
 };
 
 const FormSettings = ({ handleSubmit, handleSaveSettings, submitting }) => {
+  const { t } = useTranslation(['FormSettings']);
+
   const handleSaveSubmit = (e) => {
     handleSaveSettings(e);
   };
@@ -43,10 +46,10 @@ const FormSettings = ({ handleSubmit, handleSaveSettings, submitting }) => {
     <Form onSubmit={handleSubmit(handleSaveSubmit)} mix={['form-settings']}>
       <FormItem indentT="xs" mix={['form-settings_indentB_l']}>
         <Text tag="h2" size="l" lineHeight="xs" type="h2">
-          Settings
+          {t('form.title')}
         </Text>
         <Text size="m" lineHeight="xxs" view="secondary">
-          Configure repository connection and synshronization settings.
+          {t('form.description')}
         </Text>
       </FormItem>
       <FormItem
@@ -55,13 +58,13 @@ const FormSettings = ({ handleSubmit, handleSaveSettings, submitting }) => {
         mix={['form-settings_indentB_l']}
       >
         <Text size="m" lineHeight="xxs" type="span">
-          GitHub repository
+          {t('form.items.repoName.label')}
           <Text tag="span" view="alert">
             *
           </Text>
         </Text>
         <Field
-          placeholder="user-name/repo-name"
+          placeholder={t('form.items.repoName.placeholder')}
           name="repoName"
           component={renderField}
           validate={[required]}
@@ -73,13 +76,13 @@ const FormSettings = ({ handleSubmit, handleSaveSettings, submitting }) => {
         mix={['form-settings_indentB_l']}
       >
         <Text size="m" lineHeight="xxs" type="span">
-          Build command
+          {t('form.items.buildCommand.label')}
           <Text tag="span" view="alert">
             *
           </Text>
         </Text>
         <Field
-          placeholder="npm ci && npm run build"
+          placeholder={t('form.items.buildCommand.placeholder')}
           name="buildCommand"
           component={renderField}
           validate={[required]}
@@ -91,31 +94,33 @@ const FormSettings = ({ handleSubmit, handleSaveSettings, submitting }) => {
         mix={['form-settings_indentB_l']}
       >
         <Text size="m" lineHeight="xxs" type="span">
-          Main branch
+          {t('form.items.mainBranch.label')}
         </Text>
 
         <Field name="mainBranch" placeholder="master" component={renderField} />
       </FormItem>
       <FormItem indentB="xl" direction="row" verticalAlign="center">
-        <Text size="m" lineHeight="xxs" mix={['form-settings_space_r']}>
-          Synchronize every
-        </Text>
-        <Field
-          name="period"
-          placeholder="10"
-          type="text"
-          component={renderField}
-          normalize={normalizeNumber}
-          mix={['form-settings_space_r', 'form-settings__input_number']}
-        />
-        <Text
-          size="m"
-          lineHeight="xxs"
-          view="ghost"
-          mix={['form-settings_space_r']}
-        >
-          minutes
-        </Text>
+        <Trans t={t} i18nKey="form.items.synchronize.label">
+          <Text size="m" lineHeight="xxs" mix={['form-settings_space_r']}>
+            Synchronize every
+          </Text>
+          <Field
+            name="period"
+            placeholder="10"
+            type="text"
+            component={renderField}
+            normalize={normalizeNumber}
+            mix={['form-settings_space_r', 'form-settings__input_number']}
+          />
+          <Text
+            size="m"
+            lineHeight="xxs"
+            view="ghost"
+            mix={['form-settings_space_r']}
+          >
+            minutes
+          </Text>
+        </Trans>
       </FormItem>
       <FormItem direction="row">
         <Button
@@ -126,7 +131,7 @@ const FormSettings = ({ handleSubmit, handleSaveSettings, submitting }) => {
           disabled={submitting}
           mix={['form-settings__button', 'form-settings__button_type_save']}
         >
-          Save
+          {t('form.buttons.save')}
         </Button>
         <LinkButton
           to="/"
@@ -135,7 +140,7 @@ const FormSettings = ({ handleSubmit, handleSaveSettings, submitting }) => {
           form="round"
           disabled={submitting}
         >
-          Cancel
+          {t('form.buttons.cancel')}
         </LinkButton>
       </FormItem>
     </Form>
