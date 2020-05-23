@@ -1,0 +1,10 @@
+{
+  "title": "Settings",
+  "description": "Configure repository connection and synshronization settings.",
+  "repoName": "GitHub repository",
+  "buildCommand": "Build command",
+  "mainBranch": "Main branch",
+  "synchronize": {
+    "part1": "Synchronize every {{minutes}} minutes"
+  }
+}
