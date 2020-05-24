@@ -1,0 +1,12 @@
+{
+  "header": {
+    "buttons": {
+      "runBuild": "Запустить Сборку"
+    }
+  },
+  "layout": {
+    "buttons": {
+      "showMore": "Показать еще"
+    }
+  }
+}
