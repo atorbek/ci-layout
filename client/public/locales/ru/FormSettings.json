@@ -1,0 +1,29 @@
+{
+  "form": {
+    "title": "Настройки",
+    "description": "Настройте параметры подключения к репозиторию и параметры синхронизации.",
+    "items": {
+      "repoName": {
+        "label": "GitHub хранилище",
+        "placeholder": "user-name/repo-name"
+      },
+      "buildCommand": {
+        "label": "Команда на выполнение",
+        "placeholder": "npm ci &amp;&amp; npm run build"
+      },
+      "mainBranch": {
+        "label": "Основная ветка"
+      },
+      "synchronize": {
+        "label": "&lt;0&gt;Синхронизировать каждые0&gt; &lt;1/&gt; &lt;2&gt;минут2&gt;"
+      }
+    },
+    "errors": {
+      "required": "Обязательное поле!"
+    },
+    "buttons": {
+      "save": "Сохранить",
+      "cancel": "Отмена"
+    }
+  }
+}
