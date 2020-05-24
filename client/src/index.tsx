@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import App from './components/App';
 import createAppStore from './store';
 import { registerWorker } from './register-worker';
-import './i18n';
 import Loader from './components/Loader';
+import './i18n';
 
 const store = createAppStore();
 

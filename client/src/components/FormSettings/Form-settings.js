@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, formValueSelector, reduxForm } from 'redux-form';
 import './Form-settings.css';
 import './_indentB/Form-settings_indentB_l.css';
 import './_space/Form-settings_space_r.css';
@@ -35,7 +35,13 @@ const renderField = ({ placeholder, meta: { touched, error }, ...rest }) => {
   );
 };
 
-const FormSettings = ({ handleSubmit, handleSaveSettings, submitting }) => {
+const FormSettings = ({
+  handleSubmit,
+  handleSaveSettings,
+  submitting,
+  initialValues,
+  period
+}) => {
   const { t } = useTranslation(['FormSettings']);
 
   const handleSaveSubmit = (e) => {
@@ -100,10 +106,17 @@ const FormSettings = ({ handleSubmit, handleSaveSettings, submitting }) => {
         <Field name="mainBranch" placeholder="master" component={renderField} />
       </FormItem>
       <FormItem indentB="xl" direction="row" verticalAlign="center">
-        <Trans t={t} i18nKey="form.items.synchronize.label">
+        <Trans
+          t={t}
+          i18nKey="form.items.synchronize.label.sync"
+          count={period ? +period : +initialValues.period}
+        >
           <Text size="m" lineHeight="xxs" mix={['form-settings_space_r']}>
             Synchronize every
           </Text>
+          <div style={{ display: 'none' }}>
+            {{ count: period ? +period : +initialValues.period }}
+          </div>
           <Field
             name="period"
             placeholder="10"
@@ -147,8 +160,11 @@ const FormSettings = ({ handleSubmit, handleSaveSettings, submitting }) => {
   );
 };
 
+const selector = formValueSelector(formNames.formSettings);
+
 const mapStateToProps = (state) => ({
-  initialValues: { period: 1, ...state.settings.data }
+  initialValues: { period: 1, ...state.settings.data },
+  period: selector(state, 'period')
 });
 const mapDispatchToProps = { handleSaveSettings };
 

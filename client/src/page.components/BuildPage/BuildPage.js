@@ -27,6 +27,8 @@ import {
 import ButtonLink from '../../components/ButtonLink';
 import Loader from '../../components/Loader/Loader';
 import { compose } from 'redux';
+import { useTranslation } from 'react-i18next';
+
 const BuildPage = ({
   match: {
     params: { id: buildId }
@@ -42,6 +44,7 @@ const BuildPage = ({
   isRebuild,
   repoName
 }) => {
+  const { t } = useTranslation(['BuildPage']);
   const [isRedirect, setIsRedirect] = useState(false);
 
   useEffect(() => {
@@ -93,7 +96,7 @@ const BuildPage = ({
             indentR="xs"
           >
             <Icon type="play" size="s" view="brand" mix={['button__icon']} />
-            <ButtonText>Rebuild</ButtonText>
+            <ButtonText>{t('header.buttons.rebuild')}</ButtonText>
           </Button>
           <ButtonLink to="/settings" size="l" view="control" form="round">
             <Icon type="gear" size="s" view="brand" mix={['button__icon']} />
