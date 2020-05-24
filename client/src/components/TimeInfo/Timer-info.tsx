@@ -8,6 +8,7 @@ import { format } from 'date-fns';
 import { ru, enGB } from 'date-fns/locale';
 import { cn } from '../../config';
 import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 
 declare interface TimerInfoProps {
   start: string;
@@ -15,21 +16,19 @@ declare interface TimerInfoProps {
   mix?: string[];
 }
 const TimerInfo: React.FC<TimerInfoProps> = ({ start, duration, mix }) => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation('TimerInfo');
 
   const formatStart = (start: string, lang: string): string =>
     format(new Date(start), 'd MMM HH:mm', {
       locale: lang === 'ru' ? ru : enGB
     }).replace('.', ',');
 
-  const formatDuration = (duration: number, lang: string): string => {
+  const formatDuration = (duration: number, t: TFunction): string => {
     const hours: number = Math.floor(duration / 60);
     const minutes: number = duration % 60;
     const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
 
-    return lang === 'ru'
-      ? `${hours} ч ${formattedMinutes} мин`
-      : `${hours} h ${formattedMinutes} min`;
+    return t('duration', { hours, formattedMinutes });
   };
 
   return (
@@ -44,7 +43,7 @@ const TimerInfo: React.FC<TimerInfoProps> = ({ start, duration, mix }) => {
       <TimerInfoDurationTime>
         <Icon type="stopwatch" />
         <Text size="m" lineHeight="xxxs" view="secondary2">
-          {duration && formatDuration(duration, i18n.language)}
+          {duration && formatDuration(duration, t)}
         </Text>
       </TimerInfoDurationTime>
     </div>

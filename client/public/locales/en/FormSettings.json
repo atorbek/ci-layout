@@ -19,9 +19,10 @@
         "errorMsg": ""
       },
       "synchronize": {
-        "label": "<0>Synchronize every</0> <1/> <2>minutes</2>",
-        "placeholder": "",
-        "errorMsg": ""
+        "label": {
+          "sync": "<0>Synchronize every</0> <1>{{count}}</1> <2/> <3>minute</3>",
+          "sync_plural": "<0>Synchronize every</0> <1>{{count}}</1> <2/> <3>minutes</3>"
+        }
       }
     },
     "errors": {
