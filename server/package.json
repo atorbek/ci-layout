@@ -8,7 +8,7 @@
     "test": "mocha -r ts-node/register  ./test"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "axios-mock-adapter": "^1.18.1",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
